@@ -1,0 +1,19 @@
+{
+    "name": "yassinekharchaf/yakpress",
+    "description": "Usefull command to create your micro framework YakPress",
+    "type": "wp-cli-package",
+    "homepage": "https://github.com/yassinekharchaf/yakpress",
+    "license": "MIT",
+    "authors": [],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "files": [ "command.php" ]
+    },
+    "require": {
+        "wp-cli/wp-cli": "2.1.0"
+    },
+    "require-dev": {
+        "behat/behat": "~2.5"
+    }
+}

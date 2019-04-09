@@ -1,0 +1,41 @@
+<?php
+
+namespace {{plugin_namespace}};
+
+
+class Setup
+{
+
+  public static function init()
+  {
+    $plugin = {{plugin_prefix}}_PLUGIN_DIR . '/{{plugin_slug}}.php';
+    register_activation_hook($plugin, [self::class, 'activation']);
+    register_deactivation_hook($plugin, [self::class, 'deactivation']);
+    register_uninstall_hook($plugin, [self::class, 'uninstall']);
+  }
+
+  /**
+   * Fonction lancé lors de l'activation du plugin
+   *
+   * @return void
+   */
+  public static function activation()
+  { }
+
+  /**
+   * Fonction appelé lors de la désactivation du plugin
+   *
+   * @return void
+   */
+  public static function deactivation()
+  { }
+
+  /**
+   * Fonction appelé lors de la désinstallation du plugin
+   *
+   * @return void
+   */
+  public static function uninstall()
+  { }
+
+}
