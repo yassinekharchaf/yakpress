@@ -1,0 +1,45 @@
+<?php
+
+namespace {{plugin_namespace}}\Features\Sections;
+
+class {{section_class}}Section
+{
+  /**
+   * Enregistrement de la section
+   *
+   * @return void
+   */
+  public static function init()
+  {
+    // https://developer.wordpress.org/reference/functions/add_settings_section/
+    add_settings_section(
+      '{{section}}',
+      __('Titre de la section'),
+      [self::class, 'render'],
+      'page_id' // l'id de la page à la quelle on ajoute la section
+    );
+    self::register_settings();
+  }
+
+  /**
+   * Cette fonction enregistre les settings qui apparaîtrons dans la section afin qu'ils puissent être pris en compte lors de la sauvegarde de la page
+   *
+   * @return void
+   */
+  public static function register_settings()
+  {
+    //https://developer.wordpress.org/reference/functions/register_setting/
+    register_setting(
+      'page_id', // ne slug de la page sur laquelle le setting se trouve
+      '{{section}}' // le name de l'input du setting
+    );
+  }
+
+  /**
+   * fonction pour render le contenu de la section
+   */
+  public static function render()
+  {
+    //view('viewpath', compact('data'));
+  }
+}

@@ -43,7 +43,7 @@ class Widget extends YakPress
 			self::insert_into_file(
 				"$plugin_dir/config/features.php",
 				"### WIDGETS ###",
-				"	['widget_init',[{$widget_class}Widget::class,'register']]"
+				"	['widget_init',[{$widget_class}Widget::class,'register']],"
 			);
 
 

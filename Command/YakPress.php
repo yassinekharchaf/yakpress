@@ -74,6 +74,45 @@ class YakPress extends Scaffold_Command
 		require_once('Widget.php');
 		Widget::create($args, $assoc_args);
 	}
+
+	/**
+	 * Ajout d'une taxonomie
+	 *
+	 * ## OPTIONS
+	 *
+	 * <taxonomy-name>
+	 * : Nom de la taxonomie
+	 *
+	 * --plugin=<plugin-name>
+	 * : Nom du plugin auquel rajouter le widget
+	 *
+	 */
+	public function taxonomy($args, $assoc_args)
+	{
+		require_once('Taxonomy.php');
+		Taxonomy::create($args, $assoc_args);
+	}
+
+
+	/**
+	 * Ajout d'une section
+	 *
+	 * ## OPTIONS
+	 *
+	 * <section-name>
+	 * : Nom de la section
+	 *
+	 * --plugin=<plugin-name>
+	 * : Nom du plugin auquel rajouter le widget
+	 *
+	 */
+	public function section($args, $assoc_args)
+	{
+		require_once('Section.php');
+		Section::create($args, $assoc_args);
+	}
+
+
 	/**
 	 * Localizes the template path.
 	 */

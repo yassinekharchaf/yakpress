@@ -43,7 +43,7 @@ class Taxonomy extends YakPress
 			self::insert_into_file(
 				"$plugin_dir/config/features.php",
 				"### TAXONOMIES ###",
-				"	['init',[{$taxonomy_class}Taxonomy::class,'register']]"
+				"	['init',[{$taxonomy_class}Taxonomy::class,'register']],"
 			);
 
 

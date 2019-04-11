@@ -43,7 +43,7 @@ class PostType extends YakPress
 			self::insert_into_file(
 				"$plugin_dir/config/features.php",
 				"### POST TYPES ###",
-				"	['init',[{$post_type_class}PostType::class,'register']]"
+				"	['init',[{$post_type_class}PostType::class,'register']],"
 			);
 
 
