@@ -19,13 +19,13 @@ class PostType extends YakPress
 		$force = \WP_CLI\Utils\get_flag_value($assoc_args, 'force');
 
 		if (!is_dir("$plugin_dir/$plugin_namespace/Features/PostTypes")) {
-			WP_CLI::success("le dossier Feature n'existe pas. Création du Dossier PosTypes");
+			WP_CLI::success("Création du Dossier PosTypes");
 			wp_mkdir_p("$plugin_dir/$plugin_namespace/Features/PostTypes");
 		}
 
 		if (!is_file("$plugin_dir/$plugin_namespace/Features/PostTypes/{$post_type_class}PostType.php")) {
 			// AJout du fichier pour le post type
-			WP_CLI::success("le fichier PostType.php n'existe pas. Création du fichier {$post_type_class}PostType.php");
+			WP_CLI::success("Création du fichier {$post_type_class}PostType.php");
 
 			$parent = new parent();
 			$parent->create_files(array(

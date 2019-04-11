@@ -19,13 +19,13 @@ class Widget extends YakPress
 		$force = \WP_CLI\Utils\get_flag_value($assoc_args, 'force');
 
 		if (!is_dir("$plugin_dir/$plugin_namespace/Features/Widgets")) {
-			WP_CLI::success("le dossier Feature n'existe pas. Création du Dossier Widgets");
+			WP_CLI::success("Création du Dossier Widgets");
 			wp_mkdir_p("$plugin_dir/$plugin_namespace/Features/Widgets");
 		}
 
 		if (!is_file("$plugin_dir/$plugin_namespace/Features/Widgets/{$widget_class}Widget.php")) {
 			// AJout du fichier pour le post type
-			WP_CLI::success("le fichier Widget.php n'existe pas. Création du fichier {$widget_class}Widget.php");
+			WP_CLI::success("Création du fichier {$widget_class}Widget.php");
 
 			$parent = new parent();
 			$parent->create_files(array(
