@@ -1,0 +1,46 @@
+<?php
+
+namespace {{plugin_namespace}}\Features\Pages;
+
+{{#controller}}
+use {{plugin_namespace}}\Http\Controllers\{{page_class}}Controller;
+{{/controller}}
+
+
+
+class {{page_class}}Page
+{
+  /**
+   * Initialisation de la page.
+   *
+   * @return void
+   */
+  public static function init()
+  {
+    //https: //developer.wordpress.org/reference/functions/add_menu_page/
+    add_menu_page(
+      __('Titre de la page'),
+      __('Texte dans menu'),
+      'capability',
+      'menu-slug',
+      [self::class, 'render'],
+      'dashicons-myicon',
+      10 // position dans le menu
+    );
+  }
+
+  /**
+   * Fonction qui redirige vers la bonne méthode
+   *
+   * @return void
+   */
+  public static function render()
+  {
+    /**
+     * on fait un refactoring afin que la méthode render renvoi vers la bonne méthode en fonction de l'action
+     */
+    // on défini une valeur par défaut pour $action qui est index et qui correspondra à la méthode à utiliser
+    $action = isset($_GET["action"]) ? $_GET["action"] : "index";
+    call_user_func([{{page_class}}Controller::class, $action]);
+  }
+}
