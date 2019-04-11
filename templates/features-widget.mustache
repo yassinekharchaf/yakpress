@@ -1,0 +1,83 @@
+<?php
+
+namespace {{plugin_namespace}}\Features\Widgets;
+
+class {{widget_class}} extends \WP_Widget
+{
+  public static $slug = "{{widget}}";
+
+  //ici on peut définir des arguments en plus que l'on pourrait passer à la vue qui s'affiche sur le front office
+  public $args = array(
+    'before_title' => '',
+    'after_title' => '',
+    'before_widget' => '',
+    'after_widget' => '',
+    'self' => self::class
+  );
+
+  /**
+   * le construct est lancé lorsque l'on instentie la class on passe à la class parent le slug et le titre
+   */
+  function __construct()
+  {
+
+    parent::__construct(
+      self::$slug,
+      __("Titre du widget")
+    );
+
+
+
+  }
+  /**
+   * enregistrement du widget
+   *
+   * @return void
+   */
+  public static function register()
+  {
+    register_widget(self::class);
+  }
+
+  /**
+   * methode pour arricher le widget sur le front
+   *
+   * @param [type] $arg argument de la class defini dans la propriété public
+   * @param [type] $instance l'instance du widget sachant qu'il peut y avoir plusieurs widget utilisé
+   * @return void
+   */
+  public function widget($args, $instance)
+  {
+
+    //view('viewpath', compact('arg', 'instance'));
+
+  }
+
+  /**
+   * methode pour afficher le fomulaire dans le backoffire
+   *
+   * @param [type] $instance l'instance du widget sachant qu'il peut y avoir plusieurs widget utilisé
+   * @return void
+   */
+  public function form($instance)
+  {
+    //les widgets génere des name specifique pour les inputs, il faut donc utiliser la methode get_field_name pour cela
+
+    //view('viewpath', compact('data'));
+
+  }
+
+  /**
+   * Methode pour updater les informations du widget
+   *
+   * @param [type] $new_instance
+   * @param [type] $old_instance
+   * @return void
+   */
+  public function update($new_instance, $old_instance)
+  {
+
+  }
+
+
+}

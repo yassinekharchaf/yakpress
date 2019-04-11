@@ -1,0 +1,51 @@
+<?php
+
+namespace {{plugin_namespace}}\Features\MetaBoxes;
+
+
+class {{metabox_class}}Metabox
+{
+
+  public static $slug = '{{metabox}}';
+
+  /**
+   * Ajout d'une méta box au type de contenu qui sont passer dans le tableau $screens
+   * https://developer.wordpress.org/plugins/metadata/custom-meta-boxes/
+   *
+   * @return void
+   */
+  public static function add_meta_box()
+  {
+    $screens = []; // Ajout des slug des posts types associé. Example MonPostType::$slug
+
+    foreach ($screens as $screen) {
+      add_meta_box(
+        self::$slug,
+        __("Titre de la metabox"),
+        [self::class, 'render'],
+        $screen
+      );
+    }
+  }
+
+  /**
+   * Fonction pour rendre le code html dans la metabox
+   *
+   * @return void
+   */
+  public static function render()
+  {
+
+  }
+
+  /**
+   * sauvegarde des donners de la métabox
+   *
+   * @param int $post_id reçu par le do_action
+   * @return void
+   */
+  public static function save(int $post_id)
+  {
+
+  }
+}

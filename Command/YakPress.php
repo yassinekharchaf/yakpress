@@ -12,71 +12,100 @@ class YakPress extends Scaffold_Command
 	 * : The name of the plugin
 	 *
 	 */
-	public function create_plugin($args, $assoc_args)
+	public function plugin($args, $assoc_args)
 	{
-		$plugin_slug    = $args[0];
-		$plugin_namespace = ucwords($plugin_slug);
-		$plugin_name    = ucwords(str_replace('-', ' ', $plugin_slug));
-		$plugin_package = str_replace(' ', '_', $plugin_name);
+		require_once('Plugin.php');
+
+		Plugin::create($args, $assoc_args);
+	}
 
 
-		$data = wp_parse_args($assoc_args, array(
-			'plugin_slug'         => $plugin_slug,
-			'plugin_namespace' 		=> $plugin_namespace,
-			'plugin_name'         => $plugin_name,
-			'plugin_package'      => $plugin_package,
-			'plugin_description'  => 'PLUGIN DESCRIPTION HERE',
-			'plugin_author'       => 'YOUR NAME HERE',
-			'plugin_author_uri'   => 'YOUR SITE HERE',
-			'plugin_uri'          => 'PLUGIN SITE HERE',
-			'plugin_tested_up_to' => get_bloginfo('version'),
-			'textdomain'					=> $plugin_slug,
-			'plugin_prefix' 			=> strtoupper(substr($plugin_slug, 0, 3)),
-		));
-
-		$plugin_dir = WP_PLUGIN_DIR . "/$plugin_slug";
-		$force = \WP_CLI\Utils\get_flag_value($assoc_args, 'force');
-
-		wp_mkdir_p("$plugin_dir/$plugin_namespace");
-		wp_mkdir_p("$plugin_dir/$plugin_namespace/Databases");
-		wp_mkdir_p("$plugin_dir/$plugin_namespace/Databases/Migrations");
-		wp_mkdir_p("$plugin_dir/$plugin_namespace/Features");
-		wp_mkdir_p("$plugin_dir/$plugin_namespace/Http");
-		wp_mkdir_p("$plugin_dir/$plugin_namespace/Http/Controllers");
-		wp_mkdir_p("$plugin_dir/$plugin_namespace/Http/Middlewares");
-		wp_mkdir_p("$plugin_dir/$plugin_namespace/Http/Models");
-		wp_mkdir_p("$plugin_dir/$plugin_namespace/Http/Requests");
-		wp_mkdir_p("$plugin_dir/$plugin_namespace/Providers");
-		wp_mkdir_p("$plugin_dir/config");
-		wp_mkdir_p("$plugin_dir/resources");
-		wp_mkdir_p("$plugin_dir/resources/assets");
-		wp_mkdir_p("$plugin_dir/resources/views");
-		wp_mkdir_p("$plugin_dir/routes");
+	/**
+	 * Ajout d'un post type pour wordpress
+	 *
+	 * ## OPTIONS
+	 *
+	 * <post-type-name>
+	 * : Nom du type de contenu sous format slug donc sans accent ni espace
+	 *
+	 * --plugin=<plugin-name>
+	 * : Nom du plugin auquel rajouter le post type
+	 *
+	 */
+	public function post_type($args, $assoc_args)
+	{
+		require_once('PostType.php');
+		PostType::create($args, $assoc_args);
+	}
 
 
-		$this->create_files(array(
-			"$plugin_dir/$plugin_namespace/Databases/Database.php" => self::mustache_render('databases-database.mustache', $data),
-			"$plugin_dir/$plugin_namespace/routes/action.php" => self::mustache_render('routes-action.mustache', $data),
-			"$plugin_dir/$plugin_namespace/Setup.php" => self::mustache_render('setup.mustache', $data),
-			"$plugin_dir/$plugin_slug.php" => self::mustache_render('plugin.mustache', $data),
-			"$plugin_dir/config/features.php" => self::mustache_render('config-features.mustache', $data),
-			"$plugin_dir/config/hooks.php" => self::mustache_render('config-hooks.mustache', $data),
-			"$plugin_dir/config/providers.php" => self::mustache_render('config-providers.mustache', $data),
-			"$plugin_dir/.gitignore" => self::mustache_render('gitignore.mustache', $data),
-			"$plugin_dir/autoload.php" => self::mustache_render('autoload.mustache', $data),
-			"$plugin_dir/bootstrap.php" => self::mustache_render('bootstrap.mustache', $data),
-			"$plugin_dir/env.php" => self::mustache_render('env.mustache', $data),
-			"$plugin_dir/helpers.php" => self::mustache_render('helpers.mustache', $data),
-		), $force);
-
-		WP_CLI::success("Le plugin a bien été créé. Let's go");
+	/**
+	 * Ajout d'une metabox
+	 *
+	 * ## OPTIONS
+	 *
+	 * <metabox-name>
+	 * : Nom de la metabox
+	 *
+	 * --plugin=<plugin-name>
+	 * : Nom du plugin auquel rajouter la metabox
+	 *
+	 */
+	public function metabox($args, $assoc_args)
+	{
+		require_once('Metabox.php');
+		Metabox::create($args, $assoc_args);
 	}
 
 	/**
+	 * Ajout d'un widget
+	 *
+	 * ## OPTIONS
+	 *
+	 * <widget-name>
+	 * : Nom du widget
+	 *
+	 * --plugin=<plugin-name>
+	 * : Nom du plugin auquel rajouter le widget
+	 *
+	 */
+	public function widget($args, $assoc_args)
+	{
+		require_once('Widget.php');
+		Widget::create($args, $assoc_args);
+	}
+	/**
 	 * Localizes the template path.
 	 */
-	private static function mustache_render($template, $data = array())
+	public static function mustache_render($template, $data = array())
 	{
 		return \WP_CLI\Utils\mustache_render(dirname(dirname(__FILE__)) . '/templates/' . $template, $data);
 	}
+
+	public static function insert_into_file($file_path, $search, $text, $after = true)
+	{
+		$lines = file($file_path);
+		$f = fopen($file_path, 'r+');
+		$line_number = false;
+
+		foreach ($lines as $key => $line) {
+			if (strpos($line, $search) !== false && $after == false) {
+				fwrite($f, $text . "\n");
+				fwrite($f, $line);
+			} elseif (strpos($line, $search) !== false && $after == true) {
+				fwrite($f, $line);
+				fwrite($f, $text . "\n");
+			} else {
+				fwrite($f, $line);
+			}
+		}
+		fclose($f);
+	}
+
+
+	// while (list($key, $line) = each($lines) and !$line_number) {
+	// 	$line_number = (strpos($line, $search) !== FALSE) ? $key + 1 : $line_number;
+	// }
+
+
 }
