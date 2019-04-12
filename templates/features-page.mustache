@@ -41,6 +41,8 @@ class {{page_class}}Page
      */
     // on défini une valeur par défaut pour $action qui est index et qui correspondra à la méthode à utiliser
     $action = isset($_GET["action"]) ? $_GET["action"] : "index";
+		{{#controller}}
     call_user_func([{{page_class}}Controller::class, $action]);
+		{{/controller}}
   }
 }

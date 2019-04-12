@@ -43,12 +43,13 @@ class Plugin extends YakPress
 
 		$files_written = $parent->create_files(array(
 			"$plugin_dir/$plugin_namespace/Databases/Database.php" => self::mustache_render('databases-database.mustache', $data),
-			"$plugin_dir/$plugin_namespace/routes/action.php" => self::mustache_render('routes-action.mustache', $data),
+			"$plugin_dir/routes/action.php" => self::mustache_render('routes-action.mustache', $data),
 			"$plugin_dir/$plugin_namespace/Setup.php" => self::mustache_render('setup.mustache', $data),
 			"$plugin_dir/$plugin_namespace/Providers/ServicesProvider.php" => self::mustache_render('setup.mustache', $data),
 			"$plugin_dir/$plugin_namespace/Providers/RoutesProvider.php" => self::mustache_render('setup.mustache', $data),
 			"$plugin_dir/$plugin_namespace/Providers/HooksProvider.php" => self::mustache_render('setup.mustache', $data),
 			"$plugin_dir/$plugin_namespace/Providers/FeaturesProvider.php" => self::mustache_render('setup.mustache', $data),
+			"$plugin_dir/$plugin_namespace/Http/Requests/Validate.php" => self::mustache_render('http-request-validate.mustache', $data),
 			"$plugin_dir/$plugin_slug.php" => self::mustache_render('plugin.mustache', $data),
 			"$plugin_dir/config/features.php" => self::mustache_render('config-features.mustache', $data),
 			"$plugin_dir/config/hooks.php" => self::mustache_render('config-hooks.mustache', $data),
