@@ -10,7 +10,7 @@
 function view($path, $data = array())
 {
   extract($data);
-  include(RAT_VIEW_DIR . $path . '.html.php');
+  include({{plugin_prefix}}_VIEW_DIR . $path . '.html.php');
 }
 
 /**
@@ -69,5 +69,5 @@ function update_post_metas($post_id, $data)
  */
 function config($path)
 {
-  return include(RAT_CONFIG_DIR . $path . '.php');
+  return include({{plugin_prefix}}_CONFIG_DIR . $path . '.php');
 }

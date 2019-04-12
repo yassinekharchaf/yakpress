@@ -151,6 +151,7 @@ class YakPress extends Scaffold_Command
 	 * : Ajoute un controller associé
 	 *
 	 */
+
 	public function model($args, $assoc_args)
 	{
 		require_once('Model.php');
@@ -176,6 +177,42 @@ class YakPress extends Scaffold_Command
 	{
 		require_once('Controller.php');
 		Controller::create($args, $assoc_args);
+	}
+
+	/**
+	 * Ajout d'un model
+	 *
+	 * ## OPTIONS
+	 *
+	 * <provider-name>
+	 * : Nom du provider
+	 *
+	 * --plugin=<plugin-name>
+	 * : Nom du plugin auquel rajouter le provider
+	 *
+	 */
+	public function provider($args, $assoc_args)
+	{
+		require_once('Provider.php');
+		Provider::create($args, $assoc_args);
+	}
+
+	/**
+	 * Ajout d'un middleware
+	 *
+	 * ## OPTIONS
+	 *
+	 * <middleware-name>
+	 * : Nom du middleware
+	 *
+	 * --plugin=<plugin-name>
+	 * : Nom du plugin auquel rajouter le middleware
+	 *
+	 */
+	public function middleware($args, $assoc_args)
+	{
+		require_once('Middleware.php');
+		Middleware::create($args, $assoc_args);
 	}
 
 

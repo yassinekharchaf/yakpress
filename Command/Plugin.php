@@ -32,11 +32,7 @@ class Plugin extends YakPress
 		wp_mkdir_p("$plugin_dir/$plugin_namespace/Databases/Migrations");
 		wp_mkdir_p("$plugin_dir/$plugin_namespace/Features");
 		wp_mkdir_p("$plugin_dir/$plugin_namespace/Http");
-		wp_mkdir_p("$plugin_dir/$plugin_namespace/Http/Controllers");
-		wp_mkdir_p("$plugin_dir/$plugin_namespace/Http/Middlewares");
-		wp_mkdir_p("$plugin_dir/$plugin_namespace/Http/Models");
 		wp_mkdir_p("$plugin_dir/$plugin_namespace/Http/Requests");
-		wp_mkdir_p("$plugin_dir/$plugin_namespace/Providers");
 		wp_mkdir_p("$plugin_dir/config");
 		wp_mkdir_p("$plugin_dir/resources");
 		wp_mkdir_p("$plugin_dir/resources/assets");
@@ -49,6 +45,10 @@ class Plugin extends YakPress
 			"$plugin_dir/$plugin_namespace/Databases/Database.php" => self::mustache_render('databases-database.mustache', $data),
 			"$plugin_dir/$plugin_namespace/routes/action.php" => self::mustache_render('routes-action.mustache', $data),
 			"$plugin_dir/$plugin_namespace/Setup.php" => self::mustache_render('setup.mustache', $data),
+			"$plugin_dir/$plugin_namespace/Providers/ServicesProvider.php" => self::mustache_render('setup.mustache', $data),
+			"$plugin_dir/$plugin_namespace/Providers/RoutesProvider.php" => self::mustache_render('setup.mustache', $data),
+			"$plugin_dir/$plugin_namespace/Providers/HooksProvider.php" => self::mustache_render('setup.mustache', $data),
+			"$plugin_dir/$plugin_namespace/Providers/FeaturesProvider.php" => self::mustache_render('setup.mustache', $data),
 			"$plugin_dir/$plugin_slug.php" => self::mustache_render('plugin.mustache', $data),
 			"$plugin_dir/config/features.php" => self::mustache_render('config-features.mustache', $data),
 			"$plugin_dir/config/hooks.php" => self::mustache_render('config-hooks.mustache', $data),
