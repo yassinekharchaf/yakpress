@@ -9,21 +9,23 @@ class Model extends YakPress
 		$plugin_name = $assoc_args['plugin'];
 		$plugin_namespace = ucfirst($plugin_name);
 		$plugin_dir = WP_PLUGIN_DIR . "/$plugin_name";
+		$force = \WP_CLI\Utils\get_flag_value($assoc_args, 'force');
+		$controller = \WP_CLI\Utils\get_flag_value($assoc_args, 'controller');
 
 		$data = [
 			'model' => $model,
 			'model_class' => $model_class,
-			'plugin_namespace' => $plugin_namespace
+			'plugin_namespace' => $plugin_namespace,
+			'controller_class' => $model_class,
 		];
 
-		$force = \WP_CLI\Utils\get_flag_value($assoc_args, 'force');
 
-		if (!is_dir("$plugin_dir/$plugin_namespace/Features/Models")) {
+		if (!is_dir("$plugin_dir/$plugin_namespace/Http/Models")) {
 			WP_CLI::success("Création du Dossier Models");
-			wp_mkdir_p("$plugin_dir/$plugin_namespace/Features/Models");
+			wp_mkdir_p("$plugin_dir/$plugin_namespace/Http/Models");
 		}
 
-		if (!is_file("$plugin_dir/$plugin_namespace/Features/Models/{$model_class}Model.php")) {
+		if (!is_file("$plugin_dir/$plugin_namespace/Http/Models/{$model_class}Model.php")) {
 			// AJout du fichier pour le post type
 			WP_CLI::success("Création du fichier {$model_class}Model.php");
 
@@ -34,12 +36,19 @@ class Model extends YakPress
 
 			if (!is_file("$plugin_dir/$plugin_namespace/Http/Models/Model.php")) {
 				// AJout du fichier pour le post type
-				WP_CLI::success("Création du fichier Model.php");
 
 				$parent = new parent();
 				$parent->create_files(array(
 					"$plugin_dir/$plugin_namespace/Http/Models/Model.php" => self::mustache_render('http-model-main.mustache', $data),
 				), $force);
+				WP_CLI::success("Création du fichier Model.php");
+			}
+
+			if ($controller) {
+				$parent->create_files(array(
+					"$plugin_dir/$plugin_namespace/Http/Controllers/{$model_class}Controller.php" => self::mustache_render('http-controller.mustache', $data),
+				), $force);
+				WP_CLI::success("Création du fichier {$model_class}Controller.php");
 			}
 
 
