@@ -136,6 +136,27 @@ class YakPress extends Scaffold_Command
 		Page::create($args, $assoc_args);
 	}
 
+	/**
+	 * Ajout d'un model
+	 *
+	 * ## OPTIONS
+	 *
+	 * <model-name>
+	 * : Nom du model
+	 *
+	 * --plugin=<plugin-name>
+	 * : Nom du plugin auquel rajouter le widget
+	 *
+	 * [--controller]
+	 * : Ajoute un controller associé
+	 *
+	 */
+	public function model($args, $assoc_args)
+	{
+		require_once('Model.php');
+		Model::create($args, $assoc_args);
+	}
+
 
 	/**
 	 * Localizes the template path.

@@ -53,7 +53,7 @@ class Page extends YakPress
 			self::insert_into_file(
 				"$plugin_dir/config/features.php",
 				"### PAGES ###",
-				"	['admin_init',[{$page_class}Page::class,'init']],"
+				"	['admin_menu',[{$page_class}Page::class,'init']],"
 			);
 
 			if ($controller) {
