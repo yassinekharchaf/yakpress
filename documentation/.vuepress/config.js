@@ -3,6 +3,9 @@ module.exports = {
 	description: "A micro framework to build wordpress plugin *beta*",
 	dest: "../docs/",
 	base: "/yakpress/",
+	markdown: {
+		lineNumbers: true
+	},
 	themeConfig: {
 		sidebar: "auto",
 		nav: [
@@ -35,4 +38,5 @@ module.exports = {
 			"/framework/"
 		]
 	},
+
 }
