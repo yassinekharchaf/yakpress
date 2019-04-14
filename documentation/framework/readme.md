@@ -4,8 +4,13 @@
 
 - [La structure](#la-structure)
 - [Le cycle de vie de l'application](#le-cycle-de-vie-de-l-application)
-- [les constantes d'environnement](#les-constantes-d-environnement)
+- [Les constantes d'environnement](#les-constantes-d-environnement)
+- [Les helpers](#les-helpers)
 - [Les services providers](#les-services-providers)
+- La database
+- Les Features
+- Http
+- Les resources
 
 ## La structure
 
@@ -67,7 +72,6 @@ Wordpress commence tout d'abord par charger le fichier qui comporte ne nom du pl
  * Plugin Name:     Plugin Name
  * ...
  */
-
 
 require_once('autoload.php');
 
@@ -166,6 +170,14 @@ Le fichier `env.php` a pour but de stocker les constantes d'environnement d'on v
 - `PREFIX_PLUGIN_DIR` renvoi le chemin serveur pour le plugin
 - `PREFIX_VIEW_DIR` renvoi le chemin serveur pour le dossier `views`
 - `PREFIX_CONFIG_DIR` renvoi le chemin serveur pour le dossier `conf`
+
+## Les helpers
+
+Les helpers sont les fonctions charger en début du cycle de vie que l'on peut utiliser partout et qui nous facilite la vie. Elles se trouvent dans fichier `helpers.php`. Il en existe déjà quelques une.
+
+:::tip conseil
+C'est également dans le fichier `helpers.php` que vous rajouterez vos helpers. Actuellement il n'y a pas beaucoup de helpers car il existe déjà plusieurs helpers de wp. D'autres helpers de base viendrons s'ajouter en fonction des feedback des contributeurs.
+:::
 
 ## Les services providers
 
@@ -286,5 +298,125 @@ return [
 
 	### PAGES ###
 
+];
+```
+
+### HooksProvider
+
+Ce provider charger le fichier `config/hooks.php` et associer les hooks (action et filtre) avec une méthode pour les executer en temps voulu.
+
+:::tip conseil
+Dans la plupart des cas il est conseiller d'utiliser un controller pour prendre en charge l'execution d'un hook
+:::
+
+`Providers/HooksProvider.php`
+
+```php
+<?php
+
+namespace {{plugin_name}}\Providers;
+
+class HooksProvider
+{
+
+  public static function boot()
+  {
+    $hooks  = config('hooks');
+
+    $actions = $hooks['actions'];
+    $filters = $hooks['filters'];
+
+    // Ajout des actions et filtres
+    foreach ($actions as $action) {
+      add_action(...$action);
+    }
+
+    foreach ($filters as $filter) {
+      add_filter(...$filter);
+    }
+  }
+}
+```
+
+:::warning attention
+Contrairement au fichier `features.php`, le fichier `hooks.php` ne peut pas encore être gérer par le CLI. Peut-être faut-il ouvrir une issue pour cela ;-)
+:::
+`config/hooks.php`
+
+```php
+<?php
+
+/**
+ * Dans ce fichier nous mettons tout les hooks (action et filter) qui pourrait-être utiliser dans l'application
+ * exemple ['hook_name',[ClassName::class,'methode']]
+ */
+
+return [
+  /**
+   * Ajout des hooks action
+   */
+  'actions' => [
+
+  ],
+
+  /**
+   * Ajout des hooks filtre
+   */
+  'filters' => [
+
+	]
+];
+```
+
+### RoutesProvider
+
+Ce service charge le fichier `routes/action.php`. Dans ce fichier action on retrouvera les hooks du type `admin_action_{$action}`, `admin_post_nopriv_{$action}`, `admin_post_{$action}`, `wp_ajax_{$action}` et `wp_ajax_nopriv_{$action}`.
+Ces actions sont alors lier a la méthode d'un controller qui sera executer le moment voulu.
+
+```php
+<?php
+
+namespace Pluginname\Providers;
+
+class RoutesProvider
+{
+
+  public static function boot()
+  {
+    $routes  = include(PREFIX_PLUGIN_DIR . 'routes/action.php');
+
+    //On charge les différentes types de routes d'action
+    foreach ($routes as $key => $actions) {
+      foreach ($actions as $action) {
+        $action[0] = $key . '_' . $action[0];
+        add_action(...$action);
+      }
+    }
+  }
+}
+```
+
+`routes/action.php`
+
+```php
+<?php
+
+/**
+ * Ce fichier renvoi un tableau trier sur les actions utiliser pour l'admin, le front et le front en mode connecter
+ */
+return [
+  // Tableau des actions poster dans l'admin
+  'admin_action' => [
+    //['action-name', [ClassName::class, 'method']],
+
+  ],
+  // Tableau des actions post sur le front en étant connecté
+  'admin_post' => [],
+  // Tableau des actions post sur le front sans être connecté
+  'admin_post_nopriv' => [],
+  // Tableau des actions ajax en étant connecté
+  'wp_ajax' => [],
+  // Tableau des action ajax sans être connecté
+  'wp_ajax_nopriv' => []
 ];
 ```

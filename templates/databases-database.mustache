@@ -6,23 +6,27 @@ namespace {{plugin_namespace}}\Database;
 
 class Database
 {
-  /**
-   * Initialisation de la base de donnée. Cette méthode est déclanché lorsque l'on active le plugin.
-   *
-   * @return void
-   */
-  public static function init()
-  {
-    // Création des tables dans la base de donnée.
-    self::migration();
-  }
+
   /**
    * Méthode qui lance les migrations afin que chacune créé sa table dans la base de donnée.
    *
    * @return void
    */
-  public static function migration()
+  public static function create()
   {
+		### CREATE TABLE ###
 
   }
+
+	/**
+   * Méthode qui lance les migrations afin que chacune supprime sa table dans la base de donnée.
+   *
+   * @return void
+   */
+  public static function drop()
+  {
+		### DROP TABLE ###
+
+  }
+
 }

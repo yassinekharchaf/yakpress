@@ -215,6 +215,8 @@ class YakPress extends Scaffold_Command
 		Middleware::create($args, $assoc_args);
 	}
 
+	// TODO Ajouter une commande pour créer une migration
+
 
 	/**
 	 * Localizes the template path.

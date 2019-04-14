@@ -4,7 +4,7 @@ actionLink: /guide/
 footer: MIT Licensed | Copyright © 2019-present Yassine Kharchaf
 ---
 
-## Introduction à Yakpress
+# Introduction à Yakpress
 
 Yapress est un micro framework qui a pour but de réconcilier les développeurs avec Wordpress.
 

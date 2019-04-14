@@ -1,0 +1,35 @@
+<?php
+
+namespace {{plugin_namespace}}\Database\Migrations;
+
+class {{migration_class}}Table
+{
+
+  /**
+   * Création de la table
+   *
+   * @return void
+   */
+  public static function up()
+  {
+    // Nous récupérons l'objet $wpdb qui est global afin de pouvoir intéragir avec la base de donnée.
+    global $wpdb;
+    $table_name = $wpdb->prefix . '{{migration}}';
+		// Requête sql pour créer une table
+    $wpdb->query("");
+	}
+
+  /**
+   * Création de la table
+   *
+   * @return void
+   */
+  public static function down()
+  {
+    // Nous récupérons l'objet $wpdb qui est global afin de pouvoir intéragir avec la base de donnée.
+    global $wpdb;
+    $table_name = $wpdb->prefix . '{{migration}}';
+		// Requête sql pour supprimer une table
+    $wpdb->query("");
+	}
+}

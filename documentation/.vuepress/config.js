@@ -35,7 +35,7 @@ module.exports = {
 			"/",
 			"/guide/",
 			"/cli/",
-			"/framework/"
+			"/framework/",
 		]
 	},
 
