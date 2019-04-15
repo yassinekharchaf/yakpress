@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Le micro framework | Yakpress </title>
+    <meta name="description" content="A micro framework to build wordpress plugin *beta*">
+    
+    
+    <link rel="preload" href="/yakpress/assets/css/0.styles.65ef1d50.css" as="style"><link rel="preload" href="/yakpress/assets/js/app.6986d63d.js" as="script"><link rel="preload" href="/yakpress/assets/js/5.9b067679.js" as="script"><link rel="prefetch" href="/yakpress/assets/js/2.855c3a5f.js"><link rel="prefetch" href="/yakpress/assets/js/3.a9511681.js"><link rel="prefetch" href="/yakpress/assets/js/4.cc8c1b6f.js"><link rel="prefetch" href="/yakpress/assets/js/6.2a72b169.js"><link rel="prefetch" href="/yakpress/assets/js/7.e4fc9360.js"><link rel="prefetch" href="/yakpress/assets/js/8.dde3f876.js">
+    <link rel="stylesheet" href="/yakpress/assets/css/0.styles.65ef1d50.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/yakpress/" class="home-link router-link-active"><!----> <span class="site-name">Yakpress </span></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/yakpress/" class="nav-link">Home</a></div><div class="nav-item"><a href="/yakpress/guide/" class="nav-link">Get started</a></div><div class="nav-item"><a href="/yakpress/cli/" class="nav-link">CLI</a></div><div class="nav-item"><a href="/yakpress/framework/" class="nav-link router-link-exact-active router-link-active">Framework</a></div><div class="nav-item"><a href="https://github.com/yassinekharchaf/yakpress" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/yakpress/" class="nav-link">Home</a></div><div class="nav-item"><a href="/yakpress/guide/" class="nav-link">Get started</a></div><div class="nav-item"><a href="/yakpress/cli/" class="nav-link">CLI</a></div><div class="nav-item"><a href="/yakpress/framework/" class="nav-link router-link-exact-active router-link-active">Framework</a></div><div class="nav-item"><a href="https://github.com/yassinekharchaf/yakpress" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/yakpress/" class="sidebar-link">Home</a></li><li><a href="/yakpress/guide/" class="sidebar-link">Get started</a></li><li><a href="/yakpress/cli/" class="sidebar-link">CLI commande</a></li><li><a href="/yakpress/framework/" class="active sidebar-link">Framework</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/yakpress/framework/#la-structure" class="sidebar-link">La structure</a></li><li class="sidebar-sub-header"><a href="/yakpress/framework/#le-cycle-de-vie-de-l-application" class="sidebar-link">Le cycle de vie de l'application</a></li><li class="sidebar-sub-header"><a href="/yakpress/framework/#les-constantes-d-environnement" class="sidebar-link">Les constantes d'environnement</a></li><li class="sidebar-sub-header"><a href="/yakpress/framework/#les-helpers" class="sidebar-link">Les helpers</a></li><li class="sidebar-sub-header"><a href="/yakpress/framework/#les-services-providers" class="sidebar-link">Les services providers</a></li><li class="sidebar-sub-header"><a href="/yakpress/framework/#la-database" class="sidebar-link">La database</a></li><li class="sidebar-sub-header"><a href="/yakpress/framework/#les-features" class="sidebar-link">Les Features</a></li><li class="sidebar-sub-header"><a href="/yakpress/framework/#http" class="sidebar-link">Http</a></li><li class="sidebar-sub-header"><a href="/yakpress/framework/#les-resources" class="sidebar-link">Les Resources</a></li></ul></li></ul> </div> <div class="page"> <div class="content"><h1 id="le-micro-framework"><a href="#le-micro-framework" aria-hidden="true" class="header-anchor">#</a> Le micro framework</h1> <h3 id="sommaire"><a href="#sommaire" aria-hidden="true" class="header-anchor">#</a> Sommaire</h3> <ul><li><a href="#la-structure">La structure</a></li> <li><a href="#le-cycle-de-vie-de-l-application">Le cycle de vie de l'application</a></li> <li><a href="#les-constantes-d-environnement">Les constantes d'environnement</a></li> <li><a href="#les-helpers">Les helpers</a></li> <li><a href="#les-services-providers">Les services providers</a></li> <li><a href="#la-database">La database</a></li> <li><a href="#les-features">Les Features</a></li> <li><a href="#http">Http</a></li> <li><a href="#les-resources">Les resources</a></li></ul> <h2 id="la-structure"><a href="#la-structure" aria-hidden="true" class="header-anchor">#</a> La structure</h2> <div class="language-sh line-numbers-mode"><pre class="language-text"><code>Plugin
+├── Pluginname
+│   ├── Database
+│   │   ├── Database.php
+│   │   └── Migrations
+│   ├── Features
+│   │   ├── MetaBoxes
+│   │   ├── Pages
+│   │   ├── PostTypes
+│   │   ├── Sections
+│   │   ├── Taxonomies
+│   │   └── Widgets
+│   ├── Http
+│   │   ├── Controllers
+│   │   ├── Middlewares
+│   │   ├── Models
+│   │   │   └── Mail.php
+│   │   └── Requests
+│   │       └── Request.php
+│   ├── Providers
+│   │   ├── FeaturesProvider.php
+│   │   ├── HooksProvider.php
+│   │   ├── RoutesProvider.php
+│   │   └── ServicesProvider.php
+│   └── Setup.php
+├── autoload.php
+├── bootstrap.php
+├── config
+│   ├── features.php
+│   ├── hooks.php
+│   └── providers.php
+├── env.php
+├── helpers.php
+├── plugin-name.php
+├── resources
+│   ├── assets
+│   │   ├── css
+│   │   └── js
+│   └── views
+└── routes
+    └── action.php
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br></div></div><h2 id="le-cycle-de-vie-de-l-application"><a href="#le-cycle-de-vie-de-l-application" aria-hidden="true" class="header-anchor">#</a> Le cycle de vie de l'application</h2> <blockquote><p>Nous n'allons pas expliquer le cycle de vie de l'application wordpress mais uniquement celui de notre plugin lors de son chargement</p></blockquote> <h3 id="etape-1"><a href="#etape-1" aria-hidden="true" class="header-anchor">#</a> Étape 1</h3> <p>Wordpress commence tout d'abord par charger le fichier qui comporte ne nom du plugin <code>plugin-name.php</code>. Ce fichier n'a pour rôle que de charger le fichier <code>autoload.php</code> et de lancer l'application via le fichier <code>bootstrap.php</code></p> <div class="language-php line-numbers-mode"><pre class="language-php"><code><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+<span class="token comment">/**
+ * Plugin Name:     Plugin Name
+ * ...
+ */</span>
+
+<span class="token keyword">require_once</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'autoload.php'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">require_once</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'bootstrap.php'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span></code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><h3 id="etape-2"><a href="#etape-2" aria-hidden="true" class="header-anchor">#</a> Étape 2</h3> <p>Le fichier <code>autoload.php</code> va nous facilité la vie et charger automatiquement toutes les classes qui se trouve au sein du dossier <code>Pluginname</code>.</p> <p>Le fichier <code>bootstrap.php</code> va lui charger les variables d'environnement, les helpers, faire le setup de l'application et enregistrer les services providers.</p> <div class="language-php line-numbers-mode"><pre class="language-php"><code><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+
+<span class="token keyword">use</span> <span class="token package">Pluginname<span class="token punctuation">\</span>Providers<span class="token punctuation">\</span>ServicesProvider</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">Pluginname<span class="token punctuation">\</span>Setup</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Chargement des variables d'environnement</span>
+<span class="token keyword">require_once</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'env.php'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Ajout du fichier helpers.php pour disposé des fonctions helper</span>
+<span class="token keyword">require_once</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'helpers.php'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Setup de l'application</span>
+Setup<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">//Chargement des services providers</span>
+ServicesProvider<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">register</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span></code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br></div></div><h3 id="etape-3"><a href="#etape-3" aria-hidden="true" class="header-anchor">#</a> Étape 3</h3> <p>La Class Setup va elle se charger des événements particulier lié à l'activation du plugin, sa désactivation et sa suppression. Trois méthode sont prévu à cette effet pour effectuer vos actions.
+Pour exemple, c'est à l'activation de l'applicatioin que l'on va lancer les fichiers de migration pour créer des tables supplémentaires dans notre base de donnée et lors de la suppression on lancera l'action pour les supprimer.</p> <div class="language-php line-numbers-mode"><pre class="language-php"><code><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+
+<span class="token keyword">namespace</span> <span class="token package">Pluginname</span>
+
+
+<span class="token keyword">class</span> <span class="token class-name">Setup</span>
+<span class="token punctuation">{</span>
+
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">function</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token variable">$plugin</span> <span class="token operator">=</span> <span class="token constant">PLU_PLUGIN_DIR</span> <span class="token punctuation">.</span> <span class="token single-quoted-string string">'/pluginname.php'</span><span class="token punctuation">;</span>
+    <span class="token function">register_activation_hook</span><span class="token punctuation">(</span><span class="token variable">$plugin</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>self<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token keyword">class</span><span class="token punctuation">,</span> <span class="token single-quoted-string string">'activation'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">register_deactivation_hook</span><span class="token punctuation">(</span><span class="token variable">$plugin</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>self<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token keyword">class</span><span class="token punctuation">,</span> <span class="token single-quoted-string string">'deactivation'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">register_uninstall_hook</span><span class="token punctuation">(</span><span class="token variable">$plugin</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>self<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token keyword">class</span><span class="token punctuation">,</span> <span class="token single-quoted-string string">'uninstall'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">/**
+   * Fonction lancé lors de l'activation du plugin
+   *
+   * @return void
+   */</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">function</span> <span class="token function">activation</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+
+  <span class="token comment">/**
+   * Fonction appelé lors de la désactivation du plugin
+   *
+   * @return void
+   */</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">function</span> <span class="token function">deactivation</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+
+  <span class="token comment">/**
+   * Fonction appelé lors de la désinstallation du plugin
+   *
+   * @return void
+   */</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">function</span> <span class="token function">uninstall</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</span></code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br></div></div><h3 id="etape-4"><a href="#etape-4" aria-hidden="true" class="header-anchor">#</a> Étape 4</h3> <p>La classe <code>ServicesProvider</code> va charger les services providers principaux.</p> <ul><li><code>FeaturesProvider</code> pour les éléments propres à wordpress.</li> <li><code>HooksProvider</code> va charger tout les hooks et associer une méthode callback.</li> <li><code>RoutesProvider</code> va associer une méthode callback à request personnalisé que l'on aura créé.</li></ul> <blockquote><p>Les services providers <code>Features</code> et <code>Hooks</code> charge le tout grâce aux fichiers de configuration que ce trouve dans le dossier <code>config</code>. Pour le service <code>Routes</code> il charge le fichier <code>action.php</code> qui se trouve dans le dossier <code>routes</code>.</p></blockquote> <h2 id="les-constantes-d-environnement"><a href="#les-constantes-d-environnement" aria-hidden="true" class="header-anchor">#</a> Les constantes d'environnement</h2> <p>Le fichier <code>env.php</code> a pour but de stocker les constantes d'environnement d'on vous pourriez avoir besoin pour votre application. il en existe déjà quelques une de base.</p> <ul><li><code>PREFIX_PLUGIN_URL</code> renvoi le chemin url pour le plugin</li> <li><code>PREFIX_PLUGIN_DIR</code> renvoi le chemin serveur pour le plugin</li> <li><code>PREFIX_VIEW_DIR</code> renvoi le chemin serveur pour le dossier <code>views</code></li> <li><code>PREFIX_CONFIG_DIR</code> renvoi le chemin serveur pour le dossier <code>conf</code></li></ul> <h2 id="les-helpers"><a href="#les-helpers" aria-hidden="true" class="header-anchor">#</a> Les helpers</h2> <p>Les helpers sont les fonctions charger en début du cycle de vie que l'on peut utiliser partout et qui nous facilite la vie. Elles se trouvent dans fichier <code>helpers.php</code>. Il en existe déjà quelques une.</p> <div class="tip custom-block"><p class="custom-block-title">conseil</p> <p>C'est également dans le fichier <code>helpers.php</code> que vous rajouterez vos helpers. Actuellement il n'y a pas beaucoup de helpers car il existe déjà plusieurs helpers de wp. D'autres helpers de base viendrons s'ajouter en fonction des feedback des contributeurs.</p></div> <h2 id="les-services-providers"><a href="#les-services-providers" aria-hidden="true" class="header-anchor">#</a> Les services providers</h2> <blockquote><p>Il existe 4 services providers de base mais il est possible d'en rajouter d'autre grâce à la commande
+<code>wp yakpress provider</code></p></blockquote> <ul><li><a href="#servicesprovider">ServicesProvider</a></li> <li><a href="#featuresprovider">FeaturesProvider</a></li> <li><a href="#hooksprovider">HooksProvider</a></li> <li><a href="#routesprovider">RoutesProvider</a></li></ul> <h3 id="servicesprovider"><a href="#servicesprovider" aria-hidden="true" class="header-anchor">#</a> ServicesProvider</h3> <p>Ce service charge de charger tout les services. Il charge le fichier <code>config/providers.php</code> et lance le méthode <code>boot</code> des différentes class.</p> <div class="language-php line-numbers-mode"><pre class="language-php"><code><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+
+<span class="token keyword">namespace</span> <span class="token package">Pluginname<span class="token punctuation">\</span>Providers</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">ServicesProvider</span>
+<span class="token punctuation">{</span>
+  <span class="token comment">/**
+   * Enregistrement des providers.
+   * Nous chargeons tout les providers du fichier config providers.php
+   * et nous lançons leur méthode 'boot' pour le démarrage.
+   *
+   * @return void
+   */</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">function</span> <span class="token function">register</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token variable">$providers</span> <span class="token operator">=</span> <span class="token function">config</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'providers'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">foreach</span> <span class="token punctuation">(</span><span class="token variable">$providers</span> <span class="token keyword">as</span> <span class="token variable">$provider</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">call_user_func</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token variable">$provider</span><span class="token punctuation">,</span> <span class="token single-quoted-string string">'boot'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</span></code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br></div></div><p>le fichier chargé est le suivant <code>config/providers.php</code></p> <div class="language-php line-numbers-mode"><pre class="language-php"><code><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+
+<span class="token comment">/**
+ * ce fichier renvoi un tableau avec tout les providers que l'on souhaite charger
+ */</span>
+
+<span class="token keyword">return</span> <span class="token punctuation">[</span>
+  \<span class="token package">Pluginname<span class="token punctuation">\</span>Providers<span class="token punctuation">\</span>FeaturesProvider</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token keyword">class</span><span class="token punctuation">,</span>
+  \<span class="token package">Pluginname<span class="token punctuation">\</span>Providers<span class="token punctuation">\</span>RoutesProvider</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token keyword">class</span><span class="token punctuation">,</span>
+  \<span class="token package">Pluginname<span class="token punctuation">\</span>Providers<span class="token punctuation">\</span>HooksProvider</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token keyword">class</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+</span></code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div><h3 id="featuresprovider"><a href="#featuresprovider" aria-hidden="true" class="header-anchor">#</a> FeaturesProvider</h3> <p>Ce provider charge le fichier <code>config/features.php</code> et associe un hook avec une méthode pour créer un feature personnalisé de wordpress.</p> <div class="language-php line-numbers-mode"><pre class="language-php"><code><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+
+<span class="token keyword">namespace</span> <span class="token package">Pluginname<span class="token punctuation">\</span>Providers</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">FeaturesProvider</span>
+<span class="token punctuation">{</span>
+  <span class="token comment">/**
+   * Ajout d'un add action pour chaque feature
+   *
+   * @return void
+   */</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">function</span> <span class="token function">boot</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token variable">$features</span> <span class="token operator">=</span> <span class="token function">config</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'features'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">foreach</span> <span class="token punctuation">(</span><span class="token variable">$features</span> <span class="token keyword">as</span> <span class="token variable">$feature</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">add_action</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token variable">$feature</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</span></code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br></div></div><p>Le fichier charger est le fichier de config config/features.php. Ce fichier renvoie un tableau avec les données pour associé le hook au à la méthode qui va se charger de créer le feature.</p> <div class="warning custom-block"><p class="custom-block-title">Attention</p> <p>il faut bien respecter le format de donner de chaque entrer du tableau.</p></div> <div class="tip custom-block"><p class="custom-block-title">info</p> <p>le fichier <code>config/features.php</code> est commenter pour être bien organisé.
+Si vous créer des features avec le <a href="/yakpress/cli/#provider">CLI</a>, le <a href="/yakpress/cli/#provider">CLI</a> entrera automatiquement les données dans le tableau de manière structurer.</p> <p>exemple : <code>wp yakpress post_type evenement --plugin=plugin-name</code></p></div> <p><code>config/features.php</code></p> <div class="language-php line-numbers-mode"><pre class="language-php"><code><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+
+<span class="token comment">/**
+ * Ce fichier renvoi un tableau avec tout les features (éléments propre à wordpress).
+ * Ce tableau est constituer de tableaux qui contienne les paramêtres qui seront passé à une fonction 'add_action'.
+ * exemple ['hook_name',[ClassName::class,'methode']]
+ */</span>
+
+<span class="token keyword">return</span> <span class="token punctuation">[</span>
+
+  <span class="token shell-comment comment">### POST TYPES ###</span>
+
+  <span class="token shell-comment comment">### METABOXES ###</span>
+
+  <span class="token shell-comment comment">### TAXONOMIES ###</span>
+
+  <span class="token shell-comment comment">### WIDGETS ###</span>
+
+  <span class="token shell-comment comment">### SECTIONS ###</span>
+
+  <span class="token shell-comment comment">### PAGES ###</span>
+
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+</span></code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br></div></div><h3 id="hooksprovider"><a href="#hooksprovider" aria-hidden="true" class="header-anchor">#</a> HooksProvider</h3> <p>Ce provider charger le fichier <code>config/hooks.php</code> et associer les hooks (action et filtre) avec une méthode pour les executer en temps voulu.</p> <div class="tip custom-block"><p class="custom-block-title">conseil</p> <p>Dans la plupart des cas il est conseiller d'utiliser un controller pour prendre en charge l'execution d'un hook</p></div> <p><code>Providers/HooksProvider.php</code></p> <div class="language-php line-numbers-mode"><pre class="language-php"><code><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+
+<span class="token keyword">namespace</span> <span class="token punctuation">{</span><span class="token punctuation">{</span>plugin_name<span class="token punctuation">}</span><span class="token punctuation">}</span>\<span class="token package">Providers</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">HooksProvider</span>
+<span class="token punctuation">{</span>
+
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">function</span> <span class="token function">boot</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token variable">$hooks</span>  <span class="token operator">=</span> <span class="token function">config</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'hooks'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token variable">$actions</span> <span class="token operator">=</span> <span class="token variable">$hooks</span><span class="token punctuation">[</span><span class="token single-quoted-string string">'actions'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token variable">$filters</span> <span class="token operator">=</span> <span class="token variable">$hooks</span><span class="token punctuation">[</span><span class="token single-quoted-string string">'filters'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Ajout des actions et filtres</span>
+    <span class="token keyword">foreach</span> <span class="token punctuation">(</span><span class="token variable">$actions</span> <span class="token keyword">as</span> <span class="token variable">$action</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">add_action</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token variable">$action</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">foreach</span> <span class="token punctuation">(</span><span class="token variable">$filters</span> <span class="token keyword">as</span> <span class="token variable">$filter</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">add_filter</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token variable">$filter</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</span></code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br></div></div><div class="warning custom-block"><p class="custom-block-title">attention</p> <p>Contrairement au fichier <code>features.php</code>, le fichier <code>hooks.php</code> ne peut pas encore être gérer par le CLI. Peut-être faut-il ouvrir une issue pour cela 😉</p></div> <p><code>config/hooks.php</code></p> <div class="language-php line-numbers-mode"><pre class="language-php"><code><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+
+<span class="token comment">/**
+ * Dans ce fichier nous mettons tout les hooks (action et filter) qui pourrait-être utiliser dans l'application
+ * exemple ['hook_name',[ClassName::class,'methode']]
+ */</span>
+
+<span class="token keyword">return</span> <span class="token punctuation">[</span>
+  <span class="token comment">/**
+   * Ajout des hooks action
+   */</span>
+  <span class="token single-quoted-string string">'actions'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">[</span>
+
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+
+  <span class="token comment">/**
+   * Ajout des hooks filtre
+   */</span>
+  <span class="token single-quoted-string string">'filters'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">[</span>
+
+  <span class="token punctuation">]</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+</span></code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br></div></div><h3 id="routesprovider"><a href="#routesprovider" aria-hidden="true" class="header-anchor">#</a> RoutesProvider</h3> <p>Ce service charge le fichier <code>routes/action.php</code>. Dans ce fichier action on retrouvera les hooks du type <code>admin_action_{$action}</code>, <code>admin_post_nopriv_{$action}</code>, <code>admin_post_{$action}</code>, <code>wp_ajax_{$action}</code> et <code>wp_ajax_nopriv_{$action}</code>.
+Ces actions sont alors lier a la méthode d'un controller qui sera executer le moment voulu.</p> <div class="language-php line-numbers-mode"><pre class="language-php"><code><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+
+<span class="token keyword">namespace</span> <span class="token package">Pluginname<span class="token punctuation">\</span>Providers</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">RoutesProvider</span>
+<span class="token punctuation">{</span>
+
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">function</span> <span class="token function">boot</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token variable">$routes</span>  <span class="token operator">=</span> <span class="token keyword">include</span><span class="token punctuation">(</span><span class="token constant">PREFIX_PLUGIN_DIR</span> <span class="token punctuation">.</span> <span class="token single-quoted-string string">'routes/action.php'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">//On charge les différentes types de routes d'action</span>
+    <span class="token keyword">foreach</span> <span class="token punctuation">(</span><span class="token variable">$routes</span> <span class="token keyword">as</span> <span class="token variable">$key</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token variable">$actions</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">foreach</span> <span class="token punctuation">(</span><span class="token variable">$actions</span> <span class="token keyword">as</span> <span class="token variable">$action</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token variable">$action</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token variable">$key</span> <span class="token punctuation">.</span> <span class="token single-quoted-string string">'_'</span> <span class="token punctuation">.</span> <span class="token variable">$action</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token function">add_action</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token variable">$action</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</span></code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br></div></div><p><code>routes/action.php</code></p> <div class="language-php line-numbers-mode"><pre class="language-php"><code><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+
+<span class="token comment">/**
+ * Ce fichier renvoi un tableau trier sur les actions utiliser pour l'admin, le front et le front en mode connecter
+ */</span>
+<span class="token keyword">return</span> <span class="token punctuation">[</span>
+  <span class="token comment">// Tableau des actions poster dans l'admin</span>
+  <span class="token single-quoted-string string">'admin_action'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">[</span>
+    <span class="token comment">//['action-name', [ClassName::class, 'method']],</span>
+
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token comment">// Tableau des actions post sur le front en étant connecté</span>
+  <span class="token single-quoted-string string">'admin_post'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token comment">// Tableau des actions post sur le front sans être connecté</span>
+  <span class="token single-quoted-string string">'admin_post_nopriv'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token comment">// Tableau des actions ajax en étant connecté</span>
+  <span class="token single-quoted-string string">'wp_ajax'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token comment">// Tableau des action ajax sans être connecté</span>
+  <span class="token single-quoted-string string">'wp_ajax_nopriv'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+</span></code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br></div></div><h2 id="la-database"><a href="#la-database" aria-hidden="true" class="header-anchor">#</a> La database</h2> <ul><li><a href="#la-class-database">La class Database</a></li> <li><a href="#les-migrations">Les migrations</a></li></ul> <h3 id="la-class-database"><a href="#la-class-database" aria-hidden="true" class="header-anchor">#</a> La class Database</h3> <p>Le dossier <code>Database</code> contient le fichier <code>Database/Database.php</code> et le dossier <code>Database/Migrations</code>.
+La class <code>Database</code> possède deux méthodes, <code>Database::create()</code> et <code>Database::drop()</code>. La première méthode est lancé par la la méthode <code>Setup::activation()</code> lors de l'activation du plugin et la deuxième par <code>Setup::uninstall()</code>.</p> <div class="tip custom-block"><p class="custom-block-title">conseil</p> <p>Il est de bonne pratique de supprimer les tables créer par le plugin lors de la suppression de celui-ci. Cependant vous pouvez désactiver cela, vous avez le contrôle total.</p></div> <div class="language-php line-numbers-mode"><pre class="language-php"><code><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+
+<span class="token keyword">namespace</span> <span class="token punctuation">{</span><span class="token punctuation">{</span>plugin_namespace<span class="token punctuation">}</span><span class="token punctuation">}</span>\<span class="token package">Database</span><span class="token punctuation">;</span>
+
+
+
+<span class="token keyword">class</span> <span class="token class-name">Database</span>
+<span class="token punctuation">{</span>
+
+  <span class="token comment">/**
+   * Méthode qui lance les migrations afin que chacune créé sa table dans la base de donnée.
+   *
+   * @return void
+   */</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">function</span> <span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token shell-comment comment">### CREATE TABLE ###</span>
+
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">/**
+   * Méthode qui lance les migrations afin que chacune supprime sa table dans la base de donnée.
+   *
+   * @return void
+   */</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">function</span> <span class="token function">drop</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token shell-comment comment">### DROP TABLE ###</span>
+
+  <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</span></code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br></div></div><h3 id="les-migrations"><a href="#les-migrations" aria-hidden="true" class="header-anchor">#</a> Les migrations</h3> <p>Le dossier <code>Database/Migrations</code> va lui contenir toutes les migrations pour les tables. Si les migrations sont créées à l'aide du <a href="/yakpress/cli/#migration">CLI</a> <code>wp yakpress migration</code>, elles seront alors directement ajouter au fichier <code>Database/Database.php</code> dans les méthodes <code>Database::create()</code> et <code>Database::drop()</code>.
+Les class de migration possèdent deux méthode <code>CustomTable::up()</code> et <code>CustomTable::down()</code> pour supprimer une table. Cela est fait à l'aide de requête <strong>sql</strong> pure.</p> <div class="language-php line-numbers-mode"><pre class="language-php"><code><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+
+<span class="token keyword">namespace</span> <span class="token package">Pluginname<span class="token punctuation">\</span>Database<span class="token punctuation">\</span>Migrations</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">CustomTable</span>
+<span class="token punctuation">{</span>
+
+  <span class="token comment">/**
+   * Création de la table
+   *
+   * @return void
+   */</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">function</span> <span class="token function">up</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token comment">// Nous récupérons l'objet $wpdb qui est global afin de pouvoir intéragir avec la base de donnée.</span>
+    <span class="token keyword">global</span> <span class="token variable">$wpdb</span><span class="token punctuation">;</span>
+    <span class="token variable">$table_name</span> <span class="token operator">=</span> <span class="token variable">$wpdb</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token property">prefix</span> <span class="token punctuation">.</span> <span class="token double-quoted-string string">&quot;custom&quot;</span><span class="token punctuation">;</span>
+    <span class="token comment">// Requête sql pour créer une table</span>
+    <span class="token variable">$wpdb</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">query</span><span class="token punctuation">(</span><span class="token double-quoted-string string">&quot;&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">/**
+   * Création de la table
+   *
+   * @return void
+   */</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">function</span> <span class="token function">down</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token comment">// Nous récupérons l'objet $wpdb qui est global afin de pouvoir intéragir avec la base de donnée.</span>
+    <span class="token keyword">global</span> <span class="token variable">$wpdb</span><span class="token punctuation">;</span>
+    <span class="token variable">$table_name</span> <span class="token operator">=</span> <span class="token variable">$wpdb</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token property">prefix</span> <span class="token punctuation">.</span> <span class="token double-quoted-string string">&quot;custom&quot;</span><span class="token punctuation">;</span>
+    <span class="token comment">// Requête sql pour supprimer une table</span>
+    <span class="token variable">$wpdb</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">query</span><span class="token punctuation">(</span><span class="token double-quoted-string string">&quot;&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</span></code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br></div></div><h2 id="les-features"><a href="#les-features" aria-hidden="true" class="header-anchor">#</a> Les Features</h2> <p>Cette partie du Framework est dédiée aux composant de base que wordpress nous permet de rajouter facilement. Le framework Yakpress permet de créer ses composant facilement et de les chargers automatiquement lors de la création avec le <a href="/yakpress/cli/">CLI</a>.</p> <ul><li><a href="#postyptes">PostTypes</a></li> <li><a href="#taxonomies">Taxonomies</a></li> <li><a href="#metaboxes">MetaBoxes</a></li> <li><a href="#widgets">Widgets</a></li> <li><a href="#sections">Sections</a></li> <li><a href="#pages">Pages</a></li></ul> <h3 id="posttypes"><a href="#posttypes" aria-hidden="true" class="header-anchor">#</a> PostTypes</h3> <p>Il est possible de créer facilement un type de contenu personnalisé avec le <a href="/yakpress/cli/#post-type">CLI</a> et de le charger automatiquement <code>wp yakpress post_type</code></p> <p>Cela créer alors un fichier préfait avec tout les labels et options possible à mettre. Il suffit de décommenter ceux dont on a besoin pour les personnaliser et de supprimer le reste. Comme pout la plupart des autre Features, le <strong>slug</strong> du composant est en propriété de la class afin de pouvoir être facilement référencé depuis une autre feature.</p> <div class="language-php line-numbers-mode"><pre class="language-php"><code><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+
+<span class="token keyword">namespace</span> <span class="token package">Pluginname<span class="token punctuation">\</span>Features<span class="token punctuation">\</span>PostTypes</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">CustomPostType</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token variable">$slug</span> <span class="token operator">=</span> <span class="token single-quoted-string string">'custom'</span><span class="token punctuation">;</span>
+  <span class="token comment">/**
+   * Enregistrement du type de contenu recipe
+   *
+   * @return void
+   */</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">function</span> <span class="token function">register</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token comment">// label pour le type de contenu</span>
+    <span class="token variable">$labels</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span>
+      <span class="token comment">//'name' =&gt; __('Post'),</span>
+      <span class="token comment">//'singular_name' =&gt; __('Post'),</span>
+      <span class="token comment">//'add_new' =&gt; __('Add new post'),</span>
+      <span class="token comment">// 'add_new_item' =&gt; array(__('Add New Post'), __('Add New Page')),</span>
+      <span class="token comment">// 'edit_item' =&gt; array(__('Edit Post'), __('Edit Page')),</span>
+      <span class="token comment">// 'new_item' =&gt; array(__('New Post'), __('New Page')),</span>
+      <span class="token comment">// 'view_item' =&gt; array(__('View Post'), __('View Page')),</span>
+      <span class="token comment">// 'view_items' =&gt; array(__('View Posts'), __('View Pages')),</span>
+      <span class="token comment">// 'search_items' =&gt; array(__('Search Posts'), __('Search Pages')),</span>
+      <span class="token comment">// 'not_found' =&gt; array(__('No posts found.'), __('No pages found.')),</span>
+      <span class="token comment">// 'not_found_in_trash' =&gt; array(__('No posts found in Trash.'), __('No pages found in Trash.')),</span>
+      <span class="token comment">// 'parent_item_colon' =&gt; array(null, __('Parent Page:')),</span>
+      <span class="token comment">// 'all_items' =&gt; array(__('All Posts'), __('All Pages')),</span>
+      <span class="token comment">// 'archives' =&gt; array(__('Post Archives'), __('Page Archives')),</span>
+      <span class="token comment">// 'attributes' =&gt; array(__('Post Attributes'), __('Page Attributes')),</span>
+      <span class="token comment">// 'insert_into_item' =&gt; array(__('Insert into post'), __('Insert into page')),</span>
+      <span class="token comment">// 'uploaded_to_this_item' =&gt; array(__('Uploaded to this post'), __('Uploaded to this page')),</span>
+      <span class="token comment">// 'featured_image' =&gt; array(_x('Featured Image', 'post'), _x('Featured Image', 'page')),</span>
+      <span class="token comment">// 'set_featured_image' =&gt; array(_x('Set featured image', 'post'), _x('Set featured image', 'page')),</span>
+      <span class="token comment">// 'remove_featured_image' =&gt; array(_x('Remove featured image', 'post'), _x('Remove featured image', 'page')),</span>
+      <span class="token comment">// 'use_featured_image' =&gt; array(_x('Use as featured image', 'post'), _x('Use as featured image', 'page')),</span>
+      <span class="token comment">// 'filter_items_list' =&gt; array(__('Filter posts list'), __('Filter pages list')),</span>
+      <span class="token comment">// 'items_list_navigation' =&gt; array(__('Posts list navigation'), __('Pages list navigation')),</span>
+      <span class="token comment">// 'items_list' =&gt; array(__('Posts list'), __('Pages list')),</span>
+      <span class="token comment">// 'item_published' =&gt; array(__('Post published.'), __('Page published.')),</span>
+      <span class="token comment">// 'item_published_privately' =&gt; array(__('Post published privately.'), __('Page published privately.')),</span>
+      <span class="token comment">// 'item_reverted_to_draft' =&gt; array(__('Post reverted to draft.'), __('Page reverted to draft.')),</span>
+      <span class="token comment">// 'item_scheduled' =&gt; array(__('Post scheduled.'), __('Page scheduled.')),</span>
+      <span class="token comment">// 'item_updated' =&gt; array(__('Post updated.'), __('Page updated.')),</span>
+
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token variable">$options</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span>
+      <span class="token comment">// 'labels' =&gt; $labels,</span>
+      <span class="token comment">// 'description' =&gt; '',</span>
+      <span class="token comment">// 'public' =&gt; true,</span>
+      <span class="token comment">// 'hierarchical' =&gt; false,</span>
+      <span class="token comment">// 'exclude_from_search' =&gt; null,</span>
+      <span class="token comment">// 'publicly_queryable' =&gt; null,</span>
+      <span class="token comment">// 'show_ui' =&gt; null,</span>
+      <span class="token comment">// 'show_in_menu' =&gt; null,</span>
+      <span class="token comment">// 'show_in_nav_menus' =&gt; null,</span>
+      <span class="token comment">// 'show_in_admin_bar' =&gt; null,</span>
+      <span class="token comment">// 'menu_position' =&gt; null,</span>
+      <span class="token comment">// 'menu_icon' =&gt; null,</span>
+      <span class="token comment">// 'capability_type' =&gt; 'post',</span>
+      <span class="token comment">// 'capabilities' =&gt; array(),</span>
+      <span class="token comment">// 'map_meta_cap' =&gt; null,</span>
+      <span class="token comment">// 'supports' =&gt; array('title', 'editor', 'excerpt', 'thumbnail'),</span>
+      <span class="token comment">// 'register_meta_box_cb' =&gt; null,</span>
+      <span class="token comment">// 'taxonomies' =&gt; array(),</span>
+      <span class="token comment">// 'has_archive' =&gt; false,</span>
+      <span class="token comment">// 'rewrite' =&gt; true,</span>
+      <span class="token comment">// 'query_var' =&gt; true,</span>
+      <span class="token comment">// 'can_export' =&gt; true,</span>
+      <span class="token comment">// 'delete_with_user' =&gt; null,</span>
+      <span class="token comment">// 'show_in_rest' =&gt; false,// mettre à true si on veut utiliser gutenberg</span>
+      <span class="token comment">// 'rest_base' =&gt; false,</span>
+      <span class="token comment">// 'rest_controller_class' =&gt; false,</span>
+      <span class="token comment">// '_builtin' =&gt; false,</span>
+      <span class="token comment">// '_edit_link' =&gt; 'post.php?post=%d',</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">register_post_type</span><span class="token punctuation">(</span>
+      self<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token variable">$slug</span><span class="token punctuation">,</span>
+      <span class="token variable">$options</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</span></code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br></div></div><h3 id="taxonomies"><a href="#taxonomies" aria-hidden="true" class="header-anchor">#</a> Taxonomies</h3> <p>Il est possible de créer facilement une taxonomie personnalisé avec le <a href="/yakpress/cli/#taxonomy">CLI</a> et de le charger automatiquement <code>wp yakpress taxonomy</code></p> <p>Cela créer alors un fichier préfait avec tout les labels et arguments possible à mettre. Il suffit de décommenter ceux dont on a besoin pour les personnaliser et de supprimer le reste. Comme pout la plupart des autre Features, le <strong>slug</strong> du composant est en propriété de la class afin de pouvoir être facilement référencé depuis une autre feature.</p> <div class="language-php line-numbers-mode"><pre class="language-php"><code><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+
+<span class="token keyword">namespace</span> <span class="token package">Pluginname<span class="token punctuation">\</span>Features<span class="token punctuation">\</span>Taxonomies</span><span class="token punctuation">;</span>
+
+
+
+<span class="token keyword">class</span> <span class="token class-name">CustomTaxonomy</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token variable">$slug</span> <span class="token operator">=</span> <span class="token single-quoted-string string">'custom'</span><span class="token punctuation">;</span>
+  <span class="token comment">/**
+   * Enregistrement de la Taxonomie
+   * @return void
+   */</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">function</span> <span class="token function">register</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+
+    <span class="token variable">$labels</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token comment">// les labels pour la taxonomie</span>
+      <span class="token single-quoted-string string">'name'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token function">__</span><span class="token punctuation">(</span><span class="token single-quoted-string string">''</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token single-quoted-string string">'singular_name'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token function">__</span><span class="token punctuation">(</span><span class="token single-quoted-string string">''</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token single-quoted-string string">'search_items'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token function">__</span><span class="token punctuation">(</span><span class="token single-quoted-string string">''</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token single-quoted-string string">'all_items'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token function">__</span><span class="token punctuation">(</span><span class="token single-quoted-string string">''</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token single-quoted-string string">'parent_item'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token function">__</span><span class="token punctuation">(</span><span class="token single-quoted-string string">''</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token single-quoted-string string">'parent_item_colon'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token function">__</span><span class="token punctuation">(</span><span class="token single-quoted-string string">''</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token single-quoted-string string">'edit_item'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token function">__</span><span class="token punctuation">(</span><span class="token single-quoted-string string">''</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token single-quoted-string string">'update_item'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token function">__</span><span class="token punctuation">(</span><span class="token single-quoted-string string">''</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token single-quoted-string string">'add_new_item'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token function">__</span><span class="token punctuation">(</span><span class="token single-quoted-string string">''</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token single-quoted-string string">'new_item_name'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token function">__</span><span class="token punctuation">(</span><span class="token single-quoted-string string">''</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token single-quoted-string string">'menu_name'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token function">__</span><span class="token punctuation">(</span><span class="token single-quoted-string string">''</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token variable">$args</span> <span class="token operator">=</span> <span class="token punctuation">[</span>
+      <span class="token single-quoted-string string">'hierarchical'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token boolean constant">true</span><span class="token punctuation">,</span>
+      <span class="token single-quoted-string string">'labels'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token variable">$labels</span><span class="token punctuation">,</span>
+      <span class="token single-quoted-string string">'show_ui'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token boolean constant">true</span><span class="token punctuation">,</span>
+      <span class="token single-quoted-string string">'show_admin_column'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token boolean constant">true</span><span class="token punctuation">,</span>
+      <span class="token single-quoted-string string">'query_var'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token boolean constant">true</span><span class="token punctuation">,</span>
+      <span class="token single-quoted-string string">'rewrite'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">[</span><span class="token single-quoted-string string">'slug'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> self<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token variable">$slug</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token comment">// ajout de la taxonomie pour le type de contenu recipe</span>
+    <span class="token function">register_taxonomy</span><span class="token punctuation">(</span>self<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token variable">$slug</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>CustomPostType<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token variable">$slug</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token variable">$args</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</span></code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br></div></div><h3 id="metaboxes"><a href="#metaboxes" aria-hidden="true" class="header-anchor">#</a> MetaBoxes</h3> <p>Il est possible de créer facilement une metabox personnalisé avec le <a href="/yakpress/cli/#metabox">CLI</a> et de la charger automatiquement <code>wp yakpress metabox</code></p> <p>Cela créer alors un fichier préfait avec 3 méthodes. <code>CustomMetabox::add_meta_box()</code> pour associer la metabox avec différent <strong>screen</strong>, <code>CustomMetabox::render()</code> pour récuperer des datas et les renvoyer vers une vue qui sera charger d'afficher le contenu de la metabox et <code>CustomMetabox::save()</code> pour gérer la sauvegarde des datas de la metabox.</p> <p>Comme pout la plupart des autre Features, le <strong>slug</strong> du composant est en propriété de la class afin de pouvoir être facilement référencé depuis une autre feature.</p> <div class="language-php line-numbers-mode"><pre class="language-php"><code><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+
+<span class="token keyword">namespace</span> <span class="token package">Pluginname<span class="token punctuation">\</span>Features<span class="token punctuation">\</span>MetaBoxes</span><span class="token punctuation">;</span>
+
+
+<span class="token keyword">class</span> <span class="token class-name">CustomMetabox</span>
+<span class="token punctuation">{</span>
+
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token variable">$slug</span> <span class="token operator">=</span> <span class="token single-quoted-string string">'custom'</span><span class="token punctuation">;</span>
+
+  <span class="token comment">/**
+   * Ajout d'une méta box au type de contenu qui sont passer dans le tableau $screens
+   *
+   * @return void
+   */</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">function</span> <span class="token function">add_meta_box</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token variable">$screens</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">foreach</span> <span class="token punctuation">(</span><span class="token variable">$screens</span> <span class="token keyword">as</span> <span class="token variable">$screen</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">add_meta_box</span><span class="token punctuation">(</span>
+        self<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token variable">$slug</span><span class="token punctuation">,</span>
+        <span class="token function">__</span><span class="token punctuation">(</span><span class="token double-quoted-string string">&quot;Titre de la metabox&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token punctuation">[</span>self<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token keyword">class</span><span class="token punctuation">,</span> <span class="token single-quoted-string string">'render'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token variable">$screen</span>
+      <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">/**
+   * Fonction pour rendre le code html dans la metabox
+   *
+   * @return void
+   */</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">function</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">/**
+   * sauvegarde des donners de la métabox
+   *
+   * @param int $post_id reçu par le do_action
+   * @return void
+   */</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">function</span> <span class="token function">save</span><span class="token punctuation">(</span>int <span class="token variable">$post_id</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</span></code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br></div></div><h3 id="widgets"><a href="#widgets" aria-hidden="true" class="header-anchor">#</a> Widgets</h3> <p>Il est possible de créer facilement un widget personnalisé avec le <a href="/yakpress/cli/#widget">CLI</a> et de la charger automatiquement <code>wp yakpress widget</code>.</p> <p>Ce fichier contient une class qui étant la class WP_Widget et les méthodes indiqué par les conventions wordpress.</p> <p>Comme pout la plupart des autre Features, le <strong>slug</strong> du composant est en propriété de la class afin de pouvoir être facilement référencé depuis une autre feature.</p> <div class="language-php line-numbers-mode"><pre class="language-php"><code><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+
+<span class="token keyword">namespace</span> <span class="token punctuation">{</span><span class="token punctuation">{</span>plugin_namespace<span class="token punctuation">}</span><span class="token punctuation">}</span>\<span class="token package">Features<span class="token punctuation">\</span>Widgets</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token punctuation">{</span><span class="token punctuation">{</span>widget_class<span class="token punctuation">}</span><span class="token punctuation">}</span> <span class="token keyword">extends</span> <span class="token class-name"><span class="token punctuation">\</span>WP_Widget</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token variable">$slug</span> <span class="token operator">=</span> <span class="token double-quoted-string string">&quot;{{widget}}&quot;</span><span class="token punctuation">;</span>
+
+  <span class="token comment">//ici on peut définir des arguments en plus que l'on pourrait passer à la vue qui s'affiche sur le front office</span>
+  <span class="token keyword">public</span> <span class="token variable">$args</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span>
+    <span class="token single-quoted-string string">'before_title'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token single-quoted-string string">''</span><span class="token punctuation">,</span>
+    <span class="token single-quoted-string string">'after_title'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token single-quoted-string string">''</span><span class="token punctuation">,</span>
+    <span class="token single-quoted-string string">'before_widget'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token single-quoted-string string">''</span><span class="token punctuation">,</span>
+    <span class="token single-quoted-string string">'after_widget'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token single-quoted-string string">''</span><span class="token punctuation">,</span>
+    <span class="token single-quoted-string string">'self'</span> <span class="token operator">=</span><span class="token operator">&gt;</span> self<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token keyword">class</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">/**
+   * le construct est lancé lorsque l'on instentie la class on passe à la class parent le slug et le titre
+   */</span>
+  <span class="token keyword">function</span> <span class="token function">__construct</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+
+    <span class="token keyword">parent</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">__construct</span><span class="token punctuation">(</span>
+      self<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token variable">$slug</span><span class="token punctuation">,</span>
+      <span class="token function">__</span><span class="token punctuation">(</span><span class="token double-quoted-string string">&quot;Titre du widget&quot;</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+
+  <span class="token punctuation">}</span>
+  <span class="token comment">/**
+   * enregistrement du widget
+   *
+   * @return void
+   */</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">function</span> <span class="token function">register</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token function">register_widget</span><span class="token punctuation">(</span>self<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">/**
+   * methode pour arricher le widget sur le front
+   *
+   * @param [type] $arg argument de la class defini dans la propriété public
+   * @param [type] $instance l'instance du widget sachant qu'il peut y avoir plusieurs widget utilisé
+   * @return void
+   */</span>
+  <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">widget</span><span class="token punctuation">(</span><span class="token variable">$args</span><span class="token punctuation">,</span> <span class="token variable">$instance</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+
+    <span class="token comment">//view('viewpath', compact('args', 'instance'));</span>
+
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">/**
+   * methode pour afficher le fomulaire dans le backoffire
+   *
+   * @param [type] $instance l'instance du widget sachant qu'il peut y avoir plusieurs widget utilisé
+   * @return void
+   */</span>
+  <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">form</span><span class="token punctuation">(</span><span class="token variable">$instance</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token comment">//les widgets génere des name specifique pour les inputs, il faut donc utiliser la methode get_field_name pour cela</span>
+
+    <span class="token comment">//view('viewpath', compact('data'));</span>
+
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">/**
+   * Methode pour updater les informations du widget
+   *
+   * @param [type] $new_instance
+   * @param [type] $old_instance
+   * @return void
+   */</span>
+  <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">update</span><span class="token punctuation">(</span><span class="token variable">$new_instance</span><span class="token punctuation">,</span> <span class="token variable">$old_instance</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+
+  <span class="token punctuation">}</span>
+
+
+<span class="token punctuation">}</span>
+</span></code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br></div></div><h3 id="sections"><a href="#sections" aria-hidden="true" class="header-anchor">#</a> Sections</h3> <p>Il est possible de créer facilement une section personnalisés avec le <a href="/yakpress/cli/#section">CLI</a> et de la charger automatiquement <code>wp yakpress section</code>.</p> <p>La class contient 3 méthodes. <code>CustomSection::init()</code> pour associer une section avec une page, <code>CustomSection::register_settings()</code> pour enregistrer les settings de la section afin qu'ils puissent être sauvegarder en même temps que le reste de la page et <code>CustomSection::render()</code> qui charge la vue pour le rendu de la section.</p> <p>Comme pout la plupart des autre Features, le <strong>slug</strong> du composant est en propriété de la class afin de pouvoir être facilement référencé depuis une autre feature.</p> <div class="language-php line-numbers-mode"><pre class="language-php"><code><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+
+<span class="token keyword">namespace</span> <span class="token package">Pluginname<span class="token punctuation">\</span>Features<span class="token punctuation">\</span>Sections</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">CustomSection</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token variable">$slug</span> <span class="token operator">=</span> <span class="token single-quoted-string string">'custom'</span><span class="token punctuation">;</span>
+  <span class="token comment">/**
+   * Enregistrement de la section
+   *
+   * @return void
+   */</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">function</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token function">add_settings_section</span><span class="token punctuation">(</span>
+      self<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token variable">$slug</span><span class="token punctuation">,</span>
+      <span class="token function">__</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'Titre de la section'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token punctuation">[</span>self<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token keyword">class</span><span class="token punctuation">,</span> <span class="token single-quoted-string string">'render'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token single-quoted-string string">'page_id'</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    self<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">register_settings</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">/**
+   * Cette fonction enregistre les settings qui apparaîtrons dans
+   * la section afin qu'ils puissent être pris en compte lors de la sauvegarde de la page
+   *
+   * @return void
+   */</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">function</span> <span class="token function">register_settings</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token function">register_setting</span><span class="token punctuation">(</span>
+      <span class="token single-quoted-string string">'page_id'</span><span class="token punctuation">,</span>
+      self<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token variable">$slug</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">/**
+   * fonction pour render le contenu de la section
+   */</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">function</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token comment">//view('viewpath', compact('data'));</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</span></code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br></div></div><h3 id="pages"><a href="#pages" aria-hidden="true" class="header-anchor">#</a> Pages</h3> <p>Il est possible de créer facilement une page personnalisés avec le <a href="/yakpress/cli/#page">CLI</a> et de la charger automatiquement <code>wp yakpress page</code>.</p> <p>La class CustomPage se compose de 2 méthodes. <code>CustomPage::init()</code> pour initialiser la page et <code>CustomPage::render()</code> qui se charge de rendre le contenu de la page.</p> <div class="tip custom-block"><p class="custom-block-title">conseil</p> <p>Il est préférable de créer un controller associé avec la page qui pourra alors faire office de resource pour cette page <code>index, show, create, edit, update, delete</code>. Si vous créer le formulaire associé via le <a href="/yakpress/cli/#page">CLI</a> vous aurez alors un bout de code qui permettra à la fonction render de renvoyer vers la bonne méthode du controller en fonction de la variable <code>$_GET['action']</code>.</p></div> <div class="language-php line-numbers-mode"><pre class="language-php"><code><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+
+<span class="token keyword">namespace</span> <span class="token package">Pluginname<span class="token punctuation">\</span>Features<span class="token punctuation">\</span>Pages</span><span class="token punctuation">;</span>
+
+<span class="token keyword">use</span> <span class="token package">Pluginname<span class="token punctuation">\</span>Http<span class="token punctuation">\</span>Controllers<span class="token punctuation">\</span>CustomController</span><span class="token punctuation">;</span>
+
+
+
+<span class="token keyword">class</span> <span class="token class-name">CustomPage</span>
+<span class="token punctuation">{</span>
+  <span class="token comment">/**
+   * Initialisation de la page.
+   *
+   * @return void
+   */</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">function</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token function">add_menu_page</span><span class="token punctuation">(</span>
+      <span class="token function">__</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'Titre de la page'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token function">__</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'Texte dans menu'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token single-quoted-string string">'capability'</span><span class="token punctuation">,</span>
+      <span class="token single-quoted-string string">'menu-slug'</span><span class="token punctuation">,</span>
+      <span class="token punctuation">[</span>self<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token keyword">class</span><span class="token punctuation">,</span> <span class="token single-quoted-string string">'render'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token single-quoted-string string">'dashicons-myicon'</span><span class="token punctuation">,</span>
+      <span class="token number">10</span> <span class="token comment">// position dans le menu</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">/**
+   * Fonction qui redirige vers la bonne méthode
+   *
+   * @return void
+   */</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">function</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token comment">/**
+     * on fait un refactoring afin que la méthode render renvoi vers la bonne méthode en fonction de l'action
+     */</span>
+    <span class="token comment">// on défini une valeur par défaut pour $action qui est index et qui correspondra à la méthode à utiliser</span>
+    <span class="token variable">$action</span> <span class="token operator">=</span> <span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token double-quoted-string string">&quot;action&quot;</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token double-quoted-string string">&quot;action&quot;</span><span class="token punctuation">]</span> <span class="token punctuation">:</span> <span class="token double-quoted-string string">&quot;index&quot;</span><span class="token punctuation">;</span>
+    <span class="token function">call_user_func</span><span class="token punctuation">(</span><span class="token punctuation">[</span>CustomController<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token keyword">class</span><span class="token punctuation">,</span> <span class="token variable">$action</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</span></code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br></div></div><h2 id="http"><a href="#http" aria-hidden="true" class="header-anchor">#</a> Http</h2> <p>Comme dans la plupart des framwork, ce dossier contient les class qui interviennent lors d'une requête http.</p> <ul><li><a href="#controllers">Controllers</a></li> <li><a href="#models">Models</a></li> <li><a href="#middlewares">Middlewares</a></li> <li><a href="#requests">Requests</a></li></ul> <h3 id="controllers"><a href="#controllers" aria-hidden="true" class="header-anchor">#</a> Controllers</h3> <p>Les controllers sont la partie du framework ou la logique va être orchestrée. Il est possible de créer un controller via le <a href="/yakpress/cli/#controller">CLI</a> <code>wp yakpress controller</code>. Il est également possible de rajouter directement le model associé et de les lié grâce au flag <code>--model</code>.</p> <p>De base le controller dispose de méthode ressource.</p> <div class="warning custom-block"><p class="custom-block-title">WARNING</p> <p>il est possible que dans les prochaines version on permette de définir un controller comme ressource via un flag <code>--resource</code>.</p></div> <h3 id="models"><a href="#models" aria-hidden="true" class="header-anchor">#</a> Models</h3> <p>Les models sont la partie du framework qui communique avec la base de donnée. Il est possible de créer un model via le <a href="/yakpress/cli/#model">CLI</a> <code>wp yakpress model</code>. Il est également possible de rajouter directement le controller associé grâce au flag --controller.</p> <p>De base tout les Models extends la class <code>Pluginname\Http\Model\Model::class</code> afin de ne pas répeter les fonctions de base commune à la plupart des models.</p> <h3 id="middlewares"><a href="#middlewares" aria-hidden="true" class="header-anchor">#</a> Middlewares</h3> <p>Les middlewares sont la partie du framework qui permet d'executer une action avant le que controller ne soit lancé. Pour exemple, vérifier si une personne est connecter et rediriger vers une page si ça n'est pas le cas.</p> <p>Il est possibile de créer des middlewares via le <a href="/yakpress/cli/#middleware">CLI</a> <code>wp yakpress middleware</code></p> <h3 id="requests"><a href="#requests" aria-hidden="true" class="header-anchor">#</a> Requests</h3> <p>Les Requests sont la partie du framework qui vérifie les données d'une transmise par une requête http. Il existe de base une class qui permet de faire certain type de validation et qui redirige avec une erreur si les données ne correspondent pas à l'attente.</p> <h2 id="les-resources"><a href="#les-resources" aria-hidden="true" class="header-anchor">#</a> Les Resources</h2> <p>Le dossier resources contient le dossier assets, pour les fichiers qui doivent être accessible pour le front, ainsi que le dossier views dans le quelle on place les fichiers qui vont générer des vues.</p></div> <div class="page-edit"><!----> <!----></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/yakpress/cli/" class="prev">
+          CLI commande
+        </a></span> <!----></p></div> </div> <!----></div></div>
+    <script src="/yakpress/assets/js/app.6986d63d.js" defer></script><script src="/yakpress/assets/js/5.9b067679.js" defer></script>
+  </body>
+</html>
