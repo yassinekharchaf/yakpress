@@ -200,21 +200,21 @@ namespace Pluginname\Providers;
 
 class ServicesProvider
 {
-	/**
-	 * Enregistrement des providers.
-	 * Nous chargeons tout les providers du fichier config providers.php
-	 * et nous lançons leur méthode 'boot' pour le démarrage.
-	 *
-	 * @return void
-	 */
-	public static function register()
-	{
-		$providers = config('providers');
+  /**
+   * Enregistrement des providers.
+   * Nous chargeons tout les providers du fichier config providers.php
+   * et nous lançons leur méthode 'boot' pour le démarrage.
+   *
+   * @return void
+   */
+  public static function register()
+  {
+    $providers = config('providers');
 
-		foreach ($providers as $provider) {
-			call_user_func([$provider, 'boot']);
-		}
-	}
+    foreach ($providers as $provider) {
+      call_user_func([$provider, 'boot']);
+    }
+  }
 }
 ```
 
@@ -245,18 +245,18 @@ namespace Pluginname\Providers;
 
 class FeaturesProvider
 {
-	/**
-	 * Ajout d'un add action pour chaque feature
-	 *
-	 * @return void
-	 */
-	public static function boot()
-	{
-		$features = config('features');
-		foreach ($features as $feature) {
-			add_action(...$feature);
-		}
-	}
+  /**
+   * Ajout d'un add action pour chaque feature
+   *
+   * @return void
+   */
+  public static function boot()
+  {
+    $features = config('features');
+    foreach ($features as $feature) {
+      add_action(...$feature);
+    }
+  }
 }
 ```
 
@@ -268,7 +268,7 @@ il faut bien respecter le format de donner de chaque entrer du tableau.
 
 :::tip info
 le fichier `config/features.php` est commenter pour être bien organisé.
-Si vous créer des features avec le cli, le cli entrera automatiquement les données dans le tableau de manière structurer.
+Si vous créer des features avec le [CLI](/cli/#provider), le [CLI](/cli/#provider) entrera automatiquement les données dans le tableau de manière structurer.
 
 exemple : `wp yakpress post_type evenement --plugin=plugin-name`
 :::
@@ -286,17 +286,17 @@ exemple : `wp yakpress post_type evenement --plugin=plugin-name`
 
 return [
 
-	### POST TYPES ###
+  ### POST TYPES ###
 
-	### METABOXES ###
+  ### METABOXES ###
 
-	### TAXONOMIES ###
+  ### TAXONOMIES ###
 
-	### WIDGETS ###
+  ### WIDGETS ###
 
-	### SECTIONS ###
+  ### SECTIONS ###
 
-	### PAGES ###
+  ### PAGES ###
 
 ];
 ```
@@ -364,7 +364,7 @@ return [
    */
   'filters' => [
 
-	]
+  ]
 ];
 ```
 
@@ -452,18 +452,18 @@ class Database
    */
   public static function create()
   {
-		### CREATE TABLE ###
+    ### CREATE TABLE ###
 
   }
 
-	/**
+  /**
    * Méthode qui lance les migrations afin que chacune supprime sa table dans la base de donnée.
    *
    * @return void
    */
   public static function drop()
   {
-		### DROP TABLE ###
+    ### DROP TABLE ###
 
   }
 
@@ -472,7 +472,7 @@ class Database
 
 ### Les migrations
 
-Le dossier `Database/Migrations` va lui contenir toutes les migrations pour les tables. Si les migrations sont créées à l'aide du CLI `wp yakpress migration`, elles seront alors directement ajouter au fichier `Database/Database.php` dans les méthodes `Database::create()` et `Database::drop()`.
+Le dossier `Database/Migrations` va lui contenir toutes les migrations pour les tables. Si les migrations sont créées à l'aide du [CLI](/cli/#migration) `wp yakpress migration`, elles seront alors directement ajouter au fichier `Database/Database.php` dans les méthodes `Database::create()` et `Database::drop()`.
 Les class de migration possèdent deux méthode `CustomTable::up()` et `CustomTable::down()` pour supprimer une table. Cela est fait à l'aide de requête **sql** pure.
 
 ```php
@@ -493,9 +493,9 @@ class CustomTable
     // Nous récupérons l'objet $wpdb qui est global afin de pouvoir intéragir avec la base de donnée.
     global $wpdb;
     $table_name = $wpdb->prefix . "custom";
-		// Requête sql pour créer une table
+    // Requête sql pour créer une table
     $wpdb->query("");
-	}
+  }
 
   /**
    * Création de la table
@@ -507,15 +507,15 @@ class CustomTable
     // Nous récupérons l'objet $wpdb qui est global afin de pouvoir intéragir avec la base de donnée.
     global $wpdb;
     $table_name = $wpdb->prefix . "custom";
-		// Requête sql pour supprimer une table
+    // Requête sql pour supprimer une table
     $wpdb->query("");
-	}
+  }
 }
 ```
 
 ## Les Features
 
-Cette partie du Framework est dédiée aux composant de base que wordpress nous permet de rajouter facilement. Le framework Yakpress permet de créer ses composant facilement et de les chargers automatiquement lors de la création avec le **CLI**.
+Cette partie du Framework est dédiée aux composant de base que wordpress nous permet de rajouter facilement. Le framework Yakpress permet de créer ses composant facilement et de les chargers automatiquement lors de la création avec le [CLI](/cli/).
 
 - [PostTypes](#postyptes)
 - [Taxonomies](#taxonomies)
@@ -526,7 +526,7 @@ Cette partie du Framework est dédiée aux composant de base que wordpress nous 
 
 ### PostTypes
 
-Il est possible de créer facilement un type de contenu personnalisé avec le **CLI** et de le charger automatiquement `wp yakpress post_type`
+Il est possible de créer facilement un type de contenu personnalisé avec le [CLI](/cli/#post-type) et de le charger automatiquement `wp yakpress post_type`
 
 Cela créer alors un fichier préfait avec tout les labels et options possible à mettre. Il suffit de décommenter ceux dont on a besoin pour les personnaliser et de supprimer le reste. Comme pout la plupart des autre Features, le **slug** du composant est en propriété de la class afin de pouvoir être facilement référencé depuis une autre feature.
 
@@ -621,7 +621,7 @@ class CustomPostType
 
 ### Taxonomies
 
-Il est possible de créer facilement une taxonomie personnalisé avec le **CLI** et de le charger automatiquement `wp yakpress taxonomy`
+Il est possible de créer facilement une taxonomie personnalisé avec le [CLI](/cli/#taxonomy) et de le charger automatiquement `wp yakpress taxonomy`
 
 Cela créer alors un fichier préfait avec tout les labels et arguments possible à mettre. Il suffit de décommenter ceux dont on a besoin pour les personnaliser et de supprimer le reste. Comme pout la plupart des autre Features, le **slug** du composant est en propriété de la class afin de pouvoir être facilement référencé depuis une autre feature.
 
@@ -672,7 +672,7 @@ class CustomTaxonomy
 
 ### MetaBoxes
 
-Il est possible de créer facilement une metabox personnalisé avec le **CLI** et de la charger automatiquement `wp yakpress metabox`
+Il est possible de créer facilement une metabox personnalisé avec le [CLI](/cli/#metabox) et de la charger automatiquement `wp yakpress metabox`
 
 Cela créer alors un fichier préfait avec 3 méthodes. `CustomMetabox::add_meta_box()` pour associer la metabox avec différent **screen**, `CustomMetabox::render()` pour récuperer des datas et les renvoyer vers une vue qui sera charger d'afficher le contenu de la metabox et `CustomMetabox::save()` pour gérer la sauvegarde des datas de la metabox.
 
@@ -733,7 +733,7 @@ class CustomMetabox
 
 ### Widgets
 
-Il est possible de créer facilement un widget personnalisé avec le **CLI** et de la charger automatiquement `wp yakpress widget`.
+Il est possible de créer facilement un widget personnalisé avec le [CLI](/cli/#widget) et de la charger automatiquement `wp yakpress widget`.
 
 Ce fichier contient une class qui étant la class WP_Widget et les méthodes indiqué par les conventions wordpress.
 
@@ -827,7 +827,7 @@ class {{widget_class}} extends \WP_Widget
 
 ### Sections
 
-Il est possible de créer facilement une section personnalisés avec le **CLI** et de la charger automatiquement `wp yakpress section`.
+Il est possible de créer facilement une section personnalisés avec le [CLI](/cli/#section) et de la charger automatiquement `wp yakpress section`.
 
 La class contient 3 méthodes. `CustomSection::init()` pour associer une section avec une page, `CustomSection::register_settings()` pour enregistrer les settings de la section afin qu'ils puissent être sauvegarder en même temps que le reste de la page et `CustomSection::render()` qui charge la vue pour le rendu de la section.
 
@@ -840,7 +840,7 @@ namespace Pluginname\Features\Sections;
 
 class CustomSection
 {
-	public static $slug = 'custom';
+  public static $slug = 'custom';
   /**
    * Enregistrement de la section
    *
@@ -883,12 +883,12 @@ class CustomSection
 
 ### Pages
 
-Il est possible de créer facilement une page personnalisés avec le **CLI** et de la charger automatiquement `wp yakpress page`.
+Il est possible de créer facilement une page personnalisés avec le [CLI](/cli/#page) et de la charger automatiquement `wp yakpress page`.
 
 La class CustomPage se compose de 2 méthodes. `CustomPage::init()` pour initialiser la page et `CustomPage::render()` qui se charge de rendre le contenu de la page.
 
 :::tip conseil
-Il est préférable de créer un controller associé avec la page qui pourra alors faire office de resource pour cette page `index, show, create, edit, update, delete`. Si vous créer le formulaire associé via le **CLI** vous aurez alors un bout de code qui permettra à la fonction render de renvoyer vers la bonne méthode du controller en fonction de la variable `$_GET['action']`.
+Il est préférable de créer un controller associé avec la page qui pourra alors faire office de resource pour cette page `index, show, create, edit, update, delete`. Si vous créer le formulaire associé via le [CLI](/cli/#page) vous aurez alors un bout de code qui permettra à la fonction render de renvoyer vers la bonne méthode du controller en fonction de la variable `$_GET['action']`.
 :::
 
 ```php
@@ -948,7 +948,7 @@ Comme dans la plupart des framwork, ce dossier contient les class qui intervienn
 
 ### Controllers
 
-Les controllers sont la partie du framework ou la logique va être orchestrée. Il est possible de créer un controller via le **CLI** `wp yakpress controller`. Il est également possible de rajouter directement le model associé et de les lié grâce au flag `--model`.
+Les controllers sont la partie du framework ou la logique va être orchestrée. Il est possible de créer un controller via le [CLI](/cli/#controller) `wp yakpress controller`. Il est également possible de rajouter directement le model associé et de les lié grâce au flag `--model`.
 
 De base le controller dispose de méthode ressource.
 
@@ -958,7 +958,7 @@ il est possible que dans les prochaines version on permette de définir un contr
 
 ### Models
 
-Les models sont la partie du framework qui communique avec la base de donnée. Il est possible de créer un model via le **CLI** `wp yakpress model`. Il est également possible de rajouter directement le controller associé grâce au flag --controller.
+Les models sont la partie du framework qui communique avec la base de donnée. Il est possible de créer un model via le [CLI](/cli/#model) `wp yakpress model`. Il est également possible de rajouter directement le controller associé grâce au flag --controller.
 
 De base tout les Models extends la class `Pluginname\Http\Model\Model::class` afin de ne pas répeter les fonctions de base commune à la plupart des models.
 
@@ -966,7 +966,7 @@ De base tout les Models extends la class `Pluginname\Http\Model\Model::class` af
 
 Les middlewares sont la partie du framework qui permet d'executer une action avant le que controller ne soit lancé. Pour exemple, vérifier si une personne est connecter et rediriger vers une page si ça n'est pas le cas.
 
-Il est possibile de créer des middlewares via le **CLI** `wp yakpress middleware`
+Il est possibile de créer des middlewares via le [CLI](/cli/#middleware) `wp yakpress middleware`
 
 ### Requests
 

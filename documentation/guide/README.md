@@ -28,10 +28,6 @@ Pour installer le package wp-cli il suffit de lancer la commande wp-cli
 
 `wp package install git@github.com:yassinekharchaf/yakpress.git`
 
-## Get Started
-
-Le meilleur moyen pour commencer est de ce lancer dans le [get started](/guide/) afin de créer un premier plugin et découvrir en même temps les différentes fonctionnalitées et structure du framework en pratiquant directement.
-
 ## CLI
 
 Pour connaître tout ce qu'il y a à savoir sur les différentes commandes du package **yakpress** de **wp** diriger vers la partie du site [CLI](/cli/)
