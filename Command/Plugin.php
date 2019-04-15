@@ -42,7 +42,7 @@ class Plugin extends YakPress
 
 		$parent = new parent();
 
-		$files_written = $parent->create_files(array(
+		$file_to_create = array(
 			"$plugin_dir/$plugin_namespace/Databases/Database.php" => self::mustache_render('databases-database.mustache', $data),
 			"$plugin_dir/routes/action.php" => self::mustache_render('routes-action.mustache', $data),
 			"$plugin_dir/$plugin_namespace/Setup.php" => self::mustache_render('setup.mustache', $data),
@@ -59,8 +59,12 @@ class Plugin extends YakPress
 			"$plugin_dir/autoload.php" => self::mustache_render('autoload.mustache', $data),
 			"$plugin_dir/bootstrap.php" => self::mustache_render('bootstrap.mustache', $data),
 			"$plugin_dir/env.php" => self::mustache_render('env.mustache', $data),
-			"$plugin_dir/helpers.php" => self::mustache_render('helpers.mustache', $data),
-		), $force);
+		);
+
+		if (!$nohelpers) {
+			$file_to_create["$plugin_dir/helpers.php"] = self::mustache_render('helpers.mustache', $data);
+		}
+		$files_written = $parent->create_files($file_to_create, $force);
 
 		$parent->log_whether_files_written(
 			$files_written,
