@@ -4,6 +4,9 @@ namespace {{plugin_namespace}}\Features\Sections;
 
 class {{section_class}}Section
 {
+
+	public static $slug = 'custom';
+
   /**
    * Enregistrement de la section
    *
@@ -11,27 +14,26 @@ class {{section_class}}Section
    */
   public static function init()
   {
-    // https://developer.wordpress.org/reference/functions/add_settings_section/
     add_settings_section(
-      '{{section}}',
+      self::$slug,
       __('Titre de la section'),
       [self::class, 'render'],
-      'page_id' // l'id de la page à la quelle on ajoute la section
+      'page_id'
     );
     self::register_settings();
   }
 
   /**
-   * Cette fonction enregistre les settings qui apparaîtrons dans la section afin qu'ils puissent être pris en compte lors de la sauvegarde de la page
+   * Cette fonction enregistre les settings qui apparaîtrons dans
+	 * la section afin qu'ils puissent être pris en compte lors de la sauvegarde de la page
    *
    * @return void
    */
   public static function register_settings()
   {
-    //https://developer.wordpress.org/reference/functions/register_setting/
     register_setting(
-      'page_id', // ne slug de la page sur laquelle le setting se trouve
-      '{{section}}' // le name de l'input du setting
+      'page_id',
+      self::$slug
     );
   }
 
