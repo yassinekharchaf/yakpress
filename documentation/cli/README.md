@@ -36,10 +36,10 @@ Pour plus de simplicité encore il est possible d'utiliser `wp yakpress <subcomm
 
 Lorsque l'on créer le post type, celui-ci est automatiquement ajouter au fichier de configuration `config/features.php` pour être automatiquement chargé.
 
-| Propriété | Obligatoire | Description                                                   |
-| --------- | :---------: | :------------------------------------------------------------ |
-| name      |     oui     | slug du post type.                                            |
-| plugin    |     oui     | le nom du dossier plugin auquel le post type doit être ajouté |
+| Propriété | Obligatoire | Description              |
+| --------- | :---------: | :----------------------- |
+| name      |     oui     | slug du post type.       |
+| plugin    |     oui     | le nom du dossier plugin |
 
 ## taxonomy
 
@@ -47,10 +47,10 @@ Lorsque l'on créer le post type, celui-ci est automatiquement ajouter au fichie
 
 Lorsque l'on créer la taxonomie, celle-ci est automatiquement ajouter au fichier de configuration `config/features.php` pour être automatiquement chargée.
 
-| Propriété | Obligatoire | Description                                                   |
-| --------- | :---------: | :------------------------------------------------------------ |
-| name      |     oui     | slug de la taxonomy.                                          |
-| plugin    |     oui     | le nom du dossier plugin auquel le post type doit être ajouté |
+| Propriété | Obligatoire | Description              |
+| --------- | :---------: | :----------------------- |
+| name      |     oui     | slug de la taxonomy.     |
+| plugin    |     oui     | le nom du dossier plugin |
 
 ## metabox
 
@@ -58,10 +58,10 @@ Lorsque l'on créer la taxonomie, celle-ci est automatiquement ajouter au fichie
 
 Lorsque l'on créer la metabox, celle-ci est automatiquement ajouter au fichier de configuration `config/features.php` pour être automatiquement chargée.
 
-| Propriété | Obligatoire | Description                                                   |
-| --------- | :---------: | :------------------------------------------------------------ |
-| name      |     oui     | slug de la metabox.                                           |
-| plugin    |     oui     | le nom du dossier plugin auquel le post type doit être ajouté |
+| Propriété | Obligatoire | Description              |
+| --------- | :---------: | :----------------------- |
+| name      |     oui     | slug de la metabox.      |
+| plugin    |     oui     | le nom du dossier plugin |
 
 ## widget
 
@@ -69,10 +69,10 @@ Lorsque l'on créer la metabox, celle-ci est automatiquement ajouter au fichier 
 
 Lorsque l'on créer le widget, celui-ci est automatiquement ajouter au fichier de configuration `config/features.php` pour être automatiquement chargé.
 
-| Propriété | Obligatoire | Description                                                   |
-| --------- | :---------: | :------------------------------------------------------------ |
-| name      |     oui     | slug de la widget.                                            |
-| plugin    |     oui     | le nom du dossier plugin auquel le post type doit être ajouté |
+| Propriété | Obligatoire | Description              |
+| --------- | :---------: | :----------------------- |
+| name      |     oui     | slug de la widget.       |
+| plugin    |     oui     | le nom du dossier plugin |
 
 ## section
 
@@ -80,10 +80,10 @@ Lorsque l'on créer le widget, celui-ci est automatiquement ajouter au fichier d
 
 Lorsque l'on créer la section, celle-ci est automatiquement ajouter au fichier de configuration `config/features.php` pour être automatiquement chargée.
 
-| Propriété | Obligatoire | Description                                                   |
-| --------- | :---------: | :------------------------------------------------------------ |
-| name      |     oui     | slug de la section.                                           |
-| plugin    |     oui     | le nom du dossier plugin auquel le post type doit être ajouté |
+| Propriété | Obligatoire | Description              |
+| --------- | :---------: | :----------------------- |
+| name      |     oui     | slug de la section.      |
+| plugin    |     oui     | le nom du dossier plugin |
 
 ## page
 
@@ -94,7 +94,7 @@ Lorsque l'on créer la page, celle-ci est automatiquement ajouter au fichier de 
 | Propriété  | Obligatoire | Description                                                                    |
 | ---------- | :---------: | :----------------------------------------------------------------------------- |
 | name       |     oui     | slug de la page.                                                               |
-| plugin     |     oui     | le nom du dossier plugin auquel le post type doit être ajouté                  |
+| plugin     |     oui     | le nom du dossier plugin                                                       |
 | controller |     non     | slug du controller qui sera alors directement associé à la page                |
 | model      |     non     | slug du model qui sera directement associé au controller s'il y en a un choisi |
 
@@ -102,45 +102,45 @@ Lorsque l'on créer la page, celle-ci est automatiquement ajouter au fichier de 
 
 `wp yakpress model <name> --plugin=plugin-name --controller`
 
-| Propriété  | Obligatoire | Description                                                   |
-| ---------- | :---------: | :------------------------------------------------------------ |
-| name       |     oui     | slug du model.                                                |
-| plugin     |     oui     | le nom du dossier plugin auquel le post type doit être ajouté |
-| controller |     non     | un controller sera alors créer et associé au model            |
+| Propriété  | Obligatoire | Description                                        |
+| ---------- | :---------: | :------------------------------------------------- |
+| name       |     oui     | slug du model.                                     |
+| plugin     |     oui     | le nom du dossier plugin                           |
+| controller |     non     | un controller sera alors créer et associé au model |
 
 ## controller
 
 `wp yakpress controller <name> --plugin=plugin-name --model`
 
-| Propriété  | Obligatoire | Description                                                   |
-| ---------- | :---------: | :------------------------------------------------------------ |
-| name       |     oui     | slug du controller.                                           |
-| plugin     |     oui     | le nom du dossier plugin auquel le post type doit être ajouté |
-| controller |     non     | un model sera alors créer et le controller y sera associé     |
+| Propriété  | Obligatoire | Description                                               |
+| ---------- | :---------: | :-------------------------------------------------------- |
+| name       |     oui     | slug du controller.                                       |
+| plugin     |     oui     | le nom du dossier plugin                                  |
+| controller |     non     | un model sera alors créer et le controller y sera associé |
 
 ## middleware
 
 `wp yakpress middleware <name> --plugin=plugin-name`
 
-| Propriété | Obligatoire | Description                                                   |
-| --------- | :---------: | :------------------------------------------------------------ |
-| name      |     oui     | slug du middleware.                                           |
-| plugin    |     oui     | le nom du dossier plugin auquel le post type doit être ajouté |
+| Propriété | Obligatoire | Description              |
+| --------- | :---------: | :----------------------- |
+| name      |     oui     | slug du middleware.      |
+| plugin    |     oui     | le nom du dossier plugin |
 
 ## provider
 
 `wp yakpress provider <name> --plugin=plugin-name`
 
-| Propriété | Obligatoire | Description                                                   |
-| --------- | :---------: | :------------------------------------------------------------ |
-| name      |     oui     | slug du provider.                                             |
-| plugin    |     oui     | le nom du dossier plugin auquel le post type doit être ajouté |
+| Propriété | Obligatoire | Description              |
+| --------- | :---------: | :----------------------- |
+| name      |     oui     | slug du provider.        |
+| plugin    |     oui     | le nom du dossier plugin |
 
 ## migration
 
 `wp yakpress migration <name> --plugin=plugin-name`
 
-| Propriété | Obligatoire | Description                                                   |
-| --------- | :---------: | :------------------------------------------------------------ |
-| name      |     oui     | slug du migration.                                            |
-| plugin    |     oui     | le nom du dossier plugin auquel le post type doit être ajouté |
+| Propriété | Obligatoire | Description              |
+| --------- | :---------: | :----------------------- |
+| name      |     oui     | slug du migration.       |
+| plugin    |     oui     | le nom du dossier plugin |
