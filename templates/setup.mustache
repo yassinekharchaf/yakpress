@@ -1,7 +1,8 @@
 <?php
 
 namespace {{plugin_namespace}};
-// TODO Ajouter la création de base de donnée à l'activation et drop lors de la suppression
+
+user {{plugin_namespace}}\Database\Database;
 
 class Setup
 {
@@ -20,7 +21,9 @@ class Setup
    * @return void
    */
   public static function activation()
-  { }
+  {
+		Database::create();
+	}
 
   /**
    * Fonction appelé lors de la désactivation du plugin
@@ -36,6 +39,8 @@ class Setup
    * @return void
    */
   public static function uninstall()
-  { }
+  {
+		Database::drop();
+	}
 
 }

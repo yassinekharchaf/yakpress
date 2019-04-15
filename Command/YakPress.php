@@ -215,7 +215,23 @@ class YakPress extends Scaffold_Command
 		Middleware::create($args, $assoc_args);
 	}
 
-	// TODO Ajouter une commande pour créer une migration
+	/**
+	 * Ajout d'une migration
+	 *
+	 * ## OPTIONS
+	 *
+	 * <migration-name>
+	 * : Nom du middleware
+	 *
+	 * --plugin=<plugin-name>
+	 * : Nom du plugin auquel rajouter la migration
+	 *
+	 */
+	public function migration($args, $assoc_args)
+	{
+		require_once('Migration.php');
+		Migration::create($args, $assoc_args);
+	}
 
 
 	/**

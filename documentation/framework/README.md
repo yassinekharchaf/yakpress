@@ -7,7 +7,7 @@
 - [Les constantes d'environnement](#les-constantes-d-environnement)
 - [Les helpers](#les-helpers)
 - [Les services providers](#les-services-providers)
-- La database
+- [La database](#la-database)
 - Les Features
 - Http
 - Les resources
@@ -419,4 +419,96 @@ return [
   // Tableau des action ajax sans être connecté
   'wp_ajax_nopriv' => []
 ];
+```
+
+## La database
+
+- [La class Database](#la-class-database)
+- [Les migrations](#les-migrations)
+
+### La class Database
+
+Le dossier `Database` contient le fichier `Database/Database.php` et le dossier `Database/Migrations`.
+La class `Database` possède deux méthodes, `Database::create()` et `Database::drop()`. La première méthode est lancé par la la méthode `Setup::activation()` lors de l'activation du plugin et la deuxième par `Setup::uninstall()`.
+
+:::tip conseil
+Il est de bonne pratique de supprimer les tables créer par le plugin lors de la suppression de celui-ci. Cependant vous pouvez désactiver cela, vous avez le contrôle total.
+:::
+
+```php
+<?php
+
+namespace {{plugin_namespace}}\Database;
+
+
+
+class Database
+{
+
+  /**
+   * Méthode qui lance les migrations afin que chacune créé sa table dans la base de donnée.
+   *
+   * @return void
+   */
+  public static function create()
+  {
+		### CREATE TABLE ###
+
+  }
+
+	/**
+   * Méthode qui lance les migrations afin que chacune supprime sa table dans la base de donnée.
+   *
+   * @return void
+   */
+  public static function drop()
+  {
+		### DROP TABLE ###
+
+  }
+
+}
+```
+
+### Les migrations
+
+Le dossier `Database/Migrations` va lui contenir toutes les migrations pour les tables. Si les migrations sont créées à l'aide du CLI `wp yakpress migration`, elles seront alors directement ajouter au fichier `Database/Database.php` dans les méthodes `Database::create()` et `Database::drop()`.
+Les class de migration possèdent deux méthode `CustomTable::up()` et `CustomTable::down()` pour supprimer une table. Cela est fait à l'aide de requête **sql** pure.
+
+```php
+<?php
+
+namespace Pluginname\Database\Migrations;
+
+class CustomTable
+{
+
+  /**
+   * Création de la table
+   *
+   * @return void
+   */
+  public static function up()
+  {
+    // Nous récupérons l'objet $wpdb qui est global afin de pouvoir intéragir avec la base de donnée.
+    global $wpdb;
+    $table_name = $wpdb->prefix . "custom";
+		// Requête sql pour créer une table
+    $wpdb->query("");
+	}
+
+  /**
+   * Création de la table
+   *
+   * @return void
+   */
+  public static function down()
+  {
+    // Nous récupérons l'objet $wpdb qui est global afin de pouvoir intéragir avec la base de donnée.
+    global $wpdb;
+    $table_name = $wpdb->prefix . "custom";
+		// Requête sql pour supprimer une table
+    $wpdb->query("");
+	}
+}
 ```
