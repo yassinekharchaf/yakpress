@@ -16,5 +16,5 @@ Je me retrouve donc à choisir entre Wordpress qui propose déjà un backoffice 
 
 C'est ainsi que Yakpress est né afin de pouvoir combiner le meilleur des deux mondes.
 
-> Les commentaires de code sont pour l'instant en français car ils se basent sur un cours que jai créer dans le cadre du programme (CodingSchool webdeveloper) que je dirige. Ceci à un pour de le rendre accessible au sein de cette formation. Parcontre il sera bientôt traduit en anglais afin d'élargir la communité de contributeur au maximum.
+> Les commentaires de code sont pour l'instant en français car ils se basent sur un cours que jai créer dans le cadre du programme (CodingSchool webdeveloper) que je dirige. Ceci à pour de le rendre accessible au sein de cette formation. Parcontre il sera bientôt traduit en anglais afin d'élargir la communité de contributeur au maximum.
 > Pas d'inquétude, la documentation restera en français et des traductions supplémentaire arriverons bientôt.
