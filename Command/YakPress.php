@@ -11,6 +11,9 @@ class YakPress extends Scaffold_Command
 	 * <name>
 	 * : The name of the plugin
 	 *
+	 * --nohelpers
+	 * : ne rajoute pas le fichier helpers.php
+	 *
 	 */
 	public function plugin($args, $assoc_args)
 	{

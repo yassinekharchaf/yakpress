@@ -26,6 +26,7 @@ class Plugin extends YakPress
 
 		$plugin_dir = WP_PLUGIN_DIR . "/$plugin_slug";
 		$force = \WP_CLI\Utils\get_flag_value($assoc_args, 'force');
+		$nohelpers = \WP_CLI\Utils\get_flag_value($assoc_args, 'nohelpers');
 
 		wp_mkdir_p("$plugin_dir/$plugin_namespace");
 		wp_mkdir_p("$plugin_dir/$plugin_namespace/Databases");
