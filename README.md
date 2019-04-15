@@ -8,7 +8,7 @@ Quick links: [Using](#using) | [Installing](#installing) | [Contributing](#contr
 
 ## Using
 
-[Get started here](https://yassinekharchaf.github.com/yakpress/)
+[Get started here](https://yassinekharchaf.github.io/yakpress/)
 
 ## Installing
 
