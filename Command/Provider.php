@@ -35,7 +35,7 @@ class Provider extends YakPress
 			self::insert_into_file(
 				"$plugin_dir/config/providers.php",
 				"return [",
-				" \\$plugin_namespace\\Providers\\{$provider_class}Provider::class;"
+				" \\$plugin_namespace\\Providers\\{$provider_class}Provider::class,"
 			);
 
 			WP_CLI::success("Le provider a bien été créé");

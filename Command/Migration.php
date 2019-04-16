@@ -6,9 +6,10 @@ class Migration extends YakPress
 	{
 		$migration = strtolower($args[0]);
 		$migration_class = ucwords(str_replace('-', '', $migration));
-		$plugin_name = $assoc_args['plugin'];
-		$plugin_namespace = ucfirst($plugin_name);
-		$plugin_dir = WP_PLUGIN_DIR . "/$plugin_name";
+		$plugin_slug    = $assoc_args['plugin'];
+		$plugin_name    = ucwords(str_replace('-', ' ', $plugin_slug));
+		$plugin_namespace = str_replace(' ', '', $plugin_name);
+		$plugin_dir = WP_PLUGIN_DIR . "/$plugin_slug";
 		$force = \WP_CLI\Utils\get_flag_value($assoc_args, 'force');
 
 		$data = [
