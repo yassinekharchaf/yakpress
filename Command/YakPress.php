@@ -265,10 +265,8 @@ class YakPress extends Scaffold_Command
 		fclose($f);
 	}
 
-
-	// while (list($key, $line) = each($lines) and !$line_number) {
-	// 	$line_number = (strpos($line, $search) !== FALSE) ? $key + 1 : $line_number;
-	// }
-
-
+	public function doctor()
+	{
+		WP_CLI::success("Tout va pour le mieux");
+	}
 }
