@@ -264,9 +264,4 @@ class YakPress extends Scaffold_Command
 		}
 		fclose($f);
 	}
-
-	public function doctor()
-	{
-		WP_CLI::success("Tout va pour le mieux");
-	}
 }
