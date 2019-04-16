@@ -5,7 +5,7 @@ class Plugin extends YakPress
 	public static function create($args, $assoc_args)
 	{
 		$plugin_slug    = $args[0];
-		$plugin_namespace = ucwords($plugin_slug);
+		$plugin_namespace = ucwords(str_replace('-', '', $plugin_slug));
 		$plugin_name    = ucwords(str_replace('-', ' ', $plugin_slug));
 		$plugin_package = str_replace(' ', '_', $plugin_name);
 
