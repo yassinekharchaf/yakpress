@@ -29,8 +29,8 @@ class Plugin extends YakPress
 		$nohelpers = \WP_CLI\Utils\get_flag_value($assoc_args, 'nohelpers');
 
 		wp_mkdir_p("$plugin_dir/$plugin_namespace");
-		wp_mkdir_p("$plugin_dir/$plugin_namespace/Databases");
-		wp_mkdir_p("$plugin_dir/$plugin_namespace/Databases/Migrations");
+		wp_mkdir_p("$plugin_dir/$plugin_namespace/Database");
+		wp_mkdir_p("$plugin_dir/$plugin_namespace/Database/Migrations");
 		wp_mkdir_p("$plugin_dir/$plugin_namespace/Features");
 		wp_mkdir_p("$plugin_dir/$plugin_namespace/Http");
 		wp_mkdir_p("$plugin_dir/$plugin_namespace/Http/Requests");
