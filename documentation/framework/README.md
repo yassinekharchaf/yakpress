@@ -742,11 +742,11 @@ Comme pout la plupart des autre Features, le **slug** du composant est en propri
 ```php
 <?php
 
-namespace {{plugin_namespace}}\Features\Widgets;
+namespace Pluginname\Features\Widgets;
 
-class {{widget_class}} extends \WP_Widget
+class CustomWidget extends \WP_Widget
 {
-  public static $slug = "{{widget}}";
+  public static $slug = "custom";
 
   //ici on peut définir des arguments en plus que l'on pourrait passer à la vue qui s'affiche sur le front office
   public $args = array(
