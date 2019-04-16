@@ -43,7 +43,7 @@ class Plugin extends YakPress
 		$parent = new parent();
 
 		$file_to_create = array(
-			"$plugin_dir/$plugin_namespace/Databases/Database.php" => self::mustache_render('databases-database.mustache', $data),
+			"$plugin_dir/$plugin_namespace/Database/Database.php" => self::mustache_render('databases-database.mustache', $data),
 			"$plugin_dir/routes/action.php" => self::mustache_render('routes-action.mustache', $data),
 			"$plugin_dir/$plugin_namespace/Setup.php" => self::mustache_render('setup.mustache', $data),
 			"$plugin_dir/$plugin_namespace/Providers/ServicesProvider.php" => self::mustache_render('setup.mustache', $data),
