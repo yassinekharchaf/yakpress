@@ -33,7 +33,19 @@ class Metabox extends YakPress
 				"$plugin_dir/$plugin_namespace/Features/MetaBoxes/{$metabox_class}MetaBox.php" => self::mustache_render('features-metabox.mustache', $data),
 			), $force);
 
+			// Ajout du use du namespace
+			self::insert_into_file(
+				"$plugin_dir/config/features.php",
+				"<?php",
+				"use $plugin_namespace\\Features\\MetaBoxes\\{$metabox_class}Metabox;"
+			);
 
+			// Ajout dans le fichier config/features.php
+			self::insert_into_file(
+				"$plugin_dir/config/features.php",
+				"### METABOXES ###",
+				"	['add_meta_boxes',[{$metabox_class}Metabox::class,'init']],"
+			);
 
 			WP_CLI::success("La metabox a bien été créé");
 		} else {
