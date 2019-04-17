@@ -236,6 +236,28 @@ class YakPress extends Scaffold_Command
 		Migration::create($args, $assoc_args);
 	}
 
+	/**
+	 * Change de structure of wordpress so it tempt people to hack it
+	 *
+	 * ## Options
+	 *
+	 * --wp-content=<new-folder-name>
+	 * : The new name of the folder wp-content
+	 *
+	 * --plugins=<new-folder-name>
+	 * : The new name of the folder plugins
+	 *
+	 * --uploads=<new-folder-name>
+	 * : The new name of the folder uploads
+	 *
+	 */
+	public function morphing($args, $assoc_args)
+	{
+		require_once('Morphing.php');
+
+		Morphing::create($assoc_args);
+	}
+
 
 	/**
 	 * Localizes the template path.
