@@ -1,0 +1,44 @@
+<?php
+/**
+ * Plugin Name:     Yakpress Twig
+ * Plugin URI:      https://yassinekharchaf.github.io/yakpress/
+ * Description:     using of the twig template generator
+ * Author:          Yassine Kharchaf
+ * Author URI:      https://yassinekharchaf.github.io
+ * Version:         0.1.0
+ */
+
+
+// Loading the autoload
+require_once(__DIR__ . "/vendor/autoload.php");
+
+// loading the environment options
+$environment_options = include(__DIR__ . "/env.php");
+
+// Defining the root path of the active theme
+$template_dir = get_template_directory();
+
+// Creating the loader for the file with the base path for those files
+$loader = new \Twig\Loader\FilesystemLoader($template_dir . '/views');
+
+// Creating The twig object to be use in the function render()
+$twig = new \Twig\Environment($loader, $environment_options);
+
+// Making twig able to call wordpress functions
+$function = new \Twig\TwigFunction('func', function ($function_name, ...$args) {
+  return call_user_func($function_name, ...$args);
+});
+$twig->addFunction($function);
+
+/**
+ * Fonction that render a twig template
+ *
+ * @param string $file path of the twig file
+ * @param array $data an array of data to be sended to the twig file
+ * @return void
+ */
+function render($file, $data)
+{
+  global $twig;
+  echo $twig->render($file, $data);
+}

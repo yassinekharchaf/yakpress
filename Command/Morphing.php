@@ -12,15 +12,24 @@ class Morphing extends YakPress
 		$config_file_content = <<<EOT
 ### WORPHING ###
 // Change wp-content path
-define('WP_CONTENT_DIR', \$_SERVER['DOCUMENT_ROOT'] . '/$wp_content_name');
+if (isset(\$_SERVER['DOCUMENT_ROOT'])) {
+	define('WP_CONTENT_DIR', \$_SERVER['DOCUMENT_ROOT'] . '/$wp_content_name');
+}
 // Change wp-content url
-define('WP_CONTENT_URL', 'http://' . \$_SERVER['HTTP_HOST'] . '/$wp_content_name');
+if (isset(\$_SERVER['HTTP_HOST'])) {
+	define('WP_CONTENT_URL', 'http://' . \$_SERVER['HTTP_HOST'] . '/$wp_content_name');
+}
 // Change plugins path
-define('WP_PLUGIN_DIR', \$_SERVER['DOCUMENT_ROOT'] . '/$wp_content_name/$plugins_name');
+if (isset(\$_SERVER['DOCUMENT_ROOT'])) {
+	define('WP_PLUGIN_DIR', \$_SERVER['DOCUMENT_ROOT'] . '/$wp_content_name/$plugins_name');
+}
 // Change plugins url
-define('WP_PLUGIN_URL', 'http://' . \$_SERVER['HTTP_HOST'] . '/$wp_content_name/$plugins_name');
+if (isset(\$_SERVER['HTTP_HOST'])) {
+	define('WP_PLUGIN_URL', 'http://' . \$_SERVER['HTTP_HOST'] . '/$wp_content_name/$plugins_name');
+}
 // change uploads path
 define('UPLOADS', '$wp_content_name/$uploads_name');
+
 EOT;
 
 		$wordpress_dir = ABSPATH;

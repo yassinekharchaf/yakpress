@@ -258,6 +258,16 @@ class YakPress extends Scaffold_Command
 		Morphing::create($assoc_args);
 	}
 
+	/**
+	 * Change de structure of wordpress so it tempt people to hack it
+	 */
+	public function twig($args, $assoc_args)
+	{
+		require_once('Twig.php');
+
+		Twig::create($args, $assoc_args);
+	}
+
 
 	/**
 	 * Localizes the template path.
