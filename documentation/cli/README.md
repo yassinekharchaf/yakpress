@@ -20,6 +20,7 @@ Pour plus de simplicité encore il est possible d'utiliser `wp yakpress <subcomm
 - [middleware](#middleware)
 - [provider](#provider)
 - [migration](#migration)
+- [morphing](#morphing)
 
 ## plugin
 
@@ -112,11 +113,11 @@ Lorsque l'on créer la page, celle-ci est automatiquement ajouter au fichier de 
 
 `wp yakpress controller <name> --plugin=plugin-name --model`
 
-| Propriété  | Obligatoire | Description                                               |
-| ---------- | :---------: | :-------------------------------------------------------- |
-| name       |     oui     | slug du controller.                                       |
-| plugin     |     oui     | le nom du dossier plugin                                  |
-| controller |     non     | un model sera alors créer et le controller y sera associé |
+| Propriété | Obligatoire | Description                                               |
+| --------- | :---------: | :-------------------------------------------------------- |
+| name      |     oui     | slug du controller.                                       |
+| plugin    |     oui     | le nom du dossier plugin                                  |
+| model     |     non     | un model sera alors créer et le controller y sera associé |
 
 ## middleware
 
@@ -144,3 +145,13 @@ Lorsque l'on créer la page, celle-ci est automatiquement ajouter au fichier de 
 | --------- | :---------: | :----------------------- |
 | name      |     oui     | slug du migration.       |
 | plugin    |     oui     | le nom du dossier plugin |
+
+## morphing
+
+`wp yakpress morphing --wp-content=<new-content-name> --plugins=<new-plugin-name> --uploads=<new-uploads-name>`
+
+| Propriété  | Obligatoire | Description                          |
+| ---------- | :---------: | :----------------------------------- |
+| wp-content |     oui     | le nouveau nom du dossier wp-content |
+| plugins    |     oui     | le nouveau nom du dossier plugins    |
+| uploads    |     oui     | le nouveau nom du dossier uploads    |
