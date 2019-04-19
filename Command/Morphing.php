@@ -34,7 +34,7 @@ EOT;
 
 		$wordpress_dir = ABSPATH;
 
-		insert_into_file($wordpress_dir . 'wp-config.php', "That's all, stop editing!", $config_file_content, false);
+		self::insert_into_file($wordpress_dir . 'wp-config.php', "That's all, stop editing!", $config_file_content, false);
 
 		rename(ABSPATH . "wp-content/plugins", ABSPATH . "wp-content/$plugins_name");
 		rename(ABSPATH . "wp-content/uploads", ABSPATH . "wp-content/$uploads_name");
