@@ -30,7 +30,7 @@ class Taxonomy extends YakPress
 
 			$parent = new parent();
 			$parent->create_files(array(
-				"$plugin_dir/$plugin_namespace/Features/Taxonomies/{$taxonomy_class}Taxonomy.php" => self::mustache_render('features-taxonomy.mustache', $data),
+				"$plugin_dir/$plugin_namespace/Features/Taxonomies/{$taxonomy_class}Taxonomy.php" => self::mustache_render('plugin/features-taxonomy.mustache', $data),
 			), $force);
 
 			// Ajout du use du namespace

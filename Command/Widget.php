@@ -30,7 +30,7 @@ class Widget extends YakPress
 
 			$parent = new parent();
 			$parent->create_files(array(
-				"$plugin_dir/$plugin_namespace/Features/Widgets/{$widget_class}Widget.php" => self::mustache_render('features-widget.mustache', $data),
+				"$plugin_dir/$plugin_namespace/Features/Widgets/{$widget_class}Widget.php" => self::mustache_render('plugin/features-widget.mustache', $data),
 			), $force);
 
 			// Ajout du use du namespace

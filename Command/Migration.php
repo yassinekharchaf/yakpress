@@ -30,7 +30,7 @@ class Migration extends YakPress
 
 			$parent = new parent();
 			$parent->create_files(array(
-				"$plugin_dir/$plugin_namespace/Database/Migrations/{$migration_class}Table.php" => self::mustache_render('databases-migration.mustache', $data),
+				"$plugin_dir/$plugin_namespace/Database/Migrations/{$migration_class}Table.php" => self::mustache_render('plugin/databases-migration.mustache', $data),
 			), $force);
 
 			// Ajout du use du namespace

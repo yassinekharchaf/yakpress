@@ -30,7 +30,7 @@ class Section extends YakPress
 
 			$parent = new parent();
 			$parent->create_files(array(
-				"$plugin_dir/$plugin_namespace/Features/Sections/{$section_class}Section.php" => self::mustache_render('features-section.mustache', $data),
+				"$plugin_dir/$plugin_namespace/Features/Sections/{$section_class}Section.php" => self::mustache_render('plugin/features-section.mustache', $data),
 			), $force);
 
 			// Ajout du use du namespace

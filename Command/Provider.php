@@ -26,7 +26,7 @@ class Provider extends YakPress
 
 			$parent = new parent();
 			$parent->create_files(array(
-				"$plugin_dir/$plugin_namespace/Providers/{$provider_class}Provider.php" => self::mustache_render('providers-provider.mustache', $data),
+				"$plugin_dir/$plugin_namespace/Providers/{$provider_class}Provider.php" => self::mustache_render('plugin/providers-provider.mustache', $data),
 			), $force);
 
 			WP_CLI::success("Création du fichier {$provider_class}Provider.php");

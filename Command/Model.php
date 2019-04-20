@@ -32,7 +32,7 @@ class Model extends YakPress
 
 			$parent = new parent();
 			$parent->create_files(array(
-				"$plugin_dir/$plugin_namespace/Http/Models/{$model_class}Model.php" => self::mustache_render('http-model.mustache', $data),
+				"$plugin_dir/$plugin_namespace/Http/Models/{$model_class}Model.php" => self::mustache_render('plugin/http-model.mustache', $data),
 			), $force);
 
 			if (!is_file("$plugin_dir/$plugin_namespace/Http/Models/Model.php")) {
@@ -40,14 +40,14 @@ class Model extends YakPress
 
 				$parent = new parent();
 				$parent->create_files(array(
-					"$plugin_dir/$plugin_namespace/Http/Models/Model.php" => self::mustache_render('http-model-main.mustache', $data),
+					"$plugin_dir/$plugin_namespace/Http/Models/Model.php" => self::mustache_render('plugin/http-model-main.mustache', $data),
 				), $force);
 				WP_CLI::success("Création du fichier Model.php");
 			}
 
 			if ($controller) {
 				$parent->create_files(array(
-					"$plugin_dir/$plugin_namespace/Http/Controllers/{$model_class}Controller.php" => self::mustache_render('http-controller.mustache', $data),
+					"$plugin_dir/$plugin_namespace/Http/Controllers/{$model_class}Controller.php" => self::mustache_render('plugin/http-controller.mustache', $data),
 				), $force);
 				WP_CLI::success("Création du fichier {$model_class}Controller.php");
 			}

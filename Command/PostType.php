@@ -30,7 +30,7 @@ class PostType extends YakPress
 
 			$parent = new parent();
 			$parent->create_files(array(
-				"$plugin_dir/$plugin_namespace/Features/PostTypes/{$post_type_class}PostType.php" => self::mustache_render('features-posttype.mustache', $data),
+				"$plugin_dir/$plugin_namespace/Features/PostTypes/{$post_type_class}PostType.php" => self::mustache_render('plugin/features-posttype.mustache', $data),
 			), $force);
 
 			// Ajout du use du namespace

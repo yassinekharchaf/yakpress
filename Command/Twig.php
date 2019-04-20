@@ -22,8 +22,8 @@ class Twig extends YakPress
 		// Create files inside the plugin
 		$parent = new parent();
 		$parent->create_files(array(
-			"$plugin_dir/yakpress-twig.php" => self::mustache_render('twig-plugin.mustache', []),
-			"$plugin_dir/env.php" => self::mustache_render('twig-env.mustache', []),
+			"$plugin_dir/twig/yakpress-twig.php" => self::mustache_render('twig-plugin.mustache', []),
+			"$plugin_dir/twig/env.php" => self::mustache_render('twig-env.mustache', []),
 		), $force);
 
 		// installing the twig librairy

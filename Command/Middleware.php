@@ -30,7 +30,7 @@ class Middleware extends YakPress
 
 			$parent = new parent();
 			$parent->create_files(array(
-				"$plugin_dir/$plugin_namespace/Http/Middlewares/{$middleware_class}Middleware.php" => self::mustache_render('http-middleware.mustache', $data),
+				"$plugin_dir/$plugin_namespace/Http/Middlewares/{$middleware_class}Middleware.php" => self::mustache_render('plugin/http-middleware.mustache', $data),
 			), $force);
 
 
