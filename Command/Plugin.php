@@ -56,7 +56,7 @@ class Plugin extends YakPress
 			"$plugin_dir/config/hooks.php" => self::mustache_render('config-hooks.mustache', $data),
 			"$plugin_dir/config/providers.php" => self::mustache_render('config-providers.mustache', $data),
 			"$plugin_dir/.gitignore" => self::mustache_render('gitignore.mustache', $data),
-			"$plugin_dir/autoload.php" => self::mustache_render('autoload.mustache', $data),
+			"$plugin_dir/composer.json" => self::mustache_render('composer.mustache', $data),
 			"$plugin_dir/bootstrap.php" => self::mustache_render('bootstrap.mustache', $data),
 			"$plugin_dir/env.php" => self::mustache_render('env.mustache', $data),
 		);
@@ -71,6 +71,8 @@ class Plugin extends YakPress
 			$skip_message = 'All plugin files were skipped.',
 			$success_message = 'Created plugin files.'
 		);
+
+		shell_exec("composer dump-autoload -d $plugin_dir");
 
 		WP_CLI::success("Le plugin a bien été créé. Let's go");
 	}

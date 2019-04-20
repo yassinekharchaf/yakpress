@@ -4,7 +4,15 @@
     "type": "wp-cli-package",
     "homepage": "https://github.com/yassinekharchaf/yakpress",
     "license": "MIT",
-    "authors": [],
+    "authors": [{
+        "name": "Yassine Kharchaf",
+        "email": "yassine.kharchaf@gmail.com",
+        "role": "Developer"
+    }],
+    "version": "0.3.2",
+    "support": {
+        "docs": "https://yassinekharchaf.github.io/yakpress"
+    },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "autoload": {
