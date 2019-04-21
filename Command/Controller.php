@@ -1,5 +1,7 @@
 <?php
 
+namespace Command;
+
 class Controller extends YakPress
 {
 	public static function create($args, $assoc_args)
@@ -22,7 +24,7 @@ class Controller extends YakPress
 
 
 		if (!is_dir("$plugin_dir/$plugin_namespace/Http/Controllers")) {
-			WP_CLI::success("Création du Dossier Controllers");
+			\WP_CLI::success("Création du Dossier Controllers");
 			wp_mkdir_p("$plugin_dir/$plugin_namespace/Http/Controllers");
 		}
 
@@ -34,7 +36,7 @@ class Controller extends YakPress
 				"$plugin_dir/$plugin_namespace/Http/Controllers/{$controller_class}Controller.php" => self::mustache_render('plugin/http-controller.mustache', $data),
 			), $force);
 
-			WP_CLI::success("Création du fichier {$controller_class}Controller.php");
+			\WP_CLI::success("Création du fichier {$controller_class}Controller.php");
 
 
 			if ($model) {
@@ -45,18 +47,18 @@ class Controller extends YakPress
 					$parent->create_files(array(
 						"$plugin_dir/$plugin_namespace/Http/Models/Model.php" => self::mustache_render('plugin/http-model-main.mustache', $data),
 					), $force);
-					WP_CLI::success("Création du fichier Model.php");
+					\WP_CLI::success("Création du fichier Model.php");
 				}
 				$parent->create_files(array(
 					"$plugin_dir/$plugin_namespace/Http/Models/{$controller_class}Model.php" => self::mustache_render('plugin/http-model.mustache', $data),
 				), $force);
-				WP_CLI::success("Création du fichier {$controller_class}Model.php");
+				\WP_CLI::success("Création du fichier {$controller_class}Model.php");
 			}
 
 
-			WP_CLI::success("Le controller a bien été créé");
+			\WP_CLI::success("Le controller a bien été créé");
 		} else {
-			WP_CLI::warning("Le fichier {$controller_class}Controller.php existe déjà");
+			\WP_CLI::warning("Le fichier {$controller_class}Controller.php existe déjà");
 		}
 	}
 }

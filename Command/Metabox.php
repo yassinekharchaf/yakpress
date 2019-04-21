@@ -1,5 +1,7 @@
 <?php
 
+namespace Command;
+
 class Metabox extends YakPress
 {
 	public static function create($args, $assoc_args)
@@ -20,13 +22,13 @@ class Metabox extends YakPress
 		$force = \WP_CLI\Utils\get_flag_value($assoc_args, 'force');
 
 		if (!is_dir("$plugin_dir/$plugin_namespace/Features/MetaBoxes")) {
-			WP_CLI::success("Création du Dossier MetaBoxes");
+			\WP_CLI::success("Création du Dossier MetaBoxes");
 			wp_mkdir_p("$plugin_dir/$plugin_namespace/Features/MetaBoxes");
 		}
 
 		if (!is_file("$plugin_dir/$plugin_namespace/Features/MetaBoxes/{$metabox_class}MetaBox.php")) {
 			// AJout du fichier pour le post type
-			WP_CLI::success("Création du fichier {$metabox_class}MetaBox.php");
+			\WP_CLI::success("Création du fichier {$metabox_class}MetaBox.php");
 
 			$parent = new parent();
 			$parent->create_files(array(
@@ -47,9 +49,9 @@ class Metabox extends YakPress
 				"	['add_meta_boxes',[{$metabox_class}Metabox::class,'init']],"
 			);
 
-			WP_CLI::success("La metabox a bien été créé");
+			\WP_CLI::success("La metabox a bien été créé");
 		} else {
-			WP_CLI::warning("Le fichier {$metabox_class}MetaBox.php existe déjà");
+			\WP_CLI::warning("Le fichier {$metabox_class}MetaBox.php existe déjà");
 		}
 	}
 }

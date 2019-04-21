@@ -1,5 +1,7 @@
 <?php
 
+namespace Command;
+
 class Twig extends YakPress
 {
 	public static function create($args, $assoc_args)
@@ -9,7 +11,7 @@ class Twig extends YakPress
 
 		// Check if the plugin already exists
 		if (is_dir($plugin_dir)) {
-			WP_CLI::warning("yakpress-twig plugin is already installed");
+			\WP_CLI::warning("yakpress-twig plugin is already installed");
 			exit;
 		}
 
@@ -22,8 +24,8 @@ class Twig extends YakPress
 		// Create files inside the plugin
 		$parent = new parent();
 		$parent->create_files(array(
-			"$plugin_dir/twig/yakpress-twig.php" => self::mustache_render('twig-plugin.mustache', []),
-			"$plugin_dir/twig/env.php" => self::mustache_render('twig-env.mustache', []),
+			"$plugin_dir/twig/yakpress-twig.php" => self::mustache_render('twig/twig-plugin.mustache', []),
+			"$plugin_dir/twig/env.php" => self::mustache_render('twig/twig-env.mustache', []),
 		), $force);
 
 		// installing the twig librairy
@@ -32,6 +34,6 @@ class Twig extends YakPress
 		// WP_CLI::runcommand("plugin activate yakpress-twig", []);
 
 		// End of command
-		WP_CLI::success("The Yakpress-twig plugin has been installed and activated.");
+		\WP_CLI::success("The Yakpress-twig plugin has been installed and activated.");
 	}
 }
