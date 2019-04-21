@@ -50,7 +50,7 @@ class YakPress extends \Scaffold_Command
    * <post-type-name>
    * : Nom du type de contenu sous format slug donc sans accent ni espace
    *
-   * --plugin=<plugin-name>
+   * [--plugin=<plugin-name>]
    * : Nom du plugin auquel rajouter le post type
    *
    */
@@ -68,7 +68,7 @@ class YakPress extends \Scaffold_Command
    * <metabox-name>
    * : Nom de la metabox
    *
-   * --plugin=<plugin-name>
+   * [--plugin=<plugin-name>]
    * : Nom du plugin auquel rajouter la metabox
    *
    */
@@ -85,7 +85,7 @@ class YakPress extends \Scaffold_Command
    * <widget-name>
    * : Nom du widget
    *
-   * --plugin=<plugin-name>
+   * [--plugin=<plugin-name>]
    * : Nom du plugin auquel rajouter le widget
    *
    */
@@ -102,7 +102,7 @@ class YakPress extends \Scaffold_Command
    * <taxonomy-name>
    * : Nom de la taxonomie
    *
-   * --plugin=<plugin-name>
+   * [--plugin=<plugin-name>]
    * : Nom du plugin auquel rajouter le widget
    *
    */
@@ -120,7 +120,7 @@ class YakPress extends \Scaffold_Command
    * <section-name>
    * : Nom de la section
    *
-   * --plugin=<plugin-name>
+   * [--plugin=<plugin-name>]
    * : Nom du plugin auquel rajouter le widget
    *
    */
@@ -137,7 +137,7 @@ class YakPress extends \Scaffold_Command
    * <page-name>
    * : Nom de la page
    *
-   * --plugin=<plugin-name>
+   * [--plugin=<plugin-name>]
    * : Nom du plugin auquel rajouter le widget
    *
    * [--controller]
@@ -160,7 +160,7 @@ class YakPress extends \Scaffold_Command
    * <model-name>
    * : Nom du model
    *
-   * --plugin=<plugin-name>
+   * [--plugin=<plugin-name>]
    * : Nom du plugin auquel rajouter le widget
    *
    * [--controller]
@@ -179,9 +179,9 @@ class YakPress extends \Scaffold_Command
    * ## OPTIONS
    *
    * <controller-name>
-   * : Nom du model
+   * : Nom du controller
    *
-   * --plugin=<plugin-name>
+   * [--plugin=<plugin-name>]
    * : Nom du plugin auquel rajouter le widget
    *
    * [--model]
@@ -201,7 +201,7 @@ class YakPress extends \Scaffold_Command
    * <provider-name>
    * : Nom du provider
    *
-   * --plugin=<plugin-name>
+   * [--plugin=<plugin-name>]
    * : Nom du plugin auquel rajouter le provider
    *
    */
@@ -218,7 +218,7 @@ class YakPress extends \Scaffold_Command
    * <middleware-name>
    * : Nom du middleware
    *
-   * --plugin=<plugin-name>
+   * [--plugin=<plugin-name>]
    * : Nom du plugin auquel rajouter le middleware
    *
    */
@@ -235,7 +235,7 @@ class YakPress extends \Scaffold_Command
    * <migration-name>
    * : Nom du middleware
    *
-   * --plugin=<plugin-name>
+   * [--plugin=<plugin-name>]
    * : Nom du plugin auquel rajouter la migration
    *
    */
@@ -299,5 +299,43 @@ class YakPress extends \Scaffold_Command
       }
     }
     fclose($f);
+  }
+  public static function miou($args, $assoc_args)
+  {
+    $plugin_root = WP_PLUGIN_DIR;
+    $current_dir = shell_exec("pwd");
+
+    $in_plugin = strpos($current_dir, $plugin_root);
+
+    if ($in_plugin !== false) {
+      $current_dir_array = explode("/", $current_dir);
+      $current_dir = end($current_dir_array);
+      \WP_CLI::success("Vous vous trouvez dans le plugin $current_dir");
+    } else {
+      \WP_CLI::danger("You are not in a plugin, please give a specific plugin with --plugin=plugin-name or cd to the root of the plugin you work in.");
+      \WP_CLI::halt();
+    }
+    \WP_CLI::success("fin de commande");
+  }
+
+  public static function get_plugin_slug($assoc_args)
+  {
+    if (isset($assoc_args['plugin'])) {
+      return $assoc_args['plugin'];
+    }
+    $plugin_root = WP_PLUGIN_DIR;
+    $current_dir = shell_exec("pwd");
+    $current_dir = str_replace("\n", "", $current_dir);
+    $in_plugin = strpos($current_dir, $plugin_root);
+
+    if ($in_plugin !== false) {
+      $current_dir = substr($current_dir, strlen($plugin_root) + 1);
+      if (strlen($current_dir) > 0 && strpos($current_dir, "/") == false) {
+        return $current_dir;
+      }
+    } else {
+      \WP_CLI::danger("You are not in a plugin, please give a specific plugin with --plugin=plugin-name or cd to the root of the plugin you work in.");
+      \WP_CLI::halt();
+    }
   }
 }
