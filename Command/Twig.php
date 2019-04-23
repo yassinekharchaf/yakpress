@@ -24,14 +24,14 @@ class Twig extends YakPress
 		// Create files inside the plugin
 		$parent = new parent();
 		$parent->create_files(array(
-			"$plugin_dir/twig/yakpress-twig.php" => self::mustache_render('twig/twig-plugin.mustache', []),
-			"$plugin_dir/twig/env.php" => self::mustache_render('twig/twig-env.mustache', []),
+			"$plugin_dir/yakpress-twig.php" => self::mustache_render('twig/twig-plugin.mustache', []),
+			"$plugin_dir/env.php" => self::mustache_render('twig/twig-env.mustache', []),
 		), $force);
 
 		// installing the twig librairy
 		shell_exec("composer require \"twig/twig:^2.0\" -d $plugin_dir");
 		//Activate the plugin
-		// WP_CLI::runcommand("plugin activate yakpress-twig", []);
+		\WP_CLI::runcommand("plugin activate yakpress-twig", []);
 
 		// End of command
 		\WP_CLI::success("The Yakpress-twig plugin has been installed and activated.");

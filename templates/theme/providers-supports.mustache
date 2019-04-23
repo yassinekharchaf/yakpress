@@ -1,0 +1,22 @@
+<?php
+
+namespace {{ theme_namespace }}\Providers;
+
+class SupportProvider
+{
+
+  public static function boot()
+  {
+    add_action('after_setup_theme', [self::class, 'add']);
+  }
+
+
+  public static function add()
+  {
+    $supports  = \Theme\config('supports');
+
+    foreach ($supports as $support) {
+      add_theme_support($support);
+    }
+  }
+}

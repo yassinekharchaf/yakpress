@@ -1,0 +1,11 @@
+<?php
+
+global $twig;
+// Making twig able to call wordpress functions
+$function = new \Twig\TwigFunction('func', function ($function_name, ...$args) {
+  return call_user_func($function_name, ...$args);
+});
+$twig->addFunction($function);
+
+// Add Any global value here
+$twig->addGlobal("menu", wp_nav_menu(['echo' => false]));

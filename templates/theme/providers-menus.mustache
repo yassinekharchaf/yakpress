@@ -1,0 +1,20 @@
+<?php
+
+namespace {{ theme_namespace }}\Providers;
+
+class MenuProvider
+{
+  public static function boot()
+  {
+    add_action('after_setup_theme', [self::class, 'register']);
+  }
+
+  public static function register()
+  {
+    $menus  = \Theme\config('menus');
+
+    foreach ($menus as $menu) {
+      register_nav_menu(...$menu);
+    }
+  }
+}

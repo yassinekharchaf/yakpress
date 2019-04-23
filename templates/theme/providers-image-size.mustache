@@ -1,0 +1,20 @@
+<?php
+
+namespace {{ theme_namespace }}\Providers;
+
+class ImageSizeProvider
+{
+  public static function boot()
+  {
+    add_action('after_setup_theme', [self::class, 'add']);
+  }
+
+  public static function add()
+  {
+    $isizes  = \Theme\config('image-size');
+
+    foreach ($isizes as $isize) {
+      add_image_size(...$isize);
+    }
+  }
+}

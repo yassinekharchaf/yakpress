@@ -1,0 +1,17 @@
+{
+	"name": "{{ theme_name }} Theme",
+  "description": "new {{ theme_name }} Theme",
+  "autoload": {
+    "psr-4": {
+      "{{ theme_namespace }}\\": "{{ theme_namespace }}/"
+    },
+    "files": [
+      "helpers.php",
+      "config/twig.php",
+      "bootstrap.php"
+    ]
+  },
+  "require": {
+    "twig/twig": "^2.0"
+  }
+}

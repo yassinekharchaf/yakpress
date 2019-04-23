@@ -20,6 +20,4 @@ WP_CLI::add_command('plugin:migration', ["Command\YakPress", "migration"]);
 WP_CLI::add_command('morphing', ["Command\YakPress", "morphing"]);
 WP_CLI::add_command('add:twig', ["Command\YakPress", "twig"]);
 
-
-
-WP_CLI::add_command("bonjour", ["Command\Yakpress", "miou"]);
+WP_CLI::add_command('theme:new', ["Command\YakPress", "theme"]);
