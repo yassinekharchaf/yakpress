@@ -1,6 +1,6 @@
 <?php
 
-namespace {{theme_namespace}}\Providers;
+namespace {{dir_namespace}}\Providers;
 
 class FeaturesProvider
 {
@@ -11,7 +11,7 @@ class FeaturesProvider
 	 */
 	public static function boot()
 	{
-		$features = \Theme\config('features');
+		$features = config('features');
 		foreach ($features as $feature) {
 			add_action(...$feature);
 		}

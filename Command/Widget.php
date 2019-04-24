@@ -4,47 +4,45 @@ namespace Command;
 
 class Widget extends YakPress
 {
-	public static function create($args, $assoc_args)
+	public static function create($args, $assoc_args, $dir_slug, $dir_path)
 	{
-		$widget = strtolower($args[0]);
-		$widget_class = ucwords(str_replace('-', '', $widget));
-		$plugin_slug    = self::get_plugin_slug($assoc_args);
-		$plugin_name    = ucwords(str_replace('-', ' ', $plugin_slug));
-		$plugin_namespace = str_replace(' ', '', $plugin_name);
-		$plugin_dir = WP_PLUGIN_DIR . "/$plugin_slug";
+		$widget        = strtolower($args[0]);
+		$widget_class  = ucwords(str_replace('-', '', $widget));
+		$dir_name      = ucwords(str_replace('-', ' ', $dir_slug));
+		$dir_namespace = str_replace(' ', '', $dir_name);
 
 		$data = [
-			'widget' => $widget,
-			'widget_class' => $widget_class,
-			'plugin_namespace' => $plugin_namespace
+			'widget'        => $widget,
+			'widget_class'  => $widget_class,
+			'dir_namespace' => $dir_namespace
 		];
 
 		$force = \WP_CLI\Utils\get_flag_value($assoc_args, 'force');
 
-		if (!is_dir("$plugin_dir/$plugin_namespace/Features/Widgets")) {
+		if (!is_dir("$dir_path/$dir_namespace/Features/Widgets")) {
 			\WP_CLI::success("Création du Dossier Widgets");
-			wp_mkdir_p("$plugin_dir/$plugin_namespace/Features/Widgets");
+			wp_mkdir_p("$dir_path/$dir_namespace/Features/Widgets");
 		}
 
-		if (!is_file("$plugin_dir/$plugin_namespace/Features/Widgets/{$widget_class}Widget.php")) {
+		if (!is_file("$dir_path/$dir_namespace/Features/Widgets/{$widget_class}Widget.php")) {
 			// AJout du fichier pour le post type
 			\WP_CLI::success("Création du fichier {$widget_class}Widget.php");
 
 			$parent = new parent();
 			$parent->create_files(array(
-				"$plugin_dir/$plugin_namespace/Features/Widgets/{$widget_class}Widget.php" => self::mustache_render('plugin/features-widget.mustache', $data),
+				"$dir_path/$dir_namespace/Features/Widgets/{$widget_class}Widget.php" => self::mustache_render('commun/features-widget.mustache', $data),
 			), $force);
 
 			// Ajout du use du namespace
 			self::insert_into_file(
-				"$plugin_dir/config/features.php",
+				"$dir_path/config/features.php",
 				"<?php",
-				"use $plugin_namespace\\Features\\Widgets\\{$widget_class}Widget;"
+				"use $dir_namespace\\Features\\Widgets\\{$widget_class}Widget;"
 			);
 
 			// Ajout dans le fichier config/features.php
 			self::insert_into_file(
-				"$plugin_dir/config/features.php",
+				"$dir_path/config/features.php",
 				"### WIDGETS ###",
 				"	['widget_init',[{$widget_class}Widget::class,'register']],"
 			);

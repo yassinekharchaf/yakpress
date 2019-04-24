@@ -76,9 +76,30 @@ class YakPress extends \Scaffold_Command
 	 * : Nom du plugin auquel rajouter le post type
 	 *
 	 */
-	public function post_type($args, $assoc_args)
+	public function plugin_post_type($args, $assoc_args)
 	{
-		PostType::create($args, $assoc_args);
+		$dir_slug = self::get_slug($assoc_args, "plugin");
+		$dir_path = WP_PLUGIN_DIR . "/$dir_slug";
+		PostType::create($args, $assoc_args, $dir_slug, $dir_path);
+	}
+
+	/**
+	 * Ajout d'un post type pour wordpress
+	 *
+	 * ## OPTIONS
+	 *
+	 * <post-type-name>
+	 * : Nom du type de contenu sous format slug donc sans accent ni espace
+	 *
+	 * [--theme=<theme-name>]
+	 * : Nom du theme auquel rajouter le post type
+	 *
+	 */
+	public function theme_post_type($args, $assoc_args)
+	{
+		$dir_slug = self::get_slug($assoc_args, "theme");
+		$dir_path = get_theme_root() . "/$dir_slug";
+		PostType::create($args, $assoc_args, $dir_slug, $dir_path);
 	}
 
 
@@ -94,9 +115,30 @@ class YakPress extends \Scaffold_Command
 	 * : Nom du plugin auquel rajouter la metabox
 	 *
 	 */
-	public function metabox($args, $assoc_args)
+	public function plugin_metabox($args, $assoc_args)
 	{
-		Metabox::create($args, $assoc_args);
+		$dir_slug = self::get_slug($assoc_args, "plugin");
+		$dir_path = WP_PLUGIN_DIR . "/$dir_slug";
+		Metabox::create($args, $assoc_args, $dir_slug, $dir_path);
+	}
+
+	/**
+	 * Ajout d'une metabox
+	 *
+	 * ## OPTIONS
+	 *
+	 * <metabox-name>
+	 * : Nom de la metabox
+	 *
+	 * [--theme=<theme-name>]
+	 * : Nom du theme auquel rajouter la metabox
+	 *
+	 */
+	public function theme_metabox($args, $assoc_args)
+	{
+		$dir_slug = self::get_slug($assoc_args, "theme");
+		$dir_path = get_theme_root() . "/$dir_slug";
+		Metabox::create($args, $assoc_args, $dir_slug, $dir_path);
 	}
 
 	/**
@@ -111,9 +153,30 @@ class YakPress extends \Scaffold_Command
 	 * : Nom du plugin auquel rajouter le widget
 	 *
 	 */
-	public function widget($args, $assoc_args)
+	public function plugin_widget($args, $assoc_args)
 	{
-		Widget::create($args, $assoc_args);
+		$dir_slug = self::get_slug($assoc_args, "plugin");
+		$dir_path = WP_PLUGIN_DIR . "/$dir_slug";
+		Widget::create($args, $assoc_args, $dir_slug, $dir_path);
+	}
+
+	/**
+	 * Ajout d'un widget
+	 *
+	 * ## OPTIONS
+	 *
+	 * <widget-name>
+	 * : Nom du widget
+	 *
+	 * [--theme=<theme-name>]
+	 * : Nom du theme auquel rajouter le widget
+	 *
+	 */
+	public function theme_widget($args, $assoc_args)
+	{
+		$dir_slug = self::get_slug($assoc_args, "theme");
+		$dir_path = get_theme_root() . "/$dir_slug";
+		Widget::create($args, $assoc_args, $dir_slug, $dir_path);
 	}
 
 	/**
@@ -128,9 +191,30 @@ class YakPress extends \Scaffold_Command
 	 * : Nom du plugin auquel rajouter le widget
 	 *
 	 */
-	public function taxonomy($args, $assoc_args)
+	public function plugin_taxonomy($args, $assoc_args)
 	{
-		Taxonomy::create($args, $assoc_args);
+		$dir_slug = self::get_slug($assoc_args, "plugin");
+		$dir_path = WP_PLUGIN_DIR . "/$dir_slug";
+		Taxonomy::create($args, $assoc_args, $dir_slug, $dir_path);
+	}
+
+	/**
+	 * Ajout d'une taxonomie
+	 *
+	 * ## OPTIONS
+	 *
+	 * <taxonomy-name>
+	 * : Nom de la taxonomie
+	 *
+	 * [--theme=<theme-name>]
+	 * : Nom du theme auquel rajouter le widget
+	 *
+	 */
+	public function theme_taxonomy($args, $assoc_args)
+	{
+		$dir_slug = self::get_slug($assoc_args, "theme");
+		$dir_path = get_theme_root() . "/$dir_slug";
+		Taxonomy::create($args, $assoc_args, $dir_slug, $dir_path);
 	}
 
 
@@ -146,9 +230,30 @@ class YakPress extends \Scaffold_Command
 	 * : Nom du plugin auquel rajouter le widget
 	 *
 	 */
-	public function section($args, $assoc_args)
+	public function plugin_section($args, $assoc_args)
 	{
-		Section::create($args, $assoc_args);
+		$dir_slug = self::get_slug($assoc_args, "plugin");
+		$dir_path = WP_PLUGIN_DIR . "/$dir_slug";
+		Section::create($args, $assoc_args, $dir_slug, $dir_path);
+	}
+
+	/**
+	 * Ajout d'une section
+	 *
+	 * ## OPTIONS
+	 *
+	 * <section-name>
+	 * : Nom de la section
+	 *
+	 * [--theme=<theme-name>]
+	 * : Nom du theme auquel rajouter le widget
+	 *
+	 */
+	public function theme_section($args, $assoc_args)
+	{
+		$dir_slug = self::get_slug($assoc_args, "theme");
+		$dir_path = get_theme_root() . "/$dir_slug";
+		Section::create($args, $assoc_args, $dir_slug, $dir_path);
 	}
 
 	/**
@@ -169,9 +274,36 @@ class YakPress extends \Scaffold_Command
 	 * : Ajout un model associé
 	 *
 	 */
-	public function page($args, $assoc_args)
+	public function plugin_page($args, $assoc_args)
 	{
-		Page::create($args, $assoc_args);
+		$dir_slug = self::get_slug($assoc_args, "plugin");
+		$dir_path = WP_PLUGIN_DIR . "/$dir_slug";
+		Page::create($args, $assoc_args, $dir_slug, $dir_path);
+	}
+
+	/**
+	 * Ajout d'une page
+	 *
+	 * ## OPTIONS
+	 *
+	 * <page-name>
+	 * : Nom de la page
+	 *
+	 * [--theme=<theme-name>]
+	 * : Nom du theme auquel rajouter le widget
+	 *
+	 * [--controller]
+	 * : Ajoute un controller associé
+	 *
+	 * [--model]
+	 * : Ajout un model associé
+	 *
+	 */
+	public function theme_page($args, $assoc_args)
+	{
+		$dir_slug = self::get_slug($assoc_args, "theme");
+		$dir_path = get_theme_root() . "/$dir_slug";
+		Page::create($args, $assoc_args, $dir_slug, $dir_path);
 	}
 
 	/**
@@ -190,13 +322,38 @@ class YakPress extends \Scaffold_Command
 	 *
 	 */
 
-	public function model($args, $assoc_args)
+	public function plugin_model($args, $assoc_args)
 	{
-		Model::create($args, $assoc_args);
+		$dir_slug = self::get_slug($assoc_args, "plugin");
+		$dir_path = WP_PLUGIN_DIR . "/$dir_slug";
+		Model::create($args, $assoc_args, $dir_slug, $dir_path);
 	}
 
 	/**
 	 * Ajout d'un model
+	 *
+	 * ## OPTIONS
+	 *
+	 * <model-name>
+	 * : Nom du model
+	 *
+	 * [--theme=<theme-name>]
+	 * : Nom du theme auquel rajouter le widget
+	 *
+	 * [--controller]
+	 * : Ajoute un controller associé
+	 *
+	 */
+
+	public function theme_model($args, $assoc_args)
+	{
+		$dir_slug = self::get_slug($assoc_args, "theme");
+		$dir_path = get_theme_root() . "/$dir_slug";
+		Model::create($args, $assoc_args, $dir_slug, $dir_path);
+	}
+
+	/**
+	 * Ajout d'un controller
 	 *
 	 * ## OPTIONS
 	 *
@@ -209,14 +366,43 @@ class YakPress extends \Scaffold_Command
 	 * [--model]
 	 * : Ajoute un controller associé
 	 *
+	 * [--resource]
+	 * : creé des méthodes resource (index, show, edit, update, delete)
+	 *
 	 */
-	public function controller($args, $assoc_args)
+	public function plugin_controller($args, $assoc_args)
 	{
-		Controller::create($args, $assoc_args);
+		$dir_slug = self::get_slug($assoc_args, "plugin");
+		$dir_path = WP_PLUGIN_DIR . "/$dir_slug";
+		Controller::create($args, $assoc_args, $dir_slug, $dir_path);
 	}
 
 	/**
-	 * Ajout d'un model
+	 * Create a controller for a theme
+	 *
+	 * # OPTIONS
+	 *
+	 * <controller-name>
+	 * : Nom du controller
+	 *
+	 * [--theme=<theme-name>]
+	 * : Nom du theme auquel rajouter le widget
+	 *
+	 * [--model]
+	 * : Ajoute un controller associé
+	 *
+	 * [--resource]
+	 * : creé des méthodes resource (index, show, edit, update, delete)
+	 */
+	public function theme_controller($args, $assoc_args)
+	{
+		$dir_slug = self::get_slug($assoc_args, "theme");
+		$dir_path = get_theme_root() . "/$dir_slug";
+		Controller::create($args, $assoc_args, $dir_slug, $dir_path);
+	}
+
+	/**
+	 * Ajout d'un provider
 	 *
 	 * ## OPTIONS
 	 *
@@ -227,9 +413,30 @@ class YakPress extends \Scaffold_Command
 	 * : Nom du plugin auquel rajouter le provider
 	 *
 	 */
-	public function provider($args, $assoc_args)
+	public function plugin_provider($args, $assoc_args)
 	{
-		Provider::create($args, $assoc_args);
+		$dir_slug = self::get_slug($assoc_args, "plugin");
+		$dir_path = WP_PLUGIN_DIR . "/$dir_slug";
+		Provider::create($args, $assoc_args, $dir_slug, $dir_path);
+	}
+
+	/**
+	 * Ajout d'un provider
+	 *
+	 * ## OPTIONS
+	 *
+	 * <provider-name>
+	 * : Nom du provider
+	 *
+	 * [--theme=<theme-name>]
+	 * : Nom du theme auquel rajouter le provider
+	 *
+	 */
+	public function theme_provider($args, $assoc_args)
+	{
+		$dir_slug = self::get_slug($assoc_args, "theme");
+		$dir_path = get_theme_root() . "/$dir_slug";
+		Provider::create($args, $assoc_args, $dir_slug, $dir_path);
 	}
 
 	/**
@@ -244,9 +451,30 @@ class YakPress extends \Scaffold_Command
 	 * : Nom du plugin auquel rajouter le middleware
 	 *
 	 */
-	public function middleware($args, $assoc_args)
+	public function plugin_middleware($args, $assoc_args)
 	{
-		Middleware::create($args, $assoc_args);
+		$dir_slug = self::get_slug($assoc_args, "plugin");
+		$dir_path = WP_PLUGIN_DIR . "/$dir_slug";
+		Middleware::create($args, $assoc_args, $dir_slug, $dir_path);
+	}
+
+	/**
+	 * Ajout d'un middleware
+	 *
+	 * ## OPTIONS
+	 *
+	 * <middleware-name>
+	 * : Nom du middleware
+	 *
+	 * [--theme=<theme-name>]
+	 * : Nom du theme auquel rajouter le middleware
+	 *
+	 */
+	public function theme_middleware($args, $assoc_args)
+	{
+		$dir_slug = self::get_slug($assoc_args, "theme");
+		$dir_path = get_theme_root() . "/$dir_slug";
+		Middleware::create($args, $assoc_args, $dir_slug, $dir_path);
 	}
 
 	/**
@@ -261,9 +489,11 @@ class YakPress extends \Scaffold_Command
 	 * : Nom du plugin auquel rajouter la migration
 	 *
 	 */
-	public function migration($args, $assoc_args)
+	public function plugin_migration($args, $assoc_args)
 	{
-		Migration::create($args, $assoc_args);
+		$dir_slug = self::get_slug($assoc_args, "plugin");
+		$dir_path = WP_PLUGIN_DIR . "/$dir_slug";
+		Migration::create($args, $assoc_args, $dir_slug, $dir_path);
 	}
 
 	/**
@@ -294,6 +524,9 @@ class YakPress extends \Scaffold_Command
 		Twig::create($args, $assoc_args);
 	}
 
+
+
+	###########################
 
 	/**
 	 * Localizes the template path.
@@ -348,7 +581,7 @@ class YakPress extends \Scaffold_Command
 				return $current_dir;
 			}
 		} else {
-			\WP_CLI::danger("You are not in a plugin, please give a specific plugin with --plugin=plugin-name or cd to the root of the plugin you work in.");
+			\WP_CLI::error("You are not in a $feature, please give a specific $feature with --$feature=$feature-name or cd to the root of the $feature you work in.");
 			\WP_CLI::halt();
 		}
 	}

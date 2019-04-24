@@ -1,15 +1,14 @@
 <?php
 
-namespace {{theme_namespace}}\Http\Controllers;
+namespace {{dir_namespace}}\Http\Controllers;
 
 {{#model}}
-use {{theme_namespace}}App\Http\Models\{{model_class}}Model;
+use {{dir_namespace}}\Http\Models\{{model_class}}Model;
 {{/model}}
 
 class {{controller_class}}Controller
 {
-
-  {{#resource}}
+	{{#resource}}
   /**
    * Affiche la page principal
    *
@@ -55,7 +54,7 @@ class {{controller_class}}Controller
     //view('viewpath', compact('data'));
   }
 
-   /**
+	 /**
    * Met à jour des données dans la db
    *
    * @return void
@@ -72,5 +71,5 @@ class {{controller_class}}Controller
   public static function delete()
   {
   }
-  {{/resource}}
+	{{/resource}}
 }

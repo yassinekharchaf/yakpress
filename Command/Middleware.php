@@ -4,35 +4,33 @@ namespace Command;
 
 class Middleware extends YakPress
 {
-	public static function create($args, $assoc_args)
+	public static function create($args, $assoc_args, $dir_slug, $dir_path)
 	{
-		$middleware = strtolower($args[0]);
+		$middleware       = strtolower($args[0]);
 		$middleware_class = ucwords(str_replace('-', '', $middleware));
-		$plugin_slug    = self::get_plugin_slug($assoc_args);
-		$plugin_name    = ucwords(str_replace('-', ' ', $plugin_slug));
-		$plugin_namespace = str_replace(' ', '', $plugin_name);
-		$plugin_dir = WP_PLUGIN_DIR . "/$plugin_slug";
-		$force = \WP_CLI\Utils\get_flag_value($assoc_args, 'force');
+		$dir_name         = ucwords(str_replace('-', ' ', $dir_slug));
+		$dir_namespace    = str_replace(' ', '', $dir_name);
+		$force            = \WP_CLI\Utils\get_flag_value($assoc_args, 'force');
 
 		$data = [
-			'middleware' => $middleware,
+			'middleware'       => $middleware,
 			'middleware_class' => $middleware_class,
-			'plugin_namespace' => $plugin_namespace,
+			'dir_namespace'    => $dir_namespace,
 		];
 
 
-		if (!is_dir("$plugin_dir/$plugin_namespace/Http/Middlewares")) {
+		if (!is_dir("$dir_path/$dir_namespace/Http/Middlewares")) {
 			\WP_CLI::success("Création du Dossier Middlewares");
-			wp_mkdir_p("$plugin_dir/$plugin_namespace/Http/Middlewares");
+			wp_mkdir_p("$dir_path/$dir_namespace/Http/Middlewares");
 		}
 
-		if (!is_file("$plugin_dir/$plugin_namespace/Http/Middlewares/{$middleware_class}Middleware.php")) {
+		if (!is_file("$dir_path/$dir_namespace/Http/Middlewares/{$middleware_class}Middleware.php")) {
 			// AJout du fichier pour le post type
 			\WP_CLI::success("Création du fichier {$middleware_class}Middleware.php");
 
 			$parent = new parent();
 			$parent->create_files(array(
-				"$plugin_dir/$plugin_namespace/Http/Middlewares/{$middleware_class}Middleware.php" => self::mustache_render('plugin/http-middleware.mustache', $data),
+				"$dir_path/$dir_namespace/Http/Middlewares/{$middleware_class}Middleware.php" => self::mustache_render('commun/http-middleware.mustache', $data),
 			), $force);
 
 
