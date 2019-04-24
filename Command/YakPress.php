@@ -43,12 +43,12 @@ class YakPress extends \Scaffold_Command
 	}
 
 	/**
-	 * Create a plugin as a micro framework which will be prefilled with files
+	 * Create a theme as a micro framework which will be prefilled with files
 	 *
 	 * ## OPTIONS
 	 *
 	 * <name>
-	 * : The name of the plugin
+	 * : The name of the theme
 	 *
 	 * [--nohelpers]
 	 * : ne rajoute pas le fichier helpers.php
@@ -517,7 +517,7 @@ class YakPress extends \Scaffold_Command
 	}
 
 	/**
-	 * Change de structure of wordpress so it tempt people to hack it
+	 * add the twig template generator and the helper render to use it
 	 */
 	public function twig($args, $assoc_args)
 	{

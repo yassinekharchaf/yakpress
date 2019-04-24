@@ -1,152 +1,274 @@
 # CLI commande
 
-La commande principal `yakpress` étant la commande `Scaffold_Command`.
-Elle donne accès à des sous commande qui permette de construire très vite notre plugin en micro framework.
+Les commandes étendent la commande `Scaffold_Command`.
+Elles permettent de construire très vite notre plugin/theme en micro framework.
 
-La commande de base est `wp yakpress <subcommande> <value> [--option] [--flag]`
+La commande de base est `wp <commande> <name> [--option] [--flag]`
 
-Pour en savoir plus sur une commande il est possible d'utiliser `wp yakpress <subcommande> --help`.
-Pour plus de simplicité encore il est possible d'utiliser `wp yakpress <subcommande> --prompt`. Ceci lancera alors un prompt qui permettra de remplir les informations au fur et à mesure.
+Pour en savoir plus sur les commandes il est possible d'utiliser `wp <commande> --help`.
+Pour plus de simplicité encore il est possible d'utiliser `wp <commande> --prompt`. Ceci lancera alors un prompt qui permettra de remplir les informations au fur et à mesure.
 
-- [plugin](#plugin)
-- [post_type](#post-type)
-- [taxonomy](#taxonomy)
-- [metabox](#metabox)
-- [widget](#widget)
-- [section](#section)
-- [page](#page)
-- [model](#model)
-- [controller](#controller)
-- [middleware](#middleware)
-- [provider](#provider)
-- [migration](#migration)
-- [morphing](#morphing)
+| plugin                                  | theme                                 | autre                 |
+| --------------------------------------- | ------------------------------------- | --------------------- |
+| [plugin:new](#plugin-new)               | [theme:new](#theme-new)               | [morphing](#morphing) |
+| [plugin:posttype](#plugin-posttype)     | [theme:posttype](#theme-posttype)     | [add:twig](#add-twig) |
+| [plugin:taxonomy](#plugin-taxonomy)     | [theme:taxonomy](#theme-taxonomy)     |                       |
+| [plugin:metabox](#plugin-metabox)       | [theme:metabox](#theme-metabox)       |                       |
+| [plugin:widget](#plugin-widget)         | [theme:widget](#theme-widget)         |                       |
+| [plugin:section](#plugin-section)       | [theme:section](#theme-section)       |                       |
+| [plugin:page](#plugin-page)             | [theme:page](#theme-page)             |                       |
+| [plugin:model](#plugin-model)           | [theme:model](#theme-model)           |                       |
+| [plugin:controller](#plugin-controller) | [theme:controller](#theme-controller) |                       |
+| [plugin:middleware](#plugin-middleware) | [theme:middleware](#theme-middleware) |                       |
+| [plugin:provider](#plugin-provider)     | [theme:provider](#theme-provider)     |                       |
+| [plugin:migration](#plugin-migration)   |                                       |                       |
 
 ## plugin
 
-`wp yakpress plugin <name> [--nohelpers]`
+### plugin:new
+
+`wp plugin:new <name> [--nohelpers]`
 
 | Propriété | Obligatoire | Description                                                                                                                                                                                              |
 | --------- | :---------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | name      |     oui     | nom du plugin en valeur slug. Donc en miniscule sans espace ni caractère spéciaux                                                                                                                        |
 | nohelpers |     non     | Ce flag permet de dire au cli qu'il ne faut pas créer de fichier helper. Cela est utile lorsque l'on créer plusieurs plugin dans une même application pour ne pas ce retrouver avec des helpers doublons |
 
-## post_type
+### plugin:posttype
 
-`wp yakpress post_type <name> --plugin=plugin-name`
+`wp plugin:posttype <name> [--plugin=plugin-name]`
 
 Lorsque l'on créer le post type, celui-ci est automatiquement ajouter au fichier de configuration `config/features.php` pour être automatiquement chargé.
 
-| Propriété | Obligatoire | Description              |
-| --------- | :---------: | :----------------------- |
-| name      |     oui     | slug du post type.       |
-| plugin    |     oui     | le nom du dossier plugin |
+| Propriété | Obligatoire | Description                                                   |
+| --------- | :---------: | :------------------------------------------------------------ |
+| name      |     oui     | slug du post type.                                            |
+| plugin    |     non     | Pas obligatoire si on se trouve à la racine du dossier plugin |
 
-## taxonomy
+### plugin:taxonomy
 
-`wp yakpress taxonomy <name> --plugin=plugin-name`
+`wp plugin:taxonomy <name> [--plugin=plugin-name]`
 
 Lorsque l'on créer la taxonomie, celle-ci est automatiquement ajouter au fichier de configuration `config/features.php` pour être automatiquement chargée.
 
-| Propriété | Obligatoire | Description              |
-| --------- | :---------: | :----------------------- |
-| name      |     oui     | slug de la taxonomy.     |
-| plugin    |     oui     | le nom du dossier plugin |
+| Propriété | Obligatoire | Description                                                   |
+| --------- | :---------: | :------------------------------------------------------------ |
+| name      |     oui     | slug de la taxonomy.                                          |
+| plugin    |     non     | Pas obligatoire si on se trouve à la racine du dossier plugin |
 
-## metabox
+### plugin:metabox
 
-`wp yakpress metabox <name> --plugin=plugin-name`
+`wp plugin:metabox <name> [--plugin=plugin-name]`
 
 Lorsque l'on créer la metabox, celle-ci est automatiquement ajouter au fichier de configuration `config/features.php` pour être automatiquement chargée.
 
-| Propriété | Obligatoire | Description              |
-| --------- | :---------: | :----------------------- |
-| name      |     oui     | slug de la metabox.      |
-| plugin    |     oui     | le nom du dossier plugin |
+| Propriété | Obligatoire | Description                                                   |
+| --------- | :---------: | :------------------------------------------------------------ |
+| name      |     oui     | slug de la metabox.                                           |
+| plugin    |     non     | Pas obligatoire si on se trouve à la racine du dossier plugin |
 
-## widget
+### plugin-:idget
 
-`wp yakpress widget <name> --plugin=plugin-name`
+`wp plugin:widget <name> [--plugin=plugin-name]`
 
 Lorsque l'on créer le widget, celui-ci est automatiquement ajouter au fichier de configuration `config/features.php` pour être automatiquement chargé.
 
-| Propriété | Obligatoire | Description              |
-| --------- | :---------: | :----------------------- |
-| name      |     oui     | slug de la widget.       |
-| plugin    |     oui     | le nom du dossier plugin |
+| Propriété | Obligatoire | Description                                                   |
+| --------- | :---------: | :------------------------------------------------------------ |
+| name      |     oui     | slug de la widget.                                            |
+| plugin    |     non     | Pas obligatoire si on se trouve à la racine du dossier plugin |
 
-## section
+### plugin:section
 
-`wp yakpress section <name> --plugin=plugin-name`
+`wp plugin:section <name> [--plugin=plugin-name]`
 
 Lorsque l'on créer la section, celle-ci est automatiquement ajouter au fichier de configuration `config/features.php` pour être automatiquement chargée.
 
-| Propriété | Obligatoire | Description              |
-| --------- | :---------: | :----------------------- |
-| name      |     oui     | slug de la section.      |
-| plugin    |     oui     | le nom du dossier plugin |
+| Propriété | Obligatoire | Description                                                   |
+| --------- | :---------: | :------------------------------------------------------------ |
+| name      |     oui     | slug de la section.                                           |
+| plugin    |     non     | Pas obligatoire si on se trouve à la racine du dossier plugin |
 
-## page
+### plugin:page
 
-`wp yakpress page <name> --plugin=plugin-name --controller --model`
+`wp plugin:page <name> [--plugin=plugin-name] [--controller] ]--model]`
 
 Lorsque l'on créer la page, celle-ci est automatiquement ajouter au fichier de configuration `config/features.php` pour être automatiquement chargée.
 
 | Propriété  | Obligatoire | Description                                                                    |
 | ---------- | :---------: | :----------------------------------------------------------------------------- |
 | name       |     oui     | slug de la page.                                                               |
-| plugin     |     oui     | le nom du dossier plugin                                                       |
+| plugin     |     non     | Pas obligatoire si on se trouve à la racine du dossier plugin                  |
 | controller |     non     | slug du controller qui sera alors directement associé à la page                |
 | model      |     non     | slug du model qui sera directement associé au controller s'il y en a un choisi |
 
-## model
+### plugin:model
 
-`wp yakpress model <name> --plugin=plugin-name --controller`
+`wp plugin:model <name> --plugin=plugin-name [--controller]`
 
-| Propriété  | Obligatoire | Description                                        |
-| ---------- | :---------: | :------------------------------------------------- |
-| name       |     oui     | slug du model.                                     |
-| plugin     |     oui     | le nom du dossier plugin                           |
-| controller |     non     | un controller sera alors créer et associé au model |
+| Propriété  | Obligatoire | Description                                                   |
+| ---------- | :---------: | :------------------------------------------------------------ |
+| name       |     oui     | slug du model.                                                |
+| plugin     |     non     | Pas obligatoire si on se trouve à la racine du dossier plugin |
+| controller |     non     | un controller sera alors créer et associé au model            |
 
-## controller
+### plugin:controller
 
-`wp yakpress controller <name> --plugin=plugin-name --model`
+`wp plugin:controller <name> [--plugin=plugin-name] [--model]`
 
-| Propriété | Obligatoire | Description                                               |
-| --------- | :---------: | :-------------------------------------------------------- |
-| name      |     oui     | slug du controller.                                       |
-| plugin    |     oui     | le nom du dossier plugin                                  |
-| model     |     non     | un model sera alors créer et le controller y sera associé |
+| Propriété | Obligatoire | Description                                                   |
+| --------- | :---------: | :------------------------------------------------------------ |
+| name      |     oui     | slug du controller.                                           |
+| plugin    |     non     | Pas obligatoire si on se trouve à la racine du dossier plugin |
+| model     |     non     | un model sera alors créer et le controller y sera associé     |
 
-## middleware
+### plugin:middleware
 
-`wp yakpress middleware <name> --plugin=plugin-name`
+`wp plugin:middleware <name> [--plugin=plugin-name]`
 
-| Propriété | Obligatoire | Description              |
-| --------- | :---------: | :----------------------- |
-| name      |     oui     | slug du middleware.      |
-| plugin    |     oui     | le nom du dossier plugin |
+| Propriété | Obligatoire | Description                                                   |
+| --------- | :---------: | :------------------------------------------------------------ |
+| name      |     oui     | slug du middleware.                                           |
+| plugin    |     non     | Pas obligatoire si on se trouve à la racine du dossier plugin |
 
-## provider
+### plugin:provider
 
-`wp yakpress provider <name> --plugin=plugin-name`
+`wp plugin:provider <name> [--plugin=plugin-name]`
 
-| Propriété | Obligatoire | Description              |
-| --------- | :---------: | :----------------------- |
-| name      |     oui     | slug du provider.        |
-| plugin    |     oui     | le nom du dossier plugin |
+| Propriété | Obligatoire | Description                                                   |
+| --------- | :---------: | :------------------------------------------------------------ |
+| name      |     oui     | slug du provider.                                             |
+| plugin    |     non     | Pas obligatoire si on se trouve à la racine du dossier plugin |
 
-## migration
+### plugin-migration
 
-`wp yakpress migration <name> --plugin=plugin-name`
+`wp theme:migration <name> [--theme=theme-name]`
 
-| Propriété | Obligatoire | Description              |
-| --------- | :---------: | :----------------------- |
-| name      |     oui     | slug du migration.       |
-| plugin    |     oui     | le nom du dossier plugin |
+| Propriété | Obligatoire | Description                                                   |
+| --------- | :---------: | :------------------------------------------------------------ |
+| name      |     oui     | slug du migration.                                            |
+| plugin    |     non     | Pas obligatoire si on se trouve à la racine du dossier plugin |
 
-## morphing
+## Theme
+
+### theme:new
+
+`wp theme:new <name> [--nohelpers]`
+
+| Propriété | Obligatoire | Description                                                                                                                                                                                             |
+| --------- | :---------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| name      |     oui     | nom du theme en valeur slug. Donc en miniscule sans espace ni caractère spéciaux                                                                                                                        |
+| nohelpers |     non     | Ce flag permet de dire au cli qu'il ne faut pas créer de fichier helper. Cela est utile lorsque l'on créer plusieurs theme dans une même application pour ne pas ce retrouver avec des helpers doublons |
+
+### theme:posttype
+
+`wp theme:posttype <name> [--theme=theme-name]`
+
+Lorsque l'on créer le post type, celui-ci est automatiquement ajouter au fichier de configuration `config/features.php` pour être automatiquement chargé.
+
+| Propriété | Obligatoire | Description                                                  |
+| --------- | :---------: | :----------------------------------------------------------- |
+| name      |     oui     | slug du post type.                                           |
+| theme     |     non     | Pas obligatoire si on se trouve à la racine du dossier theme |
+
+### theme:taxonomy
+
+`wp theme:taxonomy <name> [--theme=theme-name]`
+
+Lorsque l'on créer la taxonomie, celle-ci est automatiquement ajouter au fichier de configuration `config/features.php` pour être automatiquement chargée.
+
+| Propriété | Obligatoire | Description                                                  |
+| --------- | :---------: | :----------------------------------------------------------- |
+| name      |     oui     | slug de la taxonomy.                                         |
+| theme     |     non     | Pas obligatoire si on se trouve à la racine du dossier theme |
+
+### theme:metabox
+
+`wp theme:metabox <name> [--theme=theme-name]`
+
+Lorsque l'on créer la metabox, celle-ci est automatiquement ajouter au fichier de configuration `config/features.php` pour être automatiquement chargée.
+
+| Propriété | Obligatoire | Description                                                  |
+| --------- | :---------: | :----------------------------------------------------------- |
+| name      |     oui     | slug de la metabox.                                          |
+| theme     |     non     | Pas obligatoire si on se trouve à la racine du dossier theme |
+
+### theme:widget
+
+`wp theme:widget <name> [--theme=theme-name]`
+
+Lorsque l'on créer le widget, celui-ci est automatiquement ajouter au fichier de configuration `config/features.php` pour être automatiquement chargé.
+
+| Propriété | Obligatoire | Description                                                  |
+| --------- | :---------: | :----------------------------------------------------------- |
+| name      |     oui     | slug de la widget.                                           |
+| theme     |     non     | Pas obligatoire si on se trouve à la racine du dossier theme |
+
+### theme:section
+
+`wp theme:section <name> [--theme=theme-name]`
+
+Lorsque l'on créer la section, celle-ci est automatiquement ajouter au fichier de configuration `config/features.php` pour être automatiquement chargée.
+
+| Propriété | Obligatoire | Description                                                  |
+| --------- | :---------: | :----------------------------------------------------------- |
+| name      |     oui     | slug de la section.                                          |
+| theme     |     non     | Pas obligatoire si on se trouve à la racine du dossier theme |
+
+### theme:page
+
+`wp theme:page <name> [--theme=theme-name] [--controller] ]--model]`
+
+Lorsque l'on créer la page, celle-ci est automatiquement ajouter au fichier de configuration `config/features.php` pour être automatiquement chargée.
+
+| Propriété  | Obligatoire | Description                                                                    |
+| ---------- | :---------: | :----------------------------------------------------------------------------- |
+| name       |     oui     | slug de la page.                                                               |
+| theme      |     non     | Pas obligatoire si on se trouve à la racine du dossier theme                   |
+| controller |     non     | slug du controller qui sera alors directement associé à la page                |
+| model      |     non     | slug du model qui sera directement associé au controller s'il y en a un choisi |
+
+### theme:model
+
+`wp theme:model <name> --theme=theme-name [--controller]`
+
+| Propriété  | Obligatoire | Description                                                  |
+| ---------- | :---------: | :----------------------------------------------------------- |
+| name       |     oui     | slug du model.                                               |
+| theme      |     non     | Pas obligatoire si on se trouve à la racine du dossier theme |
+| controller |     non     | un controller sera alors créer et associé au model           |
+
+### theme:controller
+
+`wp theme:controller <name> [--theme=theme-name] [--model]`
+
+| Propriété | Obligatoire | Description                                                  |
+| --------- | :---------: | :----------------------------------------------------------- |
+| name      |     oui     | slug du controller.                                          |
+| theme     |     non     | Pas obligatoire si on se trouve à la racine du dossier theme |
+| model     |     non     | un model sera alors créer et le controller y sera associé    |
+
+### theme:middleware
+
+`wp theme:middleware <name> [--theme=theme-name]`
+
+| Propriété | Obligatoire | Description                                                  |
+| --------- | :---------: | :----------------------------------------------------------- |
+| name      |     oui     | slug du middleware.                                          |
+| theme     |     non     | Pas obligatoire si on se trouve à la racine du dossier theme |
+
+### theme:provider
+
+`wp theme:provider <name> [--theme=theme-name]`
+
+| Propriété | Obligatoire | Description                                                  |
+| --------- | :---------: | :----------------------------------------------------------- |
+| name      |     oui     | slug du provider.                                            |
+| theme     |     non     | Pas obligatoire si on se trouve à la racine du dossier theme |
+
+## Autres
+
+### morphing
 
 `wp yakpress morphing --wp-content=<new-content-name> --plugins=<new-plugin-name> --uploads=<new-uploads-name>`
 
@@ -155,3 +277,9 @@ Lorsque l'on créer la page, celle-ci est automatiquement ajouter au fichier de 
 | wp-content |     oui     | le nouveau nom du dossier wp-content |
 | plugins    |     oui     | le nouveau nom du dossier plugins    |
 | uploads    |     oui     | le nouveau nom du dossier uploads    |
+
+### add:twig
+
+`wp add:twig`
+
+Aucune config supplémentaire n'est requises.
