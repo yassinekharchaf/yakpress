@@ -16,25 +16,25 @@ class {{taxonomy_class}}Taxonomy
   {
 
     $labels = [// les labels pour la taxonomie
-      'name' => __(''),
-      'singular_name' => __(''),
-      'search_items' => __(''),
-      'all_items' => __(''),
-      'parent_item' => __(''),
+      'name'              => __(''),
+      'singular_name'     => __(''),
+      'search_items'      => __(''),
+      'all_items'         => __(''),
+      'parent_item'       => __(''),
       'parent_item_colon' => __(''),
-      'edit_item' => __(''),
-      'update_item' => __(''),
-      'add_new_item' => __(''),
-      'new_item_name' => __(''),
-      'menu_name' => __(''),
+      'edit_item'         => __(''),
+      'update_item'       => __(''),
+      'add_new_item'      => __(''),
+      'new_item_name'     => __(''),
+      'menu_name'         => __(''),
     ];
     $args = [
-      'hierarchical' => true,
-      'labels' => $labels,
-      'show_ui' => true,
+      'hierarchical'      => true,
+      'labels'            => $labels,
+      'show_ui'           => true,
       'show_admin_column' => true,
-      'query_var' => true,
-      'rewrite' => ['slug' => self::$slug],
+      'query_var'         => true,
+      'rewrite'           => ['slug' => self::$slug],
     ];
     // ajout de la taxonomie pour le type de contenu recipe
     register_taxonomy(self::$slug, [CustomPostType::$slug], $args);

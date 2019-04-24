@@ -14,9 +14,14 @@
 
 ## La structure
 
-```sh
-Plugin
-├── Pluginname
+Yakpress propose deux structure, l'une pour les plugins et l'autre pour les thèmes.
+Les deux structures sont fort similaire et ne diffère que par quelque fichier.
+
+### structure plugin
+
+```bash
+plugin-name
+├── PluginName
 │   ├── Database
 │   │   ├── Database.php
 │   │   └── Migrations
@@ -31,7 +36,6 @@ Plugin
 │   │   ├── Controllers
 │   │   ├── Middlewares
 │   │   ├── Models
-│   │   │   └── Mail.php
 │   │   └── Requests
 │   │       └── Request.php
 │   ├── Providers
@@ -42,6 +46,7 @@ Plugin
 │   └── Setup.php
 ├── autoload.php
 ├── bootstrap.php
+├── composer.json
 ├── config
 │   ├── features.php
 │   ├── hooks.php
@@ -58,13 +63,68 @@ Plugin
     └── action.php
 ```
 
+### structure theme
+
+```bash
+theme-name
+├── ThemeName
+│   ├── Features
+│   │   ├── MetaBoxes
+│   │   ├── Pages
+│   │   ├── PostTypes
+│   │   ├── Sections
+│   │   ├── Taxonomies
+│   │   └── Widgets
+│   ├── Http
+│   │   ├── Controllers
+│   │   ├── Middlewares
+│   │   ├── Models
+│   │   └── Requests
+│   │       └── Request.php
+│   ├── Providers
+│   │   ├── FeaturesProvider.php
+│   │   ├── HooksProvider.php
+│   │   ├── ImageSizesProvider.php
+│   │   ├── MenusProvider.php
+│   │   ├── SupportsProvider.php
+│   │   ├── RoutesProvider.php
+│   │   └── ServicesProvider.php
+│   └── Setup.php
+├── autoload.php
+├── bootstrap.php
+├── composer.json
+├── config
+│   ├── features.php
+│   ├── hooks.php
+│   ├── image-size.php
+│   ├── menus.php
+│   ├── supports.php
+│   ├── twig.php
+│   ├── twig-env.php
+│   └── providers.php
+├── env.php
+├── helpers.php
+├── plugin-name.php
+├── resources
+│   ├── assets
+│   │   ├── css
+│   │   └── js
+│   └── views
+└── routes
+    └── action.php
+```
+
+Les différences principales entre un plugin et un thème sont les providers. De base le thème a des providers pour les tailles d'images, les supports du thème et les menus de navigation. Il en va de même pour les fichiers de configurations avec deux fichiers supplémentaires pour les générateurs de template Twig
+
 ## Le cycle de vie de l'application
 
-> Nous n'allons pas expliquer le cycle de vie de l'application wordpress mais uniquement celui de notre plugin lors de son chargement
+> Nous n'allons pas expliquer le cycle de vie de l'application wordpress mais uniquement celui de notre micro framework lors de son chargement
 
 ### Étape 1
 
-Wordpress commence tout d'abord par charger le fichier qui comporte ne nom du plugin `plugin-name.php`. Ce fichier n'a pour rôle que de charger le fichier `autoload.php` et de lancer l'application via le fichier `bootstrap.php`
+Wordpress commence tout d'abord par charger le fichier qui comporte ne nom du plugin `plugin-name.php` / theme `theme-name.phpj`. Ce fichier n'a pour rôle que de charger le fichier `autoload.php` qui est généré par _composer_ et de lancer l'application via le fichier `bootstrap.php`
+
+#### plugin `fichier plugin-name.php`
 
 ```php
 <?php
@@ -73,28 +133,30 @@ Wordpress commence tout d'abord par charger le fichier qui comporte ne nom du pl
  * ...
  */
 
-require_once('autoload.php');
+require_once('vendor/autoload.php');
 
-require_once('bootstrap.php');
+```
+
+#### theme `fichier functions.php`
+
+```php
+<?php
+
+require_once('vendor/autoload.php');
+
 ```
 
 ### Étape 2
 
-Le fichier `autoload.php` va nous facilité la vie et charger automatiquement toutes les classes qui se trouve au sein du dossier `Pluginname`.
+Le fichier `autoload.php` va nous facilité la vie et charger automatiquement toutes les classes qui se trouve au sein de notre micro framework.
 
-Le fichier `bootstrap.php` va lui charger les variables d'environnement, les helpers, faire le setup de l'application et enregistrer les services providers.
+Le fichier `bootstrap.php` se charge de lancer le provider de service, ainsi que le Setup pour les plugins seulement.
 
 ```php
 <?php
 
 use Pluginname\Providers\ServicesProvider;
 use Pluginname\Setup;
-
-// Chargement des variables d'environnement
-require_once('env.php');
-
-// Ajout du fichier helpers.php pour disposé des fonctions helper
-require_once('helpers.php');
 
 // Setup de l'application
 Setup::init();
@@ -160,9 +222,17 @@ La classe `ServicesProvider` va charger les services providers principaux.
 - `HooksProvider` va charger tout les hooks et associer une méthode callback.
 - `RoutesProvider` va associer une méthode callback à request personnalisé que l'on aura créé.
 
-> Les services providers `Features` et `Hooks` charge le tout grâce aux fichiers de configuration que ce trouve dans le dossier `config`. Pour le service `Routes` il charge le fichier `action.php` qui se trouve dans le dossier `routes`.
+#### Pour le thème uniquement
+
+- `SupportsProvider` pour les supports du thème.
+- `ImageSizesProvider` pour les tailles d'images créer lors de l'upload d'image.
+- `MenusProvider` pour les menus de navigation à enregistrer.
+
+> Les services providers `Features`, `Supports`, `ImageSizes`, `Menus` et `Hooks` charge le tout grâce aux fichiers de configuration que ce trouve dans le dossier `config`. Pour le service `Routes` il charge le fichier `action.php` qui se trouve dans le dossier `routes`.
 
 ## Les constantes d'environnement
+
+### plugin
 
 Le fichier `env.php` a pour but de stocker les constantes d'environnement d'on vous pourriez avoir besoin pour votre application. il en existe déjà quelques une de base.
 
@@ -170,6 +240,10 @@ Le fichier `env.php` a pour but de stocker les constantes d'environnement d'on v
 - `PREFIX_PLUGIN_DIR` renvoi le chemin serveur pour le plugin
 - `PREFIX_VIEW_DIR` renvoi le chemin serveur pour le dossier `views`
 - `PREFIX_CONFIG_DIR` renvoi le chemin serveur pour le dossier `conf`
+
+### theme
+
+Un fichier `env.php` est prévu mais vide afin d'y rajouter vos constantes en cours de développement.
 
 ## Les helpers
 
@@ -181,8 +255,8 @@ C'est également dans le fichier `helpers.php` que vous rajouterez vos helpers. 
 
 ## Les services providers
 
-> Il existe 4 services providers de base mais il est possible d'en rajouter d'autre grâce à la commande
-> `wp yakpress provider`
+> Il existe 4 services providers de base pour les plugin et 3 de plus pour les thèmes mais il est possible d'en rajouter d'autre grâce à la commande
+> `wp plugin:provider` ou `wp theme:provider`
 
 - [ServicesProvider](#servicesprovider)
 - [FeaturesProvider](#featuresprovider)
@@ -268,9 +342,9 @@ il faut bien respecter le format de donner de chaque entrer du tableau.
 
 :::tip info
 le fichier `config/features.php` est commenter pour être bien organisé.
-Si vous créer des features avec le [CLI](/cli/#provider), le [CLI](/cli/#provider) entrera automatiquement les données dans le tableau de manière structurer.
+Si vous créer des features avec le [CLI](/cli/), le [CLI](/cli/) entrera automatiquement les données dans le tableau de manière structurer.
 
-exemple : `wp yakpress post_type evenement --plugin=plugin-name`
+exemple : `wp plugin:posttype evenement --plugin=plugin-name`. _Il n'est pas nécessaire de spécifier le nom du plugin si l'on se trouve à la racine de celui-ci_
 :::
 
 `config/features.php`
@@ -472,7 +546,11 @@ class Database
 
 ### Les migrations
 
-Le dossier `Database/Migrations` va lui contenir toutes les migrations pour les tables. Si les migrations sont créées à l'aide du [CLI](/cli/#migration) `wp yakpress migration`, elles seront alors directement ajouter au fichier `Database/Database.php` dans les méthodes `Database::create()` et `Database::drop()`.
+::: warning Attention
+les migrations ne sont utilisable que dans les plugins
+:::
+
+Le dossier `Database/Migrations` va lui contenir toutes les migrations pour les tables. Si les migrations sont créées à l'aide du [CLI](/cli/) `wp plugin:migration`, elles seront alors directement ajouter au fichier `Database/Database.php` dans les méthodes `Database::create()` et `Database::drop()`.
 Les class de migration possèdent deux méthode `CustomTable::up()` et `CustomTable::down()` pour supprimer une table. Cela est fait à l'aide de requête **sql** pure.
 
 ```php
@@ -526,7 +604,7 @@ Cette partie du Framework est dédiée aux composant de base que wordpress nous 
 
 ### PostTypes
 
-Il est possible de créer facilement un type de contenu personnalisé avec le [CLI](/cli/#post-type) et de le charger automatiquement `wp yakpress post_type`
+Il est possible de créer facilement un type de contenu personnalisé avec le [CLI](/cli/) et de le charger automatiquement `wp plugin:posttype` `wp theme:posttype`
 
 Cela créer alors un fichier préfait avec tout les labels et options possible à mettre. Il suffit de décommenter ceux dont on a besoin pour les personnaliser et de supprimer le reste. Comme pout la plupart des autre Features, le **slug** du composant est en propriété de la class afin de pouvoir être facilement référencé depuis une autre feature.
 
@@ -547,67 +625,67 @@ class CustomPostType
   {
     // label pour le type de contenu
     $labels = array(
-      //'name' => __('Post'),
-      //'singular_name' => __('Post'),
-      //'add_new' => __('Add new post'),
-      // 'add_new_item' => array(__('Add New Post'), __('Add New Page')),
-      // 'edit_item' => array(__('Edit Post'), __('Edit Page')),
-      // 'new_item' => array(__('New Post'), __('New Page')),
-      // 'view_item' => array(__('View Post'), __('View Page')),
-      // 'view_items' => array(__('View Posts'), __('View Pages')),
-      // 'search_items' => array(__('Search Posts'), __('Search Pages')),
-      // 'not_found' => array(__('No posts found.'), __('No pages found.')),
-      // 'not_found_in_trash' => array(__('No posts found in Trash.'), __('No pages found in Trash.')),
-      // 'parent_item_colon' => array(null, __('Parent Page:')),
-      // 'all_items' => array(__('All Posts'), __('All Pages')),
-      // 'archives' => array(__('Post Archives'), __('Page Archives')),
-      // 'attributes' => array(__('Post Attributes'), __('Page Attributes')),
-      // 'insert_into_item' => array(__('Insert into post'), __('Insert into page')),
-      // 'uploaded_to_this_item' => array(__('Uploaded to this post'), __('Uploaded to this page')),
-      // 'featured_image' => array(_x('Featured Image', 'post'), _x('Featured Image', 'page')),
-      // 'set_featured_image' => array(_x('Set featured image', 'post'), _x('Set featured image', 'page')),
-      // 'remove_featured_image' => array(_x('Remove featured image', 'post'), _x('Remove featured image', 'page')),
-      // 'use_featured_image' => array(_x('Use as featured image', 'post'), _x('Use as featured image', 'page')),
-      // 'filter_items_list' => array(__('Filter posts list'), __('Filter pages list')),
-      // 'items_list_navigation' => array(__('Posts list navigation'), __('Pages list navigation')),
-      // 'items_list' => array(__('Posts list'), __('Pages list')),
-      // 'item_published' => array(__('Post published.'), __('Page published.')),
+      // 'name'                     => __('Post'),
+      // 'singular_name'            => __('Post'),
+      // 'add_new'                  => __('Add new post'),
+      // 'add_new_item'             => array(__('Add New Post'), __('Add New Page')),
+      // 'edit_item'                => array(__('Edit Post'), __('Edit Page')),
+      // 'new_item'                 => array(__('New Post'), __('New Page')),
+      // 'view_item'                => array(__('View Post'), __('View Page')),
+      // 'view_items'               => array(__('View Posts'), __('View Pages')),
+      // 'search_items'             => array(__('Search Posts'), __('Search Pages')),
+      // 'not_found'                => array(__('No posts found.'), __('No pages found.')),
+      // 'not_found_in_trash'       => array(__('No posts found in Trash.'), __('No pages found in Trash.')),
+      // 'parent_item_colon'        => array(null, __('Parent Page:')),
+      // 'all_items'                => array(__('All Posts'), __('All Pages')),
+      // 'archives'                 => array(__('Post Archives'), __('Page Archives')),
+      // 'attributes'               => array(__('Post Attributes'), __('Page Attributes')),
+      // 'insert_into_item'         => array(__('Insert into post'), __('Insert into page')),
+      // 'uploaded_to_this_item'    => array(__('Uploaded to this post'), __('Uploaded to this page')),
+      // 'featured_image'           => array(_x('Featured Image', 'post'), _x('Featured Image', 'page')),
+      // 'set_featured_image'       => array(_x('Set featured image', 'post'), _x('Set featured image', 'page')),
+      // 'remove_featured_image'    => array(_x('Remove featured image', 'post'), _x('Remove featured image', 'page')),
+      // 'use_featured_image'       => array(_x('Use as featured image', 'post'), _x('Use as featured image', 'page')),
+      // 'filter_items_list'        => array(__('Filter posts list'), __('Filter pages list')),
+      // 'items_list_navigation'    => array(__('Posts list navigation'), __('Pages list navigation')),
+      // 'items_list'               => array(__('Posts list'), __('Pages list')),
+      // 'item_published'           => array(__('Post published.'), __('Page published.')),
       // 'item_published_privately' => array(__('Post published privately.'), __('Page published privately.')),
-      // 'item_reverted_to_draft' => array(__('Post reverted to draft.'), __('Page reverted to draft.')),
-      // 'item_scheduled' => array(__('Post scheduled.'), __('Page scheduled.')),
-      // 'item_updated' => array(__('Post updated.'), __('Page updated.')),
+      // 'item_reverted_to_draft'   => array(__('Post reverted to draft.'), __('Page reverted to draft.')),
+      // 'item_scheduled'           => array(__('Post scheduled.'), __('Page scheduled.')),
+      // 'item_updated'             => array(__('Post updated.'), __('Page updated.')),
 
     );
 
     $options = array(
-      // 'labels' => $labels,
-      // 'description' => '',
-      // 'public' => true,
-      // 'hierarchical' => false,
-      // 'exclude_from_search' => null,
-      // 'publicly_queryable' => null,
-      // 'show_ui' => null,
-      // 'show_in_menu' => null,
-      // 'show_in_nav_menus' => null,
-      // 'show_in_admin_bar' => null,
-      // 'menu_position' => null,
-      // 'menu_icon' => null,
-      // 'capability_type' => 'post',
-      // 'capabilities' => array(),
-      // 'map_meta_cap' => null,
-      // 'supports' => array('title', 'editor', 'excerpt', 'thumbnail'),
-      // 'register_meta_box_cb' => null,
-      // 'taxonomies' => array(),
-      // 'has_archive' => false,
-      // 'rewrite' => true,
-      // 'query_var' => true,
-      // 'can_export' => true,
-      // 'delete_with_user' => null,
-      // 'show_in_rest' => false,// mettre à true si on veut utiliser gutenberg
-      // 'rest_base' => false,
+      // 'labels'                => $labels,
+      // 'description'           => '',
+      // 'public'                => true,
+      // 'hierarchical'          => false,
+      // 'exclude_from_search'   => null,
+      // 'publicly_queryable'    => null,
+      // 'show_ui'               => null,
+      // 'show_in_menu'          => null,
+      // 'show_in_nav_menus'     => null,
+      // 'show_in_admin_bar'     => null,
+      // 'menu_position'         => null,
+      // 'menu_icon'             => null,
+      // 'capability_type'       => 'post',
+      // 'capabilities'          => array(),
+      // 'map_meta_cap'          => null,
+      // 'supports'              => array('title', 'editor', 'excerpt', 'thumbnail'),
+      // 'register_meta_box_cb'  => null,
+      // 'taxonomies'            => array(),
+      // 'has_archive'           => false,
+      // 'rewrite'               => true,
+      // 'query_var'             => true,
+      // 'can_export'            => true,
+      // 'delete_with_user'      => null,
+      // 'show_in_rest'          => false,
+      // 'rest_base'             => false,
       // 'rest_controller_class' => false,
-      // '_builtin' => false,
-      // '_edit_link' => 'post.php?post=%d',
+      // '_builtin'              => false,
+      // '_edit_link'            => 'post.php?post=%d',
     );
 
     register_post_type(
@@ -621,7 +699,7 @@ class CustomPostType
 
 ### Taxonomies
 
-Il est possible de créer facilement une taxonomie personnalisé avec le [CLI](/cli/#taxonomy) et de le charger automatiquement `wp yakpress taxonomy`
+Il est possible de créer facilement une taxonomie personnalisé avec le [CLI](/cli/) et de le charger automatiquement `wp plugin:taxonomy` `wp theme:taxonomy`
 
 Cela créer alors un fichier préfait avec tout les labels et arguments possible à mettre. Il suffit de décommenter ceux dont on a besoin pour les personnaliser et de supprimer le reste. Comme pout la plupart des autre Features, le **slug** du composant est en propriété de la class afin de pouvoir être facilement référencé depuis une autre feature.
 
@@ -643,25 +721,25 @@ class CustomTaxonomy
   {
 
     $labels = [// les labels pour la taxonomie
-      'name' => __(''),
-      'singular_name' => __(''),
-      'search_items' => __(''),
-      'all_items' => __(''),
-      'parent_item' => __(''),
+      'name'              => __(''),
+      'singular_name'     => __(''),
+      'search_items'      => __(''),
+      'all_items'         => __(''),
+      'parent_item'       => __(''),
       'parent_item_colon' => __(''),
-      'edit_item' => __(''),
-      'update_item' => __(''),
-      'add_new_item' => __(''),
-      'new_item_name' => __(''),
-      'menu_name' => __(''),
+      'edit_item'         => __(''),
+      'update_item'       => __(''),
+      'add_new_item'      => __(''),
+      'new_item_name'     => __(''),
+      'menu_name'         => __(''),
     ];
     $args = [
-      'hierarchical' => true,
-      'labels' => $labels,
-      'show_ui' => true,
+      'hierarchical'      => true,
+      'labels'            => $labels,
+      'show_ui'           => true,
       'show_admin_column' => true,
-      'query_var' => true,
-      'rewrite' => ['slug' => self::$slug],
+      'query_var'         => true,
+      'rewrite'           => ['slug' => self::$slug],
     ];
     // ajout de la taxonomie pour le type de contenu recipe
     register_taxonomy(self::$slug, [CustomPostType::$slug], $args);
@@ -672,7 +750,7 @@ class CustomTaxonomy
 
 ### MetaBoxes
 
-Il est possible de créer facilement une metabox personnalisé avec le [CLI](/cli/#metabox) et de la charger automatiquement `wp yakpress metabox`
+Il est possible de créer facilement une metabox personnalisé avec le [CLI](/cli/) et de la charger automatiquement `wp plugin:metabox` `wp theme:metabox`
 
 Cela créer alors un fichier préfait avec 3 méthodes. `CustomMetabox::add_meta_box()` pour associer la metabox avec différent **screen**, `CustomMetabox::render()` pour récuperer des datas et les renvoyer vers une vue qui sera charger d'afficher le contenu de la metabox et `CustomMetabox::save()` pour gérer la sauvegarde des datas de la metabox.
 
@@ -733,7 +811,7 @@ class CustomMetabox
 
 ### Widgets
 
-Il est possible de créer facilement un widget personnalisé avec le [CLI](/cli/#widget) et de la charger automatiquement `wp yakpress widget`.
+Il est possible de créer facilement un widget personnalisé avec le [CLI](/cli/) et de la charger automatiquement `wp plugin:widget` `wp theme:widget`.
 
 Ce fichier contient une class qui étant la class WP_Widget et les méthodes indiqué par les conventions wordpress.
 
@@ -750,11 +828,11 @@ class CustomWidget extends \WP_Widget
 
   //ici on peut définir des arguments en plus que l'on pourrait passer à la vue qui s'affiche sur le front office
   public $args = array(
-    'before_title' => '',
-    'after_title' => '',
+    'before_title'  => '',
+    'after_title'   => '',
     'before_widget' => '',
-    'after_widget' => '',
-    'self' => self::class
+    'after_widget'  => '',
+    'self'          => self::class
   );
 
   /**
@@ -827,7 +905,7 @@ class CustomWidget extends \WP_Widget
 
 ### Sections
 
-Il est possible de créer facilement une section personnalisés avec le [CLI](/cli/#section) et de la charger automatiquement `wp yakpress section`.
+Il est possible de créer facilement une section personnalisés avec le [CLI](/cli/) et de la charger automatiquement `wp plugin:section` `wp theme:section`.
 
 La class contient 3 méthodes. `CustomSection::init()` pour associer une section avec une page, `CustomSection::register_settings()` pour enregistrer les settings de la section afin qu'ils puissent être sauvegarder en même temps que le reste de la page et `CustomSection::render()` qui charge la vue pour le rendu de la section.
 
@@ -883,12 +961,12 @@ class CustomSection
 
 ### Pages
 
-Il est possible de créer facilement une page personnalisés avec le [CLI](/cli/#page) et de la charger automatiquement `wp yakpress page`.
+Il est possible de créer facilement une page personnalisés avec le [CLI](/cli/) et de la charger automatiquement `wp plugin:page` `wp theme:page`.
 
 La class CustomPage se compose de 2 méthodes. `CustomPage::init()` pour initialiser la page et `CustomPage::render()` qui se charge de rendre le contenu de la page.
 
 :::tip conseil
-Il est préférable de créer un controller associé avec la page qui pourra alors faire office de resource pour cette page `index, show, create, edit, update, delete`. Si vous créer le formulaire associé via le [CLI](/cli/#page) vous aurez alors un bout de code qui permettra à la fonction render de renvoyer vers la bonne méthode du controller en fonction de la variable `$_GET['action']`.
+Il est préférable de créer un controller associé avec la page qui pourra alors faire office de resource pour cette page `index, show, create, edit, update, delete`. Si vous créer le formulaire associé via le [CLI](/cli/) vous aurez alors un bout de code qui permettra à la fonction render de renvoyer vers la bonne méthode du controller en fonction de la variable `$_GET['action']`.
 :::
 
 ```php
@@ -948,25 +1026,23 @@ Comme dans la plupart des framwork, ce dossier contient les class qui intervienn
 
 ### Controllers
 
-Les controllers sont la partie du framework ou la logique va être orchestrée. Il est possible de créer un controller via le [CLI](/cli/#controller) `wp yakpress controller`. Il est également possible de rajouter directement le model associé et de les lié grâce au flag `--model`.
+Les controllers sont la partie du framework ou la logique va être orchestrée. Il est possible de créer un controller via le [CLI](/cli/) `wp plugin:controller` `wp theme:controller`. Il est également possible de rajouter directement le model associé et de les lié grâce au flag `--model`.
 
-De base le controller dispose de méthode ressource.
-
-:::warning
-il est possible que dans les prochaines version on permette de définir un controller comme ressource via un flag `--resource`.
+:::tip info
+De base le controller ne dispose pas de méthode resource, pour implémenter les resources il suffit de rajouter le flag `--resource`.
 :::
 
 ### Models
 
-Les models sont la partie du framework qui communique avec la base de donnée. Il est possible de créer un model via le [CLI](/cli/#model) `wp yakpress model`. Il est également possible de rajouter directement le controller associé grâce au flag --controller.
+Les models sont la partie du framework qui communique avec la base de donnée. Il est possible de créer un model via le [CLI](/cli/) `wp plugin:model` `wp theme:model`. Il est également possible de rajouter directement le controller associé grâce au flag --controller.
 
-De base tout les Models extends la class `Pluginname\Http\Model\Model::class` afin de ne pas répeter les fonctions de base commune à la plupart des models.
+De base tout les Models extends la class `AppName\Http\Model\Model::class` afin de ne pas répeter les fonctions de base commune à la plupart des models.
 
 ### Middlewares
 
 Les middlewares sont la partie du framework qui permet d'executer une action avant le que controller ne soit lancé. Pour exemple, vérifier si une personne est connecter et rediriger vers une page si ça n'est pas le cas.
 
-Il est possibile de créer des middlewares via le [CLI](/cli/#middleware) `wp yakpress middleware`
+Il est possibile de créer des middlewares via le [CLI](/cli/) `wp plugin:middleware` `wp theme:middleware`
 
 ### Requests
 
