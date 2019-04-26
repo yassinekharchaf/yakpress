@@ -4,7 +4,7 @@ if (!class_exists('WP_CLI')) {
 	return;
 }
 
-require_once(__DIR__ . "/vendor/autoload.php");
+// require_once(__DIR__ . "/vendor/autoload.php");
 WP_CLI::add_command('plugin:new', ["Command\YakPress", "plugin"]);
 WP_CLI::add_command('plugin:posttype', ["Command\YakPress", "plugin_post_type"]);
 WP_CLI::add_command('plugin:metabox', ["Command\YakPress", "plugin_metabox"]);
