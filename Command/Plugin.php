@@ -13,6 +13,9 @@ class Plugin extends YakPress
 		$plugin_package   = str_replace(' ', '_', $plugin_name);
 		$plugin_dir       = WP_PLUGIN_DIR . "/$plugin_slug";
 
+		if (is_dir($plugin_dir)) {
+			\WP_CLI::halt("Ce plugin existe déjà.");
+		}
 
 		$data = wp_parse_args($assoc_args, array(
 			'plugin_slug'         => $plugin_slug,

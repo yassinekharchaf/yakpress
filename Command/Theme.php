@@ -25,6 +25,10 @@ class Theme extends YakPress
 		$theme_dir = get_theme_root() . "/$theme_slug";
 		$force     = \WP_CLI\Utils\get_flag_value($assoc_args, 'force');
 
+		if (is_dir($theme_dir)) {
+			\WP_CLI::halt("Ce thème existe déjà.");
+		}
+
 		wp_mkdir_p("$theme_dir/$theme_namespace");
 		wp_mkdir_p("$theme_dir/$theme_namespace/Features");
 		wp_mkdir_p("$theme_dir/$theme_namespace/Http");
