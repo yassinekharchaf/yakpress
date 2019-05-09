@@ -37,7 +37,7 @@ class Metabox extends YakPress
 			self::insert_into_file(
 				"$dir_path/config/features.php",
 				"<?php",
-				"use $dir_namespace\\Features\\MetaBoxes\\{$metabox_class}Metabox;"
+				"use $dir_namespace\\Features\\MetaBoxes\\{$metabox_class}MetaBox;"
 			);
 
 			// Ajout dans le fichier config/features.php
