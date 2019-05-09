@@ -16,10 +16,10 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "autoload": {
-        "files": ["command.php"],
         "psr-4": {
             "Command\\": "Command/"
-        }
+        },
+        "files": ["command.php"]
     },
     "require": {
         "wp-cli/wp-cli": "2.*",
