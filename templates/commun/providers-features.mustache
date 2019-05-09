@@ -11,7 +11,7 @@ class FeaturesProvider
 	 */
 	public static function boot()
 	{
-		$features = config('features');
+		$features = \{{helper_namespace}}config('features');
 		foreach ($features as $feature) {
 			add_action(...$feature);
 		}

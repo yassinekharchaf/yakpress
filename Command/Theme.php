@@ -13,12 +13,13 @@ class Theme extends YakPress
 
 
 		$data = wp_parse_args($assoc_args, array(
-			'theme_slug'      => $theme_slug,
-			'theme_namespace' => $theme_namespace,
-			'dir_namespace' => $theme_namespace,
-			'theme_name'      => $theme_name,
-			'textdomain'      => $theme_slug,
-			'theme_prefix'    => strtoupper(substr($theme_slug, 0, 3)),
+			'theme_slug'       => $theme_slug,
+			'theme_namespace'  => $theme_namespace,
+			'dir_namespace'    => $theme_namespace,
+			'theme_name'       => $theme_name,
+			'textdomain'       => $theme_slug,
+			'theme_prefix'     => strtoupper(substr($theme_slug, 0, 3)),
+			'helper_namespace' => "Theme\\"
 		));
 
 		$theme_dir = get_theme_root() . "/$theme_slug";

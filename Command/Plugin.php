@@ -28,6 +28,7 @@ class Plugin extends YakPress
 			'plugin_tested_up_to' => get_bloginfo('version'),
 			'textdomain'          => $plugin_slug,
 			'plugin_prefix'       => strtoupper(substr($plugin_slug, 0, 3)),
+			'helper_namespace'    => ""
 		));
 
 		$force = \WP_CLI\Utils\get_flag_value($assoc_args, 'force');

@@ -7,7 +7,7 @@ class HooksProvider
 
   public static function boot()
   {
-    $hooks  = config('hooks');
+    $hooks  = \{{helper_namespace}}config('hooks');
 
     $actions = $hooks['actions'];
     $filters = $hooks['filters'];

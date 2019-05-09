@@ -11,7 +11,7 @@ class ServicesProvider
 	 */
 	public static function register()
 	{
-		$providers = config('providers');
+		$providers = \{{helper_namespace}}config('providers');
 
 		foreach ($providers as $provider) {
 			call_user_func([$provider, 'boot']);
