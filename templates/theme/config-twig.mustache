@@ -1,5 +1,8 @@
 <?php
+namespace {{theme_namespace}}\Twig;
+
 use function {{theme_namespace}}\helpers\config;
+
 /**
  * Fonction that render a twig template
  *
@@ -28,5 +31,5 @@ function render($file, $data)
 
   $twig->addGlobal("menu", wp_nav_menu(['echo' => false]));
 
-  echo $twig->render($file, $data);
+  echo $twig->render($file . '.twig', $data);
 }

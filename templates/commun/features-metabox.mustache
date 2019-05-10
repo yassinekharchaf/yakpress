@@ -2,6 +2,9 @@
 
 namespace {{dir_namespace}}\Features\MetaBoxes;
 
+use function {{dir_namespace}}\helpers\view;
+use function {{dir_namespace}}\helpers\update_post_metas;
+use function {{dir_namespace}}\Twig\render;
 
 class {{metabox_class}}MetaBox
 {
@@ -33,9 +36,12 @@ class {{metabox_class}}MetaBox
    *
    * @return void
    */
-  public static function render()
+  public static function render($post)
   {
+		$data = get_post_meta($post->ID, '');
 
+		// view('path/file',$data); // utilisation du helper view dans les plugin avec des fichier.html.php
+		// render('path/file',$data); // utilisation de twig dans les thème avec des fichiers.twig
   }
 
   /**
@@ -46,6 +52,9 @@ class {{metabox_class}}MetaBox
    */
   public static function save(int $post_id)
   {
-
+		$data = [
+			// "key_name" => $_POST["input_name"]
+		];
+		update_post_metas($post_id, $data);
   }
 }
