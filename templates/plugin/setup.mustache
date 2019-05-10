@@ -3,7 +3,7 @@
 namespace {{plugin_namespace}};
 
 use {{plugin_namespace}}\Database\Database;
-
+use {{plugin_namespace}}\Providers\RolesProvider;
 class Setup
 {
 
@@ -23,6 +23,7 @@ class Setup
   public static function activation()
   {
 		Database::create();
+  	RolesProvider::boot();
 	}
 
   /**

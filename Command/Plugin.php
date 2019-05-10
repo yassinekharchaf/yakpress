@@ -30,7 +30,7 @@ class Plugin extends YakPress
 			'plugin_uri'          => 'PLUGIN SITE HERE',
 			'plugin_tested_up_to' => get_bloginfo('version'),
 			'textdomain'          => $plugin_slug,
-			'plugin_prefix'       => strtoupper(substr($plugin_slug, 0, 3)),
+			'plugin_prefix'       => strtoupper(substr($plugin_namespace, 0, 3)),
 			'helper_namespace'    => ""
 		));
 
@@ -57,13 +57,15 @@ class Plugin extends YakPress
 			"$plugin_dir/$plugin_namespace/Setup.php"                      => self::mustache_render('plugin/setup.mustache', $data),
 			"$plugin_dir/$plugin_namespace/Providers/ServicesProvider.php" => self::mustache_render('commun/providers-services.mustache', $data),
 			"$plugin_dir/$plugin_namespace/Providers/RoutesProvider.php"   => self::mustache_render('plugin/providers-routes.mustache', $data),
+			"$plugin_dir/$plugin_namespace/Providers/RolesProvider.php"    => self::mustache_render('plugin/providers-roles.mustache', $data),
 			"$plugin_dir/$plugin_namespace/Providers/HooksProvider.php"    => self::mustache_render('commun/providers-hooks.mustache', $data),
 			"$plugin_dir/$plugin_namespace/Providers/FeaturesProvider.php" => self::mustache_render('commun/providers-features.mustache', $data),
 			"$plugin_dir/$plugin_namespace/Http/Requests/Validate.php"     => self::mustache_render('commun/http-request-validate.mustache', $data),
 			"$plugin_dir/$plugin_slug.php"                                 => self::mustache_render('plugin/plugin.mustache', $data),
 			"$plugin_dir/config/features.php"                              => self::mustache_render('commun/config-features.mustache', $data),
 			"$plugin_dir/config/hooks.php"                                 => self::mustache_render('commun/config-hooks.mustache', $data),
-			"$plugin_dir/config/providers.php"                             => self::mustache_render('commun/config-providers.mustache', $data),
+			"$plugin_dir/config/providers.php"                             => self::mustache_render('plugin/config-providers.mustache', $data),
+			"$plugin_dir/config/roles.php"                                 => self::mustache_render('plugin/config-roles.mustache', $data),
 			"$plugin_dir/.gitignore"                                       => self::mustache_render('plugin/gitignore.mustache', $data),
 			"$plugin_dir/composer.json"                                    => self::mustache_render('plugin/composer.mustache', $data),
 			"$plugin_dir/bootstrap.php"                                    => self::mustache_render('plugin/bootstrap.mustache', $data),

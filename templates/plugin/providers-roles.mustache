@@ -1,0 +1,21 @@
+<?php
+
+namespace {{dir_namespace}}\Providers;
+
+use function {{dir_namespace}}\helpers\config;
+
+class RolesProvider
+{
+	/**
+	 * Ajout d'un add action pour chaque feature
+	 *
+	 * @return void
+	 */
+	public static function boot()
+	{
+		$roles = config('roles');
+		foreach ($roles as $role) {
+			add_role(...$role);
+		}
+	}
+}
