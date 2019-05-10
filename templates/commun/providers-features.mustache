@@ -2,6 +2,8 @@
 
 namespace {{dir_namespace}}\Providers;
 
+use function {{dir_namespace}}\helpers\config;
+
 class FeaturesProvider
 {
 	/**
@@ -11,7 +13,7 @@ class FeaturesProvider
 	 */
 	public static function boot()
 	{
-		$features = \{{helper_namespace}}config('features');
+		$features = config('features');
 		foreach ($features as $feature) {
 			add_action(...$feature);
 		}

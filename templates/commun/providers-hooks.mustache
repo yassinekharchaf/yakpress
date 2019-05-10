@@ -2,12 +2,14 @@
 
 namespace {{dir_namespace}}\Providers;
 
+use function {{dir_namespace}}\helpers\config;
+
 class HooksProvider
 {
 
   public static function boot()
   {
-    $hooks  = \{{helper_namespace}}config('hooks');
+    $hooks  = config('hooks');
 
     $actions = $hooks['actions'];
     $filters = $hooks['filters'];

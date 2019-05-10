@@ -2,6 +2,8 @@
 
 namespace {{ theme_namespace }}\Providers;
 
+use function {{theme_namespace}}\helpers\config;
+
 class SupportsProvider
 {
 
@@ -13,7 +15,7 @@ class SupportsProvider
 
   public static function add()
   {
-    $supports  = \Theme\config('supports');
+    $supports  = config('supports');
 
     foreach ($supports as $support) {
       add_theme_support($support);

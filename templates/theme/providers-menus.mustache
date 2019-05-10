@@ -2,6 +2,8 @@
 
 namespace {{ theme_namespace }}\Providers;
 
+use function {{theme_namespace}}\helpers\config;
+
 class MenusProvider
 {
   public static function boot()
@@ -11,7 +13,7 @@ class MenusProvider
 
   public static function register()
   {
-    $menus  = \Theme\config('menus');
+    $menus  = config('menus');
 
     foreach ($menus as $menu) {
       register_nav_menu(...$menu);

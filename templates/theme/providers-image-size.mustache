@@ -2,6 +2,8 @@
 
 namespace {{ theme_namespace }}\Providers;
 
+use function {{theme_namespace}}\helpers\config;
+
 class ImageSizesProvider
 {
   public static function boot()
@@ -11,7 +13,7 @@ class ImageSizesProvider
 
   public static function add()
   {
-    $isizes  = \Theme\config('image-size');
+    $isizes  = config('image-size');
 
     foreach ($isizes as $isize) {
       add_image_size(...$isize);
