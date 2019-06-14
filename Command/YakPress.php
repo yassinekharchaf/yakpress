@@ -497,6 +497,44 @@ class YakPress extends \Scaffold_Command
 	}
 
 	/**
+	 * utilisation d'un seed
+	 *
+	 * ## OPTIONS
+	 *
+	 * <seed-name>
+	 * : Nom du seed ou "all" pour tous
+	 *
+	 * [--theme=<theme-name>]
+	 * : Nom du thème où se trouve le seed
+	 *
+	 */
+	public function theme_seed($args, $assoc_args)
+	{
+		$dir_slug = self::get_slug($assoc_args, "theme");
+		$dir_path = get_theme_root() . "/$dir_slug";
+		Seed::create($args, $assoc_args, $dir_slug, $dir_path);
+	}
+
+	/**
+	 * utilisation d'un seed
+	 *
+	 * ## OPTIONS
+	 *
+	 * <seed-name>
+	 * : Nom du seed ou "all" pour tous
+	 *
+	 * [--plugin=<plugin-name>]
+	 * : Nom du thème où se trouve le seed
+	 *
+	 */
+	public function plugin_seed($args, $assoc_args)
+	{
+		$dir_slug = self::get_slug($assoc_args, "plugin");
+		$dir_path = WP_PLUGIN_DIR . "/$dir_slug";
+		Seed::create($args, $assoc_args, $dir_slug, $dir_path);
+	}
+
+	/**
 	 * Change de structure of wordpress so it tempt people to hack it
 	 *
 	 * ## Options

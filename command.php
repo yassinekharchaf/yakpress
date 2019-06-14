@@ -16,6 +16,7 @@ WP_CLI::add_command('plugin:controller', ["Command\YakPress", "plugin_controller
 WP_CLI::add_command('plugin:provider', ["Command\YakPress", "plugin_provider"]);
 WP_CLI::add_command('plugin:middleware', ["Command\YakPress", "plugin_middleware"]);
 WP_CLI::add_command('plugin:migration', ["Command\YakPress", "plugin_migration"]);
+WP_CLI::add_command('plugin:seed', ["Command\YakPress", "plugin_seed"]);
 
 WP_CLI::add_command('theme:new', ["Command\YakPress", "theme"]);
 WP_CLI::add_command('theme:posttype', ["Command\YakPress", "theme_post_type"]);
@@ -28,6 +29,7 @@ WP_CLI::add_command('theme:model', ["Command\YakPress", "theme_model"]);
 WP_CLI::add_command('theme:controller', ["Command\YakPress", "theme_controller"]);
 WP_CLI::add_command('theme:provider', ["Command\YakPress", "theme_provider"]);
 WP_CLI::add_command('theme:middleware', ["Command\YakPress", "theme_middleware"]);
+WP_CLI::add_command('theme:seed', ["Command\YakPress", "theme_seed"]);
 
 WP_CLI::add_command('morphing', ["Command\YakPress", "morphing"]);
 WP_CLI::add_command('add:twig', ["Command\YakPress", "twig"]);
