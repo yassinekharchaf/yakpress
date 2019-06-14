@@ -1,0 +1,25 @@
+<?php
+
+namespace {{ theme_namespace }};
+
+use {{ theme_namespace }}\Providers\RolesProvider;
+
+class Setup
+{
+
+    public static function init()
+    {
+        add_action("after_setup_theme", [self::class, "after_theme_setup"]);
+        add_action("after_switch_theme", [self::class, "theme_switch"]);
+    }
+
+    public static function after_theme_setup()
+    {
+        add_theme_support('post-thumbnails');
+    }
+
+    public static function theme_switch()
+    {
+        RolesProvider::boot();
+    }
+}
