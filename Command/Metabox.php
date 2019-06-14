@@ -44,7 +44,8 @@ class Metabox extends YakPress
 			self::insert_into_file(
 				"$dir_path/config/features.php",
 				"### METABOXES ###",
-				"	['add_meta_boxes',[{$metabox_class}Metabox::class,'add_meta_box']],"
+				"	['add_meta_boxes',[{$metabox_class}Metabox::class,'add_meta_box']],\n" .
+					"	//['save_post_' . CustomPostType::\$slug,[{$metabox_class}Metabox::class,'save']],"
 			);
 
 			\WP_CLI::success("La metabox a bien été créé");
