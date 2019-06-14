@@ -5,6 +5,7 @@ namespace {{dir_namespace}}\Http\Controllers;
 {{#model}}
 use {{dir_namespace}}\Http\Models\{{model_class}}Model;
 {{/model}}
+use function {{dir_namespace}}\Twig\render;
 
 class {{controller_class}}Controller
 {
@@ -17,7 +18,7 @@ class {{controller_class}}Controller
   public static function index()
   {
 
-    //view('viewpath', compact('data'));
+    //render('viewpath', compact('data'));
   }
 
   /**
@@ -28,7 +29,7 @@ class {{controller_class}}Controller
   public static function show()
   {
 
-    //view('viewpath', compact('data'));
+    //render('viewpath', compact('data'));
   }
 
 
@@ -40,7 +41,7 @@ class {{controller_class}}Controller
   public static function create()
   {
 
-    //view('viewpath', compact('data'));
+    //render('viewpath', compact('data'));
   }
 
   /**
@@ -51,7 +52,7 @@ class {{controller_class}}Controller
   public static function edit()
   {
 
-    //view('viewpath', compact('data'));
+    //render('viewpath', compact('data'));
   }
 
 	 /**

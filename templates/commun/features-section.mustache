@@ -1,6 +1,7 @@
 <?php
 
 namespace {{dir_namespace}}\Features\Sections;
+use function {{dir_namespace}}\Twig\render;
 
 class {{section_class}}Section
 {
@@ -42,6 +43,8 @@ class {{section_class}}Section
    */
   public static function render()
   {
-    //view('viewpath', compact('data'));
+		$options = get_option(self::$slug);
+
+    //render('viewpath', compact('data'));
   }
 }

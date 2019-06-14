@@ -2,7 +2,6 @@
 
 namespace {{dir_namespace}}\Features\MetaBoxes;
 
-use function {{dir_namespace}}\helpers\view;
 use function {{dir_namespace}}\helpers\update_post_metas;
 use function {{dir_namespace}}\Twig\render;
 
@@ -40,7 +39,6 @@ class {{metabox_class}}MetaBox
   {
 		$data = get_post_meta($post->ID, '');
 
-		// view('path/file',$data); // utilisation du helper view dans les plugin avec des fichier.html.php
 		// render('path/file',$data); // utilisation de twig dans les thème avec des fichiers.twig
   }
 

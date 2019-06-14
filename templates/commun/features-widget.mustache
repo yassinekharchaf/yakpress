@@ -2,6 +2,8 @@
 
 namespace {{dir_namespace}}\Features\Widgets;
 
+use function {{dir_namespace}}\Twig\render;
+
 class {{widget_class}}Widget extends \WP_Widget
 {
   public static $slug = "{{widget}}";
@@ -49,7 +51,7 @@ class {{widget_class}}Widget extends \WP_Widget
   public function widget($args, $instance)
   {
 
-    //view('viewpath', compact('args', 'instance'));
+    //render('viewpath', compact('args', 'instance'));
 
   }
 
@@ -63,7 +65,7 @@ class {{widget_class}}Widget extends \WP_Widget
   {
     //les widgets génere des name specifique pour les inputs, il faut donc utiliser la methode get_field_name pour cela
 
-    //view('viewpath', compact('data'));
+    //render('viewpath', compact('data'));
 
   }
 
