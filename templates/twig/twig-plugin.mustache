@@ -37,7 +37,7 @@ $twig->addFunction($function);
  * @param array $data an array of data to be sended to the twig file
  * @return void
  */
-function render($file, $data)
+function render($file, $data = array())
 {
   global $twig;
   echo $twig->render($file, $data);
