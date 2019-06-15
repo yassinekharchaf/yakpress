@@ -535,6 +535,25 @@ class YakPress extends \Scaffold_Command
 	}
 
 	/**
+	 * utilisation d'un seed
+	 *
+	 * ## OPTIONS
+	 *
+	 * <customizer-name>
+	 * : Nom du customizer
+	 *
+	 * [--theme=<theme-name>]
+	 * : Nom du thème où se trouve le seed
+	 *
+	 */
+	public function theme_customizer($args, $assoc_args)
+	{
+		$dir_slug = self::get_slug($assoc_args, "theme");
+		$dir_path = get_theme_root() . "/$dir_slug";
+		Customizer::create($args, $assoc_args, $dir_slug, $dir_path);
+	}
+
+	/**
 	 * Change de structure of wordpress so it tempt people to hack it
 	 *
 	 * ## Options

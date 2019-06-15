@@ -30,6 +30,7 @@ WP_CLI::add_command('theme:controller', ["Command\YakPress", "theme_controller"]
 WP_CLI::add_command('theme:provider', ["Command\YakPress", "theme_provider"]);
 WP_CLI::add_command('theme:middleware', ["Command\YakPress", "theme_middleware"]);
 WP_CLI::add_command('theme:seed', ["Command\YakPress", "theme_seed"]);
+WP_CLI::add_command('theme:customizer', ["Command\YakPress", "theme_customizer"]);
 
 WP_CLI::add_command('morphing', ["Command\YakPress", "morphing"]);
 WP_CLI::add_command('add:twig', ["Command\YakPress", "twig"]);

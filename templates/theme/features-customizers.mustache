@@ -1,0 +1,75 @@
+<?php
+
+namespace {{dir_namespace}}\Features\Customizers;
+
+
+class {{customizer_class}}Customizer
+{
+    public static $slug = "{{customizer}}";
+
+    public static function register($wp_customize)
+    {
+        self::panel($wp_customize);
+        self::section($wp_customize);
+        self::setting($wp_customize);
+        self::control($wp_customize);
+    }
+
+    public static function panel($wp_customize)
+    {
+        // \WP_Customize_Manager::add_panel();
+        $wp_customize->add_panel(self::$slug . '_panel', array(
+            'priority'        => 160,                    //(int) Priority of the panel, defining the display order of panels and sections. Default 160.
+            'capability'      => "edit_theme_options",   //(string) Capability required for the panel. Default edit_theme_options
+            // 'theme_supports'  => "",                     //(string|array) Theme features required to support the panel.
+            'title'           => __("Panel title"),                     //(string) Title of the panel to show in UI.
+            'description'     => __("Panel description"),                     //(string) Description to show in the UI.
+            // 'type'            => "",                     //(string) Type of the panel.
+        ));
+    }
+
+    public static function section($wp_customize)
+    {
+        $wp_customize->add_section(
+            self::$slug . '_section',
+            array(
+                'priority'           => 160,                         //(int) Priority of the panel, defining the display order of panels and sections. Default 160.
+                'panel'              => self::$slug . '_panel',
+                'capability'         => "edit_theme_options",        //(string) Capability required for the panel. Default edit_theme_options
+                // 'theme_supports'     => "",                          //(string|array) Theme features required to support the panel.
+                'title'              => __("Section title"),         //(string) Title of the panel to show in UI.
+                'description'        => __("section description"),   //(string) Description to show in the UI.
+                // 'type'               => "",                          //(string) Type of the panel.
+                'description_hidden' => false,                       //(bool) Hide the description behind a help icon, instead of inline above the first control. Default false.'
+            )
+        );
+    }
+
+    public static function setting($wp_customize)
+    {
+        $wp_customize->add_setting('setting_1_id', array(
+            'type'           => 'theme_mod',            // or 'option'
+            'capability'     => 'edit_theme_options',
+            // 'theme_supports' => '',
+            'default'        => '',
+            'transport'      => 'refresh',              // or postMessage
+        ));
+    }
+
+    public static function control($wp_customize)
+    {
+        $wp_customize->add_control(self::$slug . '_control', array(
+            'settings'        => ["setting_1_id"],                         //(array) All settings tied to the control. If undefined, defaults to $setting. IDs in the array correspond to the ID of a registered WP_Customize_Setting.
+            'capability'      => "",                         //(string) Capability required to use this control. Normally derived from $settings.
+            'priority'        => 10,                         //(int) Order priority to load the control. Default 10.
+            'section'         => self::$slug . '_section',   //(string) The section this control belongs to.
+            'label'           => "Control label",            //(string) Label for the control.
+            'description'     => "Control description",      //(string) Description for the control.
+            // 'choices'         => [],                         //(array) List of choices for 'radio' or 'select' type controls, where values are the keys, and labels are the values.
+            'input_attrs'     => [],                         //(array) List of custom input attributes for control output, where attribute names are the keys and values are the values.
+            'allow_addition'  => false,                      //(bool) Show UI for adding new content, currently only used for the dropdown-pages control. Default false.
+            'type'            => "text",                     //(string) The type of the control. Default 'text'.
+
+        ));
+    }
+}
