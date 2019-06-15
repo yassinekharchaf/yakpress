@@ -535,7 +535,7 @@ class YakPress extends \Scaffold_Command
 	}
 
 	/**
-	 * utilisation d'un seed
+	 * utilisation d'un customizer
 	 *
 	 * ## OPTIONS
 	 *

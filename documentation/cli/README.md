@@ -21,7 +21,8 @@ Pour plus de simplicité encore il est possible d'utiliser `wp <commande> --prom
 | [plugin:controller](#plugin-controller) | [theme:controller](#theme-controller) |                       |
 | [plugin:middleware](#plugin-middleware) | [theme:middleware](#theme-middleware) |                       |
 | [plugin:provider](#plugin-provider)     | [theme:provider](#theme-provider)     |                       |
-| [plugin:migration](#plugin-migration)   |                                       |                       |
+| [plugin:seed](#plugin-seed)             | [theme:seed](#theme-seed)             |                       |
+| [plugin:migration](#plugin-migration)   | [theme:customizer](#theme-customizer) |                       |
 
 ## plugin
 
@@ -67,7 +68,7 @@ Lorsque l'on créer la metabox, celle-ci est automatiquement ajouter au fichier 
 | name      |     oui     | slug de la metabox.                                           |
 | plugin    |     non     | Pas obligatoire si on se trouve à la racine du dossier plugin |
 
-### plugin-:idget
+### plugin:widget
 
 `wp plugin:widget <name> [--plugin=plugin-name]`
 
@@ -138,6 +139,15 @@ Lorsque l'on créer la page, celle-ci est automatiquement ajouter au fichier de 
 | Propriété | Obligatoire | Description                                                   |
 | --------- | :---------: | :------------------------------------------------------------ |
 | name      |     oui     | slug du provider.                                             |
+| plugin    |     non     | Pas obligatoire si on se trouve à la racine du dossier plugin |
+
+### plugin:seed
+
+`wp plugin:seed <seed-name> [--plugin=plugin-name]`
+
+| Propriété | Obligatoire | Description                                                   |
+| --------- | :---------: | :------------------------------------------------------------ |
+| seed-name |     oui     | slug du seed.                                                 |
 | plugin    |     non     | Pas obligatoire si on se trouve à la racine du dossier plugin |
 
 ### plugin-migration
@@ -264,6 +274,24 @@ Lorsque l'on créer la page, celle-ci est automatiquement ajouter au fichier de 
 | Propriété | Obligatoire | Description                                                  |
 | --------- | :---------: | :----------------------------------------------------------- |
 | name      |     oui     | slug du provider.                                            |
+| theme     |     non     | Pas obligatoire si on se trouve à la racine du dossier theme |
+
+### theme:seed
+
+`wp theme:seed <seed-name> [--theme=theme-name]`
+
+| Propriété | Obligatoire | Description                                                  |
+| --------- | :---------: | :----------------------------------------------------------- |
+| seed-name |     oui     | slug du seeder.                                              |
+| theme     |     non     | Pas obligatoire si on se trouve à la racine du dossier theme |
+
+### theme:customizer
+
+`wp theme:provider <customizer-name> [--theme=theme-name]`
+
+| Propriété | Obligatoire | Description                                                  |
+| --------- | :---------: | :----------------------------------------------------------- |
+| name      |     oui     | slug du customizer.                                          |
 | theme     |     non     | Pas obligatoire si on se trouve à la racine du dossier theme |
 
 ## Autres

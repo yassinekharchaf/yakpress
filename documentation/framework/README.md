@@ -41,7 +41,10 @@ plugin-name
 │   ├── Providers
 │   │   ├── FeaturesProvider.php
 │   │   ├── HooksProvider.php
+│   │   ├── ImageSizesProvider.php
 │   │   ├── RoutesProvider.php
+│   │   ├── RolesProvider.php
+│   │   ├── ScriptsProvider.php
 │   │   └── ServicesProvider.php
 │   └── Setup.php
 ├── autoload.php
@@ -50,6 +53,13 @@ plugin-name
 ├── config
 │   ├── features.php
 │   ├── hooks.php
+│   ├── image-size.php
+│   ├── roles.php
+│   ├── scripts.php
+│   ├── supports.php
+│   ├── image-size.php
+│   ├── twig.php
+│   ├── twig-env.php
 │   └── providers.php
 ├── env.php
 ├── helpers.php
@@ -69,6 +79,7 @@ plugin-name
 theme-name
 ├── ThemeName
 │   ├── Features
+│   │   ├── Customizers
 │   │   ├── MetaBoxes
 │   │   ├── Pages
 │   │   ├── PostTypes
@@ -87,7 +98,9 @@ theme-name
 │   │   ├── ImageSizesProvider.php
 │   │   ├── MenusProvider.php
 │   │   ├── SupportsProvider.php
+│   │   ├── RolesProvider.php
 │   │   ├── RoutesProvider.php
+│   │   ├── ScriptsProvider.php
 │   │   └── ServicesProvider.php
 │   └── Setup.php
 ├── autoload.php
@@ -98,6 +111,8 @@ theme-name
 │   ├── hooks.php
 │   ├── image-size.php
 │   ├── menus.php
+│   ├── roles.php
+│   ├── scripts.php
 │   ├── supports.php
 │   ├── twig.php
 │   ├── twig-env.php
@@ -122,7 +137,7 @@ Les différences principales entre un plugin et un thème sont les providers. De
 
 ### Étape 1
 
-Wordpress commence tout d'abord par charger le fichier qui comporte ne nom du plugin `plugin-name.php` / theme `theme-name.phpj`. Ce fichier n'a pour rôle que de charger le fichier `autoload.php` qui est généré par _composer_ et de lancer l'application via le fichier `bootstrap.php`
+Wordpress commence tout d'abord par charger le fichier qui comporte ne nom du plugin `plugin-name.php` / theme `theme-name.php`. Ce fichier n'a pour rôle que de charger le fichier `autoload.php` qui est généré par _composer_ et de lancer l'application via le fichier `bootstrap.php`
 
 #### plugin `fichier plugin-name.php`
 
