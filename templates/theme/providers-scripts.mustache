@@ -1,0 +1,34 @@
+<?php
+
+namespace {{dir_namespace}}\Providers;
+
+use function {{dir_namespace}}\helpers\config;
+
+class ScriptsProvider
+{
+
+	/**
+	 *Cette fonction est lancé au chargement du provider
+	 *
+	 */
+	public static function boot()
+	{
+		add_action("wp_enqueue_scripts", [self::class, "init"]);
+	}
+
+	public static function init()
+	{
+		$scripts     = config("scripts");
+		$javascripts = $scripts["javascripts"];
+		$styles      = $scripts["styles"];
+
+
+		foreach ($javascripts as $javascript) {
+			wp_enqueue_script(...$javascript);
+		}
+
+		foreach ($styles as $style) {
+			wp_enqueue_style(...$style);
+		}
+	}
+}
