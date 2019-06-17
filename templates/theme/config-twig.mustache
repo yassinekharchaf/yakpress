@@ -31,5 +31,5 @@ function render($file, $data)
 
   $twig->addGlobal("menu", wp_nav_menu(['echo' => false]));
 
-  echo $twig->render($file . '.twig', $data);
+  echo $twig->render($file , $data);
 }
