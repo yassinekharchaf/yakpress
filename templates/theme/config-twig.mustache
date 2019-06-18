@@ -10,7 +10,7 @@ use function {{theme_namespace}}\helpers\config;
  * @param array $data an array of data to be sended to the twig file
  * @return void
  */
-function render($file, $data)
+function render($file, $data = array())
 {
   $environment_options = config("twig-env");
 
