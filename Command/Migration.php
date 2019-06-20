@@ -37,7 +37,7 @@ class Migration extends YakPress
       self::insert_into_file(
         "$dir_path/{$dir_namespace}/Database/Database.php",
         "namespace",
-        "\nuse $dir_namespace\\Database\\Migration\\{$migration_class}Table;"
+        "\nuse $dir_namespace\\Database\\Migrations\\{$migration_class}Table;"
       );
 
       // Ajout dans la méthode activation
