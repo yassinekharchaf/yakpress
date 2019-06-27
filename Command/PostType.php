@@ -48,6 +48,7 @@ class PostType extends YakPress
 			);
 
 
+            shell_exec("wp rewrite flush");
 			\WP_CLI::success("Le post type a bien été créé");
 		} else {
 			\WP_CLI::warning("Le fichier {$post_type_class}PostType.php existe déjà");
