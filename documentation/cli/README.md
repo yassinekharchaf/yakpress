@@ -163,7 +163,7 @@ Lorsque l'on créer la page, celle-ci est automatiquement ajouter au fichier de 
 :::warning
 Pour compiler votre block gutenberg en es5, `cd resources/src/`
 `./node_modules/.bin/wp-scripts start|build blocks/blockname.js -o ../assets/blocks/blockname.js`
-:::warning
+:::
 
 ### plugin-migration
 
@@ -300,7 +300,7 @@ Lorsque l'on créer la page, celle-ci est automatiquement ajouter au fichier de 
 | seed-name |     oui     | slug du seeder.                                              |
 | theme     |     non     | Pas obligatoire si on se trouve à la racine du dossier theme |
 
-:::warning
+:::warning Attention
 Pour compiler votre block gutenberg en es5, `cd resources/src/`
 `./node_modules/.bin/wp-scripts start|build blocks/blockname.js -o ../assets/blocks/blockname.js`
 :::
