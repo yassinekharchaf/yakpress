@@ -1,0 +1,14 @@
+const { registerBlockType } = wp.blocks;
+
+
+registerBlockType( '{{dir_slug}}/{{block}}', {
+    title: '{{block_class}}',
+    icon: 'smiley',
+    category: 'common',
+    edit() {
+        return <div>block {{block}} editor</div>;
+    },
+    save() {
+        return <div>block {{block}} frontend</div>;
+    },
+} );

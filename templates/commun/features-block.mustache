@@ -1,0 +1,20 @@
+<?php
+
+namespace {{dir_namespace}}\Features\Blocks;
+
+class {{block_class}}Block
+{
+
+    public static function register()
+    {
+        wp_register_script(
+            'block-{{block}}',
+            YAK_ASSETS_URL .  '/blocks/{{block}}.js',
+            array('wp-blocks', 'wp-element')
+        );
+
+        register_block_type('{{dir_slug}}/{{block}}', array(
+            'editor_script' => 'block-{{block}}',
+        ));
+    }
+}

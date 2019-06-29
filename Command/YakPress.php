@@ -524,7 +524,7 @@ class YakPress extends \Scaffold_Command
 	 * : Nom du seed ou "all" pour tous
 	 *
 	 * [--plugin=<plugin-name>]
-	 * : Nom du thème où se trouve le seed
+	 * : Nom du plugin où se trouve le seed
 	 *
 	 */
 	public function plugin_seed($args, $assoc_args)
@@ -532,6 +532,44 @@ class YakPress extends \Scaffold_Command
 		$dir_slug = self::get_slug($assoc_args, "plugin");
 		$dir_path = WP_PLUGIN_DIR . "/$dir_slug";
 		Seed::create($args, $assoc_args, $dir_slug, $dir_path);
+	}
+
+	/**
+	 * création d'un block
+	 *
+	 * ## OPTIONS
+	 *
+	 * <block-name>
+	 * : Nom du block
+	 *
+	 * [--plugin=<plugin-name>]
+	 * : Nom du plugin où se trouve le block
+	 *
+	 */
+	public function plugin_block($args, $assoc_args)
+	{
+		$dir_slug = self::get_slug($assoc_args, "plugin");
+		$dir_path = WP_PLUGIN_DIR . "/$dir_slug";
+		Block::create($args, $assoc_args, $dir_slug, $dir_path);
+	}
+
+	/**
+	 * création d'un block
+	 *
+	 * ## OPTIONS
+	 *
+	 * <block-name>
+	 * : Nom du block
+	 *
+	 * [--theme=<theme-name>]
+	 * : Nom du theme où se trouve le block
+	 *
+	 */
+	public function theme_block($args, $assoc_args)
+	{
+		$dir_slug = self::get_slug($assoc_args, "theme");
+		$dir_path = WP_PLUGIN_DIR . "/$dir_slug";
+		Block::create($args, $assoc_args, $dir_slug, $dir_path);
 	}
 
 	/**

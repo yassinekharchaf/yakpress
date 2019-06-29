@@ -1,0 +1,22 @@
+<?php
+
+namespace {{dir_namespace}}\Providers;
+
+use function {{dir_namespace}}\helpers\config;
+
+class BlocksProvider
+{
+
+	/**
+	 *Cette fonction est lancé au chargement du provider
+	 *
+	 */
+	public static function boot()
+	{
+		$blocks = config("blocks");
+
+		foreach ($blocks as $block) {
+			add_action(...$block);
+		}
+	}
+}
