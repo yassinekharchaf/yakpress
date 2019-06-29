@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Le micro framework | Yakpress </title>
-    <meta name="description" content="A micro framework to build wordpress plugin *beta*">
+    <meta name="description" content="A micro framework to build wordpress plugin">
     
     
-    <link rel="preload" href="/yakpress/assets/css/0.styles.65ef1d50.css" as="style"><link rel="preload" href="/yakpress/assets/js/app.ce51b04e.js" as="script"><link rel="preload" href="/yakpress/assets/js/5.57aa1c22.js" as="script"><link rel="prefetch" href="/yakpress/assets/js/2.855c3a5f.js"><link rel="prefetch" href="/yakpress/assets/js/3.0fc82a72.js"><link rel="prefetch" href="/yakpress/assets/js/4.1688bf19.js"><link rel="prefetch" href="/yakpress/assets/js/6.2a72b169.js"><link rel="prefetch" href="/yakpress/assets/js/7.e4fc9360.js"><link rel="prefetch" href="/yakpress/assets/js/8.dde3f876.js">
+    <link rel="preload" href="/yakpress/assets/css/0.styles.65ef1d50.css" as="style"><link rel="preload" href="/yakpress/assets/js/app.f9026485.js" as="script"><link rel="preload" href="/yakpress/assets/js/5.71d0a6bf.js" as="script"><link rel="prefetch" href="/yakpress/assets/js/2.855c3a5f.js"><link rel="prefetch" href="/yakpress/assets/js/3.0fc82a72.js"><link rel="prefetch" href="/yakpress/assets/js/4.569edd6c.js"><link rel="prefetch" href="/yakpress/assets/js/6.2a72b169.js"><link rel="prefetch" href="/yakpress/assets/js/7.e4fc9360.js"><link rel="prefetch" href="/yakpress/assets/js/8.dde3f876.js">
     <link rel="stylesheet" href="/yakpress/assets/css/0.styles.65ef1d50.css">
   </head>
   <body>
@@ -37,7 +37,10 @@ Les deux structures sont fort similaire et ne diffère que par quelque fichier.<
 │   ├── Providers
 │   │   ├── FeaturesProvider.php
 │   │   ├── HooksProvider.php
+│   │   ├── ImageSizesProvider.php
 │   │   ├── RoutesProvider.php
+│   │   ├── RolesProvider.php
+│   │   ├── ScriptsProvider.php
 │   │   └── ServicesProvider.php
 │   └── Setup.php
 ├── autoload.php
@@ -46,6 +49,13 @@ Les deux structures sont fort similaire et ne diffère que par quelque fichier.<
 ├── config
 │   ├── features.php
 │   ├── hooks.php
+│   ├── image-size.php
+│   ├── roles.php
+│   ├── scripts.php
+│   ├── supports.php
+│   ├── image-size.php
+│   ├── twig.php
+│   ├── twig-env.php
 │   └── providers.php
 ├── env.php
 ├── helpers.php
@@ -57,9 +67,10 @@ Les deux structures sont fort similaire et ne diffère que par quelque fichier.<
 │   └── views
 └── routes
     └── action.php
-</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br></div></div><h3 id="structure-theme"><a href="#structure-theme" aria-hidden="true" class="header-anchor">#</a> structure theme</h3> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>theme-name
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br></div></div><h3 id="structure-theme"><a href="#structure-theme" aria-hidden="true" class="header-anchor">#</a> structure theme</h3> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>theme-name
 ├── ThemeName
 │   ├── Features
+│   │   ├── Customizers
 │   │   ├── MetaBoxes
 │   │   ├── Pages
 │   │   ├── PostTypes
@@ -78,7 +89,9 @@ Les deux structures sont fort similaire et ne diffère que par quelque fichier.<
 │   │   ├── ImageSizesProvider.php
 │   │   ├── MenusProvider.php
 │   │   ├── SupportsProvider.php
+│   │   ├── RolesProvider.php
 │   │   ├── RoutesProvider.php
+│   │   ├── ScriptsProvider.php
 │   │   └── ServicesProvider.php
 │   └── Setup.php
 ├── autoload.php
@@ -89,6 +102,8 @@ Les deux structures sont fort similaire et ne diffère que par quelque fichier.<
 │   ├── hooks.php
 │   ├── image-size.php
 │   ├── menus.php
+│   ├── roles.php
+│   ├── scripts.php
 │   ├── supports.php
 │   ├── twig.php
 │   ├── twig-env.php
@@ -103,7 +118,7 @@ Les deux structures sont fort similaire et ne diffère que par quelque fichier.<
 │   └── views
 └── routes
     └── action.php
-</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br></div></div><p>Les différences principales entre un plugin et un thème sont les providers. De base le thème a des providers pour les tailles d'images, les supports du thème et les menus de navigation. Il en va de même pour les fichiers de configurations avec deux fichiers supplémentaires pour les générateurs de template Twig</p> <h2 id="le-cycle-de-vie-de-l-application"><a href="#le-cycle-de-vie-de-l-application" aria-hidden="true" class="header-anchor">#</a> Le cycle de vie de l'application</h2> <blockquote><p>Nous n'allons pas expliquer le cycle de vie de l'application wordpress mais uniquement celui de notre micro framework lors de son chargement</p></blockquote> <h3 id="etape-1"><a href="#etape-1" aria-hidden="true" class="header-anchor">#</a> Étape 1</h3> <p>Wordpress commence tout d'abord par charger le fichier qui comporte ne nom du plugin <code>plugin-name.php</code> / theme <code>theme-name.phpj</code>. Ce fichier n'a pour rôle que de charger le fichier <code>autoload.php</code> qui est généré par <em>composer</em> et de lancer l'application via le fichier <code>bootstrap.php</code></p> <h4 id="plugin-fichier-plugin-name-php"><a href="#plugin-fichier-plugin-name-php" aria-hidden="true" class="header-anchor">#</a> plugin <code>fichier plugin-name.php</code></h4> <div class="language-php line-numbers-mode"><pre class="language-php"><code><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br></div></div><p>Les différences principales entre un plugin et un thème sont les providers. De base le thème a des providers pour les tailles d'images, les supports du thème et les menus de navigation. Il en va de même pour les fichiers de configurations avec deux fichiers supplémentaires pour les générateurs de template Twig</p> <h2 id="le-cycle-de-vie-de-l-application"><a href="#le-cycle-de-vie-de-l-application" aria-hidden="true" class="header-anchor">#</a> Le cycle de vie de l'application</h2> <blockquote><p>Nous n'allons pas expliquer le cycle de vie de l'application wordpress mais uniquement celui de notre micro framework lors de son chargement</p></blockquote> <h3 id="etape-1"><a href="#etape-1" aria-hidden="true" class="header-anchor">#</a> Étape 1</h3> <p>Wordpress commence tout d'abord par charger le fichier qui comporte ne nom du plugin <code>plugin-name.php</code> / theme <code>theme-name.php</code>. Ce fichier n'a pour rôle que de charger le fichier <code>autoload.php</code> qui est généré par <em>composer</em> et de lancer l'application via le fichier <code>bootstrap.php</code></p> <h4 id="plugin-fichier-plugin-name-php"><a href="#plugin-fichier-plugin-name-php" aria-hidden="true" class="header-anchor">#</a> plugin <code>fichier plugin-name.php</code></h4> <div class="language-php line-numbers-mode"><pre class="language-php"><code><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
 <span class="token comment">/**
  * Plugin Name:     Plugin Name
  * ...
@@ -754,6 +769,6 @@ Les class de migration possèdent deux méthode <code>CustomTable::up()</code> e
         <a href="/yakpress/cli/" class="prev">
           CLI commande
         </a></span> <!----></p></div> </div> <!----></div></div>
-    <script src="/yakpress/assets/js/app.ce51b04e.js" defer></script><script src="/yakpress/assets/js/5.57aa1c22.js" defer></script>
+    <script src="/yakpress/assets/js/app.f9026485.js" defer></script><script src="/yakpress/assets/js/5.71d0a6bf.js" defer></script>
   </body>
 </html>

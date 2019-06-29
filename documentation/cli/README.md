@@ -22,6 +22,7 @@ Pour plus de simplicité encore il est possible d'utiliser `wp <commande> --prom
 | [plugin:middleware](#plugin-middleware) | [theme:middleware](#theme-middleware) |                       |
 | [plugin:provider](#plugin-provider)     | [theme:provider](#theme-provider)     |                       |
 | [plugin:seed](#plugin-seed)             | [theme:seed](#theme-seed)             |                       |
+| [plugin:block](#plugin-block)           | [theme:block](#theme-block)           |                       |
 | [plugin:migration](#plugin-migration)   | [theme:customizer](#theme-customizer) |                       |
 
 ## plugin
@@ -149,6 +150,15 @@ Lorsque l'on créer la page, celle-ci est automatiquement ajouter au fichier de 
 | --------- | :---------: | :------------------------------------------------------------ |
 | seed-name |     oui     | slug du seed.                                                 |
 | plugin    |     non     | Pas obligatoire si on se trouve à la racine du dossier plugin |
+
+### plugin:block
+
+`wp plugin:block <block-name> [--plugin=plugin-name]`
+
+| Propriété  | Obligatoire | Description                                                   |
+| ---------- | :---------: | :------------------------------------------------------------ |
+| block-name |     oui     | slug du block.                                                |
+| plugin     |     non     | Pas obligatoire si on se trouve à la racine du dossier plugin |
 
 ### plugin-migration
 
@@ -284,6 +294,15 @@ Lorsque l'on créer la page, celle-ci est automatiquement ajouter au fichier de 
 | --------- | :---------: | :----------------------------------------------------------- |
 | seed-name |     oui     | slug du seeder.                                              |
 | theme     |     non     | Pas obligatoire si on se trouve à la racine du dossier theme |
+
+### theme:block
+
+`wp theme:block <block-name> [--theme=theme-name]`
+
+| Propriété  | Obligatoire | Description                                                  |
+| ---------- | :---------: | :----------------------------------------------------------- |
+| block-name |     oui     | slug du blocker.                                             |
+| theme      |     non     | Pas obligatoire si on se trouve à la racine du dossier theme |
 
 ### theme:customizer
 
